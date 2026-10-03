@@ -15,6 +15,7 @@ New website for **Fence Wizards** (temporary fence rental, B2B, Greenwood IN; ow
 - **On hold:**
   - /pricing/ page (waiting on Richard).
   - Stripe payment requests (waiting on questionnaire section 5; design is in TODO.md).
+- **Next workstream:** Google Ads conversion tracking + landing pages (plan in TODO.md, section "Google Ads + landing pages"). Keep ads reports/notes in `marketing/google-ads/`. A separate cold-email outreach project for Richard lives in its own folder, not here.
 - **Not deployed yet:** everything runs locally. Launch needs Cloudflare (Pages + D1 + Access), Resend, and Google Maps/Places keys (see TODO.md and the site/README.md setup sections).
 
 ## Layout

@@ -43,6 +43,14 @@
 - [ ] Fishers page links to fishersin.gov (couldn't be checked automatically, so verify by hand). Plainfield, Avon, Muncie and Westfield links were updated to their current official sites.
 - [ ] Refresh the Google rating (4.6 from 39 reviews) before launch. It's set once in `site/build/lib/site.mjs`.
 
+## Google Ads + landing pages (next workstream: start a new chat in this folder)
+Plan agreed 2026-10-02. Order: tracking → review Richard's account exports → landing pages → restructure campaigns.
+- [ ] **Conversion tracking:** Google tag on the site; conversions for estimator submit, quick/contact forms, and calls (≥60s, Google forwarding number on ad traffic only, so the published phone stays (317) 296-4015). Update the privacy policy for ads/analytics.
+- [ ] **Click-ID capture:** store gclid/UTM with quotes and inquiries (new DB columns), show "Source" in the Quote Inbox, and later upload **Won** quotes with value to Google Ads (offline conversions).
+- [ ] **Get exports from Richard's account** (read-only is fine): search terms report (90 days), campaigns/ad groups/keywords with cost and conversions, current ads, conversion actions, budget/location/schedule settings. Save them in `marketing/google-ads/`.
+- [ ] **Landing pages** under `/go/…`: noindex, minimal header, one goal (call / short form / estimator), headline matching the ad, proof, 3–4 FAQs. Likely set: general rental, construction, events & barricades, emergency (call-first), maybe post-driven. Final list depends on the search terms.
+- [ ] **Account cleanup:** heavy negative keywords (residential, backyard/dog/privacy fence, installers, repair, panels for sale, jobs), location = presence in the 80-mile radius, call ads during 7:30am–9pm, never send ads to the homepage.
+
 ## Later phases
 - [x] Quote Inbox built (/staff/): list, status, notes, history, map of the drawn plan, call/text/email.
 - [ ] Quote Inbox launch: set up Cloudflare Access with Google sign-in (steps in site/README.md). Need Richard's Google email, yours, and any employees.
