@@ -22,6 +22,14 @@ The first run takes a few minutes while it downloads the Mac versions of the sit
 - **Keep the Terminal window open** while you show the site. Close it (or press Control+C) to stop.
 - The Mac needs **internet** for fonts and satellite maps; a phone hotspot is fine.
 
+## If the main start file shows an error (e.g. "write EPIPE")
+Use the **backup**: `Start Simple Preview (no forms).command`, started the same way (Terminal: `bash `, drag the file in, Return).
+- Needs only Node.js, nothing to download, and starts in seconds.
+- **Works:** every page, the drone video, the estimator's satellite map, drawing and live pricing.
+- **Doesn't work:** sending forms / quotes and the Quote Inbox (those need the full engine).
+
+To help fix the main file, note your **macOS version + chip** (Apple menu → About This Mac) and copy the last ~15 lines of the Terminal window.
+
 ## Notes
 - This is a local draft: form emails don't send yet, and logos and font are placeholders.
 - Quotes you send while demoing appear in the Quote Inbox on this Mac only.
