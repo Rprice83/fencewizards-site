@@ -51,6 +51,11 @@ Node isn't on the default PATH in fresh shells, so prefix with:
 - Dev helpers: http://localhost:8788/api/dev/email-preview (latest email Richard would get); http://localhost:8788/staff/ (auto-signed-in locally via DEV_STAFF_EMAIL in `.dev.vars`)
 - Python: `$env:LOCALAPPDATA\Programs\Python\Python312\python.exe` (Pillow, pillow-heif, pymupdf installed). FFmpeg is installed via winget (Gyan.FFmpeg).
 
+## Version history (git)
+- Local git repo at the project root (branch `main`, no remote). Git: `C:\Program Files\Git\cmd\git.exe` (may not be on PATH in old shells).
+- Commit a snapshot after each finished piece of work, with a plain-English message. Check `git status` first, and never commit `.dev.vars` or keys.
+- Not tracked (too big, still on disk/OneDrive): `organized-assets/named-videos/` (raw 4K drone clips) and `organized-assets/working/`.
+
 ## Decisions already made (don't re-ask)
 - Brand: red #ED1C24, ink #231F20, silver. Barlow Condensed stands in for Shuttleblock (paid). Logos are cropped from the PDF until the designer's SVGs arrive.
 - Phone **(317) 296-4015** and **richard@fencewizards.com** everywhere. The truck wraps' old 4508 number in photos is fine.
