@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "60390",
+          "GEOID": "1808160390",
+          "CENTLAT": "+39.5856262",
+          "AREAWATER": 44811,
+          "STATE": "18",
+          "BASENAME": "Pleasant",
+          "OID": "27690113724578",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.5826544",
+          "NAME": "Pleasant township",
+          "OBJECTID": 29598,
+          "CENTLON": "-086.0923060",
+          "COUSUBCC": "T1",
+          "AREALAND": 91253763,
+          "INTPTLON": "-086.0950036",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453746",
+          "COUNTY": "081"
+        }
+      ],
+      "Incorporated Places": [
+        {
+          "DISP_CLR": 4,
+          "STGEOMETRY_Area": 127045718.82997692,
+          "NECTAPCI": "N",
+          "GEOID": "1829898",
+          "CENTLAT": "+39.6027247",
+          "AREAWATER": 1883,
+          "BASENAME": "Greenwood",
+          "STATE": "18",
+          "OID": "27890113724852",
+          "LSADC": "25",
+          "PLACE": "29898",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.6033717",
+          "NAME": "Greenwood city",
+          "OBJECTID": 31881,
+          "PLACECC": "C1",
+          "CENTLON": "-086.1052898",
+          "STGEOMETRY_Length": 76579.34604367368,
+          "CBSAPCI": "Y",
+          "AREALAND": 75322359,
+          "INTPTLON": "-086.1052271",
+          "PLACENS": "02394244",
+          "MTFCC": "G4110"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18081",
+          "CENTLAT": "+39.4899030",
+          "AREAWATER": 3563561,
+          "STATE": "18",
+          "BASENAME": "Johnson",
+          "OID": "27590113724339",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.4960866",
+          "NAME": "Johnson County",
+          "OBJECTID": 1936,
+          "CENTLON": "-086.1016414",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450365",
+          "AREALAND": 829871056,
+          "INTPTLON": "-086.0942604",
+          "MTFCC": "G4020",
+          "COUNTY": "081"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -86.126197,
+        "y": 39.594269
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

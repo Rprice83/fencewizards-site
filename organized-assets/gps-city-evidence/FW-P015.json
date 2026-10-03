@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "59112",
+          "GEOID": "1810559112",
+          "CENTLAT": "+39.1213190",
+          "AREAWATER": 280736,
+          "STATE": "18",
+          "BASENAME": "Perry",
+          "OID": "27690115152084",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.1190435",
+          "NAME": "Perry township",
+          "OBJECTID": 15424,
+          "CENTLON": "-086.5175945",
+          "COUSUBCC": "T1",
+          "AREALAND": 91559658,
+          "INTPTLON": "-086.5197900",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453723",
+          "COUNTY": "105"
+        }
+      ],
+      "Incorporated Places": [
+        {
+          "DISP_CLR": 3,
+          "STGEOMETRY_Area": 101099691.43847184,
+          "NECTAPCI": "N",
+          "GEOID": "1805860",
+          "CENTLAT": "+39.1637073",
+          "AREAWATER": 476982,
+          "BASENAME": "Bloomington",
+          "STATE": "18",
+          "OID": "27890115152241",
+          "LSADC": "25",
+          "PLACE": "05860",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.1637003",
+          "NAME": "Bloomington city",
+          "OBJECTID": 30584,
+          "PLACECC": "C1",
+          "CENTLON": "-086.5257508",
+          "STGEOMETRY_Length": 105455.8471177846,
+          "CBSAPCI": "Y",
+          "AREALAND": 60216846,
+          "INTPTLON": "-086.5242642",
+          "PLACENS": "02394196",
+          "MTFCC": "G4110"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18105",
+          "CENTLAT": "+39.1608115",
+          "AREAWATER": 43507762,
+          "STATE": "18",
+          "BASENAME": "Monroe",
+          "OID": "27590115152061",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.1607286",
+          "NAME": "Monroe County",
+          "OBJECTID": 2953,
+          "CENTLON": "-086.5231092",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00451680",
+          "AREALAND": 1021809774,
+          "INTPTLON": "-086.5233100",
+          "MTFCC": "G4020",
+          "COUNTY": "105"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -86.539894,
+        "y": 39.160258
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "40968",
+          "GEOID": "1811140968",
+          "CENTLAT": "+41.1274758",
+          "AREAWATER": 11975,
+          "STATE": "18",
+          "BASENAME": "Lake",
+          "OID": "27690347036488",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+41.1320907",
+          "NAME": "Lake township",
+          "OBJECTID": 9962,
+          "CENTLON": "-087.4593378",
+          "COUSUBCC": "T1",
+          "AREALAND": 103042488,
+          "INTPTLON": "-087.4631275",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453537",
+          "COUNTY": "111"
+        }
+      ],
+      "Census Designated Places": [
+        {
+          "DISP_CLR": 2,
+          "STGEOMETRY_Area": 18020164.910143528,
+          "NECTAPCI": "N",
+          "GEOID": "1841652",
+          "CENTLAT": "+41.1308303",
+          "AREAWATER": 0,
+          "BASENAME": "Lake Village",
+          "STATE": "18",
+          "OID": "28090347043842",
+          "LSADC": "57",
+          "PLACE": "41652",
+          "FUNCSTAT": "S",
+          "INTPTLAT": "+41.1308303",
+          "NAME": "Lake Village CDP",
+          "OBJECTID": 23050,
+          "PLACECC": "U1",
+          "CENTLON": "-087.4390241",
+          "STGEOMETRY_Length": 17205.25852617444,
+          "CBSAPCI": "N",
+          "AREALAND": 10213928,
+          "INTPTLON": "-087.4390241",
+          "PLACENS": "02393086",
+          "MTFCC": "G4210"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18111",
+          "CENTLAT": "+40.9556284",
+          "AREAWATER": 4349506,
+          "STATE": "18",
+          "BASENAME": "Newton",
+          "OID": "27590347024411",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.9623985",
+          "NAME": "Newton County",
+          "OBJECTID": 1234,
+          "CENTLON": "-087.3975425",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450376",
+          "AREALAND": 1040539818,
+          "INTPTLON": "-087.4021716",
+          "MTFCC": "G4020",
+          "COUNTY": "111"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -87.448656,
+        "y": 41.124897
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

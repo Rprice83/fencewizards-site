@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "description": "Three-step estimator with persistent desktop summary and expandable mobile summary.",
+  "working_checkout": "../website-preview",
+  "comparison_routes": {
+    "v1": "/estimate-original/",
+    "v2": "/estimate/"
+  }
+}

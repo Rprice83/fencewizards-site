@@ -1,0 +1,10 @@
+{
+  "name": "Fence Wizards Quote Inbox",
+  "short_name": "Quotes",
+  "start_url": "/staff/",
+  "scope": "/staff/",
+  "display": "standalone",
+  "background_color": "#231F20",
+  "theme_color": "#231F20",
+  "icons": [{ "src": "/assets/brand/mark-fw-800.png", "sizes": "777x659", "type": "image/png", "purpose": "any" }]
+}

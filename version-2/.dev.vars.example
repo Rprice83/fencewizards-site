@@ -1,0 +1,14 @@
+# Copy to .dev.vars for local development only. Never commit actual secrets.
+PUBLIC_ORIGIN="http://127.0.0.1:8788"
+ACCEPT_QUOTES="false"
+TURNSTILE_SITE_KEY=""
+TURNSTILE_SECRET_KEY=""
+# A separate random secret of at least 32 characters; do not reuse the Turnstile secret.
+RECEIPT_SIGNING_KEY=""
+ACCESS_TEAM_DOMAIN=""
+ACCESS_AUD=""
+STAFF_EMAILS="omniring09@gmail.com,richwarren1995@gmail.com"
+# Optional staff email notifications. Blank values do not prevent saving quotes.
+RESEND_API_KEY=""
+QUOTE_NOTIFY_FROM=""
+QUOTE_NOTIFY_TO=""

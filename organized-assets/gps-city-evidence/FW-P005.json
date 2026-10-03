@@ -1,0 +1,92 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "80558",
+          "GEOID": "1803180558",
+          "CENTLAT": "+39.3372070",
+          "AREAWATER": 436301,
+          "STATE": "18",
+          "BASENAME": "Washington",
+          "OID": "27690106604009",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.3372373",
+          "NAME": "Washington township",
+          "OBJECTID": 34580,
+          "CENTLON": "-085.4720947",
+          "COUSUBCC": "T1",
+          "AREALAND": 142625759,
+          "INTPTLON": "-085.4727052",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453992",
+          "COUNTY": "031"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18031",
+          "CENTLAT": "+39.3069491",
+          "AREAWATER": 1955431,
+          "STATE": "18",
+          "BASENAME": "Decatur",
+          "OID": "27590106603928",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.3059799",
+          "NAME": "Decatur County",
+          "OBJECTID": 2313,
+          "CENTLON": "-085.5012341",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450345",
+          "AREALAND": 964946116,
+          "INTPTLON": "-085.4998310",
+          "MTFCC": "G4020",
+          "COUNTY": "031"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -85.519867,
+        "y": 39.329022
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "11512",
+          "GEOID": "1809711512",
+          "CENTLAT": "+39.7739190",
+          "AREAWATER": 2058080,
+          "STATE": "18",
+          "BASENAME": "Center",
+          "OID": "2769066961766",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.7758808",
+          "NAME": "Center township",
+          "OBJECTID": 23789,
+          "CENTLON": "-086.1400871",
+          "COUSUBCC": "T1",
+          "AREALAND": 108726932,
+          "INTPTLON": "-086.1394293",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453186",
+          "COUNTY": "097"
+        }
+      ],
+      "Incorporated Places": [
+        {
+          "DISP_CLR": 1,
+          "STGEOMETRY_Area": 1615355764.2398682,
+          "NECTAPCI": "N",
+          "GEOID": "1836003",
+          "CENTLAT": "+39.7770781",
+          "AREAWATER": 17914057,
+          "BASENAME": "Indianapolis city (balance)",
+          "STATE": "18",
+          "OID": "2789066961781",
+          "LSADC": "00",
+          "PLACE": "36003",
+          "FUNCSTAT": "F",
+          "INTPTLAT": "+39.7766644",
+          "NAME": "Indianapolis city (balance)",
+          "OBJECTID": 31962,
+          "PLACECC": "C8",
+          "CENTLON": "-086.1457787",
+          "STGEOMETRY_Length": 318706.83088517195,
+          "CBSAPCI": "Y",
+          "AREALAND": 935023934,
+          "INTPTLON": "-086.1459355",
+          "PLACENS": "02395424",
+          "MTFCC": "G4110"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18097",
+          "CENTLAT": "+39.7816592",
+          "AREAWATER": 18162960,
+          "STATE": "18",
+          "BASENAME": "Marion",
+          "OID": "2759066961759",
+          "LSADC": "06",
+          "FUNCSTAT": "C",
+          "INTPTLAT": "+39.7829759",
+          "NAME": "Marion County",
+          "OBJECTID": 2294,
+          "CENTLON": "-086.1384808",
+          "COUNTYCC": "H6",
+          "COUNTYNS": "00450371",
+          "AREALAND": 1025624661,
+          "INTPTLON": "-086.1357939",
+          "MTFCC": "G4020",
+          "COUNTY": "097"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -86.159919,
+        "y": 39.764328
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

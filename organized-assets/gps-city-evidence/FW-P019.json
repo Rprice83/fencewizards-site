@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "60354",
+          "GEOID": "1800360354",
+          "CENTLAT": "+40.9596011",
+          "AREAWATER": 0,
+          "STATE": "18",
+          "BASENAME": "Pleasant",
+          "OID": "2769062868422",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.9596011",
+          "NAME": "Pleasant township",
+          "OBJECTID": 5561,
+          "CENTLON": "-085.1676905",
+          "COUSUBCC": "T1",
+          "AREALAND": 90733756,
+          "INTPTLON": "-085.1676905",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453744",
+          "COUNTY": "003"
+        }
+      ],
+      "Incorporated Places": [
+        {
+          "DISP_CLR": 4,
+          "STGEOMETRY_Area": 511544415.72652245,
+          "NECTAPCI": "N",
+          "GEOID": "1825000",
+          "CENTLAT": "+41.0881396",
+          "AREAWATER": 863477,
+          "BASENAME": "Fort Wayne",
+          "STATE": "18",
+          "OID": "2789062868429",
+          "LSADC": "25",
+          "PLACE": "25000",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+41.0881934",
+          "NAME": "Fort Wayne city",
+          "OBJECTID": 32256,
+          "PLACECC": "C1",
+          "CENTLON": "-085.1426619",
+          "STGEOMETRY_Length": 219415.9759993745,
+          "CBSAPCI": "Y",
+          "AREALAND": 289456552,
+          "INTPTLON": "-085.1427915",
+          "PLACENS": "02394798",
+          "MTFCC": "G4110"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18003",
+          "CENTLAT": "+41.0908116",
+          "AREAWATER": 7347951,
+          "STATE": "18",
+          "BASENAME": "Allen",
+          "OID": "2759062868403",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+41.0911322",
+          "NAME": "Allen County",
+          "OBJECTID": 2069,
+          "CENTLON": "-085.0665680",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450402",
+          "AREALAND": 1702000555,
+          "INTPTLON": "-085.0711206",
+          "MTFCC": "G4020",
+          "COUNTY": "003"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -85.194756,
+        "y": 40.981267
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

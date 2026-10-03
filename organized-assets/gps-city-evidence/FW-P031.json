@@ -1,0 +1,92 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "08794",
+          "GEOID": "1805908794",
+          "CENTLAT": "+39.8268468",
+          "AREAWATER": 224455,
+          "STATE": "18",
+          "BASENAME": "Buck Creek",
+          "OID": "27690110294570",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.8238855",
+          "NAME": "Buck Creek township",
+          "OBJECTID": 16525,
+          "CENTLON": "-085.8968502",
+          "COUSUBCC": "T1",
+          "AREALAND": 92922749,
+          "INTPTLON": "-085.8862691",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453145",
+          "COUNTY": "059"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18059",
+          "CENTLAT": "+39.8235245",
+          "AREAWATER": 2769690,
+          "STATE": "18",
+          "BASENAME": "Hancock",
+          "OID": "27590110294157",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.8225286",
+          "NAME": "Hancock County",
+          "OBJECTID": 2957,
+          "CENTLON": "-085.7732729",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450357",
+          "AREALAND": 792425238,
+          "INTPTLON": "-085.7731503",
+          "MTFCC": "G4020",
+          "COUNTY": "059"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -85.902528,
+        "y": 39.853997
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+import assert from 'node:assert/strict';
+import {estimate,totalFeet,validatePlan} from './dist/estimator-core.mjs';
+const base={feet:100,months:12,fence:'panels',zone:'near',screen:'none',project:'construction'};
+assert.equal(estimate(base).total,565);assert.equal(estimate({...base,months:13}).total,685);assert.equal(estimate({...base,months:18}).total,685);assert.equal(estimate({...base,months:19}).total,null);assert.equal(estimate({...base,months:23}).total,null);assert.equal(estimate({...base,months:24}).total,820);
+assert.equal(estimate({...base,fence:'driven',months:18}).total,420);assert.equal(estimate({...base,fence:'driven',months:19}).total,510);assert.equal(estimate({...base,fence:'driven',months:24}).total,null);assert.equal(estimate({...base,fence:'driven',months:25}).total,600);
+assert.equal(estimate({...base,fence:'driven',single:1,double:1,topRail:true,asphalt:2,screen:'plain',locks:1,wheels:2,zone:'far'}).total,1490);
+assert.equal(estimate({...base,single:2,double:1}).total,565);assert.equal(estimate({...base,bags:4,reinforce:true}).total,722);assert.equal(estimate({...base,feet:0}).total,null);assert.equal(estimate({...base,months:0}).total,null);assert.equal(estimate({...base,fence:'mixed'}).total,null);assert(estimate({...base,zone:'unknown'}).review.length);assert(estimate({...base,shortJob:true}).review.length);assert.throws(()=>estimate({...base,fence:'driven',single:-1}));
+const p={version:1,mode:'draw',scale:10,manual:0,runs:[{points:[[0,0],[400,0],[400,200]],lengths:[null,null]}]};assert.equal(totalFeet(validatePlan(p)),150);p.runs[0].lengths[0]=90;assert.equal(totalFeet(validatePlan(p)),140);assert.throws(()=>validatePlan({...p,scale:0}));console.log('Pricing tiers, add-ons, missing-rule cases, and geometry passed.');

@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "11296",
+          "GEOID": "1803511296",
+          "CENTLAT": "+40.1913181",
+          "AREAWATER": 695523,
+          "STATE": "18",
+          "BASENAME": "Center",
+          "OID": "2769051705185",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.1915305",
+          "NAME": "Center township",
+          "OBJECTID": 17308,
+          "CENTLON": "-085.3861822",
+          "COUSUBCC": "T1",
+          "AREALAND": 89311985,
+          "INTPTLON": "-085.3860070",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453176",
+          "COUNTY": "035"
+        }
+      ],
+      "Incorporated Places": [
+        {
+          "DISP_CLR": 3,
+          "STGEOMETRY_Area": 122670761.81243521,
+          "NECTAPCI": "N",
+          "GEOID": "1851876",
+          "CENTLAT": "+40.1988834",
+          "AREAWATER": 510221,
+          "BASENAME": "Muncie",
+          "STATE": "18",
+          "OID": "2789051705203",
+          "LSADC": "25",
+          "PLACE": "51876",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.1988257",
+          "NAME": "Muncie city",
+          "OBJECTID": 31896,
+          "PLACECC": "C6",
+          "CENTLON": "-085.3949857",
+          "STGEOMETRY_Length": 79935.95421621158,
+          "CBSAPCI": "Y",
+          "AREALAND": 70975426,
+          "INTPTLON": "-085.3950595",
+          "PLACENS": "02395138",
+          "MTFCC": "G4110"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18035",
+          "CENTLAT": "+40.2274618",
+          "AREAWATER": 9841206,
+          "STATE": "18",
+          "BASENAME": "Delaware",
+          "OID": "2759051705180",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.2261844",
+          "NAME": "Delaware County",
+          "OBJECTID": 366,
+          "CENTLON": "-085.3968958",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450347",
+          "AREALAND": 1015558795,
+          "INTPTLON": "-085.3977959",
+          "MTFCC": "G4020",
+          "COUNTY": "035"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -85.413322,
+        "y": 40.212453
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

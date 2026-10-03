@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /api/
+Disallow: /quote-confirmation/
+Disallow: /staff/
+
+Sitemap: https://www.fencewizards.com/sitemap.xml

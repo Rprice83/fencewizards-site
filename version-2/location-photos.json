@@ -1,0 +1,94 @@
+{
+  "Indianapolis": [
+    {
+      "asset_id": "FW-P002",
+      "image": "indianapolis-fw-p002.jpg",
+      "caption": "Windscreen along a downtown building",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    },
+    {
+      "asset_id": "FW-P006",
+      "image": "indianapolis-fw-p006.jpg",
+      "caption": "Screened fencing beside an event tent",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    },
+    {
+      "asset_id": "FW-P027",
+      "image": "indianapolis-fw-p027.jpg",
+      "caption": "Temporary panels around an event lawn",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    }
+  ],
+  "Carmel": [
+    {
+      "asset_id": "FW-P033",
+      "image": "carmel-fw-p033.jpg",
+      "caption": "A Fence Wizards truck and panel trailer in Carmel",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    }
+  ],
+  "Bloomington": [
+    {
+      "asset_id": "FW-P015",
+      "image": "bloomington-fw-p015.jpg",
+      "caption": "Temporary fencing around a winter construction site",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    }
+  ],
+  "Greenwood": [
+    {
+      "asset_id": "FW-P041",
+      "image": "greenwood-fw-p041.jpg",
+      "caption": "Fence Wizards trucks in Greenwood",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    }
+  ],
+  "Muncie": [
+    {
+      "asset_id": "FW-P039",
+      "image": "muncie-fw-p039.jpg",
+      "caption": "A temporary perimeter around a school building",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    },
+    {
+      "asset_id": "FW-P004",
+      "image": "muncie-fw-p004.jpg",
+      "caption": "Fence panels enclosing stored building materials",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    }
+  ],
+  "Zionsville": [
+    {
+      "asset_id": "FW-P003",
+      "image": "zionsville-fw-p003.jpg",
+      "caption": "Post-driven chain link across open ground",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    },
+    {
+      "asset_id": "FW-P013",
+      "image": "zionsville-fw-p013.jpg",
+      "caption": "A closer view of the fence line",
+      "width": 1400,
+      "height": 1050,
+      "location_basis": "Embedded GPS matched to Census place; no customer or project identity inferred"
+    }
+  ]
+}

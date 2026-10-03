@@ -1,0 +1,14 @@
+# Large raw media: kept on disk/OneDrive, not in version history
+organized-assets/named-videos/
+organized-assets/working/
+
+# Dependencies, local dev state and secrets
+node_modules/
+.wrangler/
+.dev.vars
+*.log
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+desktop.ini

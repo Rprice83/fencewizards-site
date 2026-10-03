@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Quote Inbox | Fence Wizards</title>
+  <meta name="theme-color" content="#231F20">
+  <link rel="manifest" href="/staff/manifest.webmanifest" crossorigin="use-credentials"><!-- credentials so Cloudflare Access lets the manifest through -->
+  <link rel="icon" href="/assets/brand/mark-fw-800.png">
+  <link rel="apple-touch-icon" href="/assets/brand/mark-fw-800.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,700;1,800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="/staff/staff.css">
+</head>
+<body>
+  <header class="ib-top">
+    <a href="/staff/" class="ib-brand" aria-label="Quote Inbox home">
+      <img src="/assets/brand/mark-fw-800.png" alt="" width="34" height="29">
+      <span>Quote Inbox</span>
+    </a>
+    <div class="ib-top-right">
+      <span class="ib-user" id="ib-user"></span>
+      <a href="/" class="ib-site" target="_blank" rel="noopener">View site ↗</a>
+    </div>
+  </header>
+
+  <div class="ib-shell" id="ib-shell">
+    <aside class="ib-list-pane" aria-label="Requests">
+      <div class="ib-filters">
+        <div class="ib-tabs" role="tablist" id="ib-tabs">
+          <button role="tab" data-status="open" aria-selected="true">Open <b data-count="open"></b></button>
+          <button role="tab" data-status="new">New <b data-count="new"></b></button>
+          <button role="tab" data-status="quoted">Quoted <b data-count="quoted"></b></button>
+          <button role="tab" data-status="won">Won <b data-count="won"></b></button>
+          <button role="tab" data-status="lost">Lost <b data-count="lost"></b></button>
+          <button role="tab" data-status="">All</button>
+        </div>
+        <div class="ib-search">
+          <input type="search" id="ib-q" placeholder="Search name, phone, address, ID…" aria-label="Search">
+          <select id="ib-type" aria-label="Type">
+            <option value="">All types</option>
+            <option value="quote">Estimates</option>
+            <option value="inquiry">Messages</option>
+          </select>
+        </div>
+      </div>
+      <ul class="ib-list" id="ib-list" aria-live="polite"></ul>
+      <button class="ib-more" id="ib-more" hidden>Load more</button>
+    </aside>
+
+    <section class="ib-detail" id="ib-detail" aria-label="Details">
+      <div class="ib-empty">
+        <img src="/assets/brand/mark-wizard-800.png" alt="" width="120">
+        <p>Pick a request to see the details.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script type="module" src="/staff/staff.js"></script>
+</body>
+</html>

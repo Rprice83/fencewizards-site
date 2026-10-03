@@ -1,0 +1,77 @@
+import {setupSubmission} from './quote-submit.mjs?v=2';
+import {totalFeet,segmentFeet,estimate,validatePlan,RATE_VERSION} from './estimator-core.mjs?v=3';
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+let gateTool=null;
+let plan={extraGates:{single:0,double:0},gates:[],version:1,mode:'draw',scale:10,manual:0,runs:[{points:[],lengths:[]}]},active=0,undo=[],redo=[],drag=null,result=null;
+const optionIds=['project-type','fence-type','single-gates','double-gates','screen-type','install-date','rental-months','delivery-zone','short-job','top-rail','asphalt-posts','reinforce','extra-bags','lock-count','wheel-count'];
+const cash=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n);
+const feet=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:1}).format(n);
+const snapshot=()=>JSON.stringify(plan);
+function checkpoint(){undo.push(snapshot());if(undo.length>60)undo.shift();redo=[];}
+function note(s){$('drawing-status').textContent=s;}
+function svg(tag,attributes){const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attributes))e.setAttribute(k,String(v));return e;}
+function drawing(){
+ const g=$('drawing-content');g.replaceChildren();let number=0;
+ for(const [ri,run] of plan.runs.entries()){
+  for(let i=1;i<run.points.length;i++){const a=run.points[i-1],b=run.points[i];g.append(svg('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#cf1726','stroke-width':3}));const label=svg('text',{x:(a[0]+b[0])/2,y:(a[1]+b[1])/2-10,'text-anchor':'middle','font-size':13,fill:'#222','paint-order':'stroke',stroke:'#f5f7f3','stroke-width':4});label.textContent=`${++number} · ${feet(run.lengths[i-1]??segmentFeet(a,b,plan.scale))} ft`;g.append(label);}
+  run.points.forEach((p,pi)=>g.append(svg('circle',{cx:p[0],cy:p[1],r:7,fill:'white',stroke:ri===active?'#cf1726':'#575c60','stroke-width':3,'data-run':ri,'data-point':pi})));
+ }
+ drawGates(g);
+ $('canvas-empty').hidden=plan.runs.some(r=>r.points.length);
+}
+function renderSegments(){
+ const list=$('segment-list');list.replaceChildren();let number=0;
+ for(const [ri,r] of plan.runs.entries())for(let i=1;i<r.points.length;i++){
+  const row=document.createElement('div');row.className='segment-row';const label=document.createElement('label');label.textContent=`Run ${ri+1} · Segment ${++number}`;const input=document.createElement('input');input.type='number';input.min='0.1';input.max='100000';input.step='0.1';input.value=(r.lengths[i-1]??segmentFeet(r.points[i-1],r.points[i],plan.scale)).toFixed(1);input.setAttribute('aria-label',`Length in feet for segment ${number}`);label.append(input);const unit=document.createElement('span');unit.textContent=r.lengths[i-1]!=null?'ft · entered':'ft · sketch';const reset=document.createElement('button');reset.type='button';reset.textContent='Use sketch length';reset.disabled=r.lengths[i-1]==null;reset.addEventListener('click',()=>{checkpoint();r.lengths[i-1]=null;render();});input.addEventListener('change',()=>{if(!input.reportValidity()||!input.value)return;checkpoint();r.lengths[i-1]=Number(input.value);render();});row.append(label,unit,reset);list.append(row);
+ }
+ if($('segment-count'))$('segment-count').textContent=`${number} segment${number===1?'':'s'}`;
+ if(!number){const p=document.createElement('p');p.className='est-help';p.textContent=$('add-segment')?'No segments yet. Draw a line or add a measured segment.':'No segments yet. Draw a fence line above or choose Enter footage.';list.append(p);}
+}
+function inputs(){return {feet:Math.round(totalFeet(plan)*10)/10,months:Number($('rental-months').value),fence:$('fence-type').value,project:$('project-type').value,single:Number($('single-gates').value),double:Number($('double-gates').value),screen:$('screen-type').value,zone:$('delivery-zone').value,shortJob:$('short-job').checked,topRail:$('top-rail').checked,asphalt:Number($('asphalt-posts').value),reinforce:$('reinforce').checked,bags:Number($('extra-bags').value),locks:Number($('lock-count').value),wheels:Number($('wheel-count').value)};}
+function summary(){
+ const i=inputs();$('footage-total').textContent=feet(i.feet);$('summary-feet').textContent=i.feet?feet(i.feet)+' linear ft':'Not entered';$('summary-fence').textContent=$('fence-type').selectedOptions[0].textContent;$('summary-term').textContent=i.months?i.months+' months':'Not entered';$('summary-gates').textContent=`${i.single} single / ${i.double} double`;$('summary-screen').textContent=$('screen-type').selectedOptions[0].textContent;
+ document.querySelectorAll('[data-for]').forEach(e=>{e.hidden=e.dataset.for!==i.fence;});
+ const invalid=optionIds.some(id=>!$(id).checkValidity());try{result=invalid?{total:null,items:[],review:['Check the rental details for invalid quantities.']}:estimate(i);}catch{result={total:null,items:[],review:['Check the accessory quantities.']};}
+ $('price-total').textContent=result.total==null?(i.feet?'Richard to quote':'Add your footage'):cash(result.total);
+ $('price-explanation').textContent=result.total==null?'Complete the details, or send your plan for a custom quote.':result.review.length?'Known items subtotal · before tax. See items requiring confirmation below.':'Preliminary estimated total · before tax. Subject to Richard’s confirmation.';
+ $('price-items').replaceChildren(...result.items.map(item=>{const row=document.createElement('div');const name=document.createElement('span');name.textContent=item.label;const amount=document.createElement('strong');amount.textContent=cash(item.amount);row.append(name,amount);return row;}));
+ $('gate-pricing').textContent=i.fence==='driven'?'Post-driven gates: $140 single / $280 double.':i.fence==='panels'?'Standard panel gates are included in the fence price.':'Gate pricing requires Richard’s confirmation.';
+ $('send-plan-summary').textContent=`Your request: ${feet(i.feet)} ft · ${i.single} single / ${i.double} double gates (${(plan.gates||[]).length} located on sketch) · ${result.total==null?'Richard to quote':cash(result.total)+' before tax'}.`;
+ $('price-review').replaceChildren(...result.review.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
+}
+function render(){drawing();renderSegments();renderGates();summary();$('undo').disabled=!undo.length;$('redo').disabled=!redo.length;const run=plan.runs[active];$('close-run').disabled=!run||run.points.length<3;$('sketch-panel').hidden=plan.mode!=='draw';$('manual-panel').hidden=plan.mode!=='manual';$('draw-mode').setAttribute('aria-pressed',String(plan.mode==='draw'));$('manual-mode').setAttribute('aria-pressed',String(plan.mode==='manual'));$('manual-feet').value=plan.manual||'';$('grid-scale').value=plan.scale;}
+function position(event){const p=$('fence-canvas').createSVGPoint();p.x=event.clientX;p.y=event.clientY;const t=p.matrixTransform($('fence-canvas').getScreenCTM().inverse());return [Math.round(Math.max(0,Math.min(800,t.x))),Math.round(Math.max(0,Math.min(500,t.y)))];}
+const canvas=$('fence-canvas');
+canvas.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();if(gateTool==='remove'){const marker=e.target.closest('[data-gate]');if(marker)removeGate(Number(marker.dataset.gate));else note('Click a gate marker to remove it.');return;}if(gateTool){placeGateAt(position(e));return;}if(e.target.dataset.point!==undefined){checkpoint();drag={run:Number(e.target.dataset.run),point:Number(e.target.dataset.point)};active=drag.run;canvas.setPointerCapture(e.pointerId);}else{if(plan.runs.reduce((s,r)=>s+r.points.length,0)>=80){note('This sketch supports up to 80 points. Use manual footage for larger plans.');return;}const p=position(e);const run=plan.runs[active];if(run.points.length&&Math.hypot(p[0]-run.points.at(-1)[0],p[1]-run.points.at(-1)[1])<3)return;checkpoint();if(run.points.length)run.lengths.push(null);run.points.push(p);render();note('Point added. Add another corner, or start a new run.');}});
+canvas.addEventListener('pointermove',e=>{if(!drag)return;const r=plan.runs[drag.run];r.points[drag.point]=position(e);drawing();summary();});
+function stopDrag(){if(!drag)return;drag=null;render();note('Point moved. Entered segment lengths are retained; use “Use sketch length” to recalculate them.');}
+canvas.addEventListener('pointerup',stopDrag);canvas.addEventListener('pointercancel',stopDrag);
+$('draw-mode').onclick=()=>{plan.mode='draw';render();};$('manual-mode').onclick=()=>{plan.mode='manual';render();};
+$('manual-feet').addEventListener('input',()=>{plan.manual=Number($('manual-feet').value)||0;summary();});
+$('grid-scale').onchange=()=>{checkpoint();plan.scale=Number($('grid-scale').value);render();note('Grid scale updated. Entered segment lengths stay unchanged.');};
+$('new-run').onclick=()=>{if(!plan.runs[active].points.length)return;if(plan.runs.length>=30){note('Maximum 30 runs.');return;}checkpoint();plan.runs.push({points:[],lengths:[]});active=plan.runs.length-1;render();note('New run ready. Click its first corner.');};
+$('close-run').onclick=()=>{const r=plan.runs[active];if(r.points.length<3||JSON.stringify(r.points[0])===JSON.stringify(r.points.at(-1)))return;if(plan.runs.reduce((s,r)=>s+r.points.length,0)>=80)return;checkpoint();r.points.push([...r.points[0]]);r.lengths.push(null);render();};
+$('undo').onclick=()=>{if(!undo.length)return;redo.push(snapshot());plan=JSON.parse(undo.pop());active=plan.runs.length-1;render();};$('redo').onclick=()=>{if(!redo.length)return;undo.push(snapshot());plan=JSON.parse(redo.pop());active=plan.runs.length-1;render();};
+$('clear-plan').onclick=()=>{checkpoint();plan.runs=[{points:[],lengths:[]}];plan.gates=[];active=0;render();note('Drawing cleared. Undo restores it.');};
+if($('add-segment'))$('add-segment').onclick=()=>{if(plan.runs.length>=30||plan.runs.reduce((s,r)=>s+r.points.length,0)>78){note('Drawing limit reached.');return;}checkpoint();const y=60+(plan.runs.length%10)*40;plan.runs.push({points:[[100,y],[300,y]],lengths:[50]});active=plan.runs.length-1;render();$('segment-list').querySelectorAll('input').item($('segment-list').querySelectorAll('input').length-1).focus();note('Measured segment added at 50 feet. Edit its length below.');};
+optionIds.filter(id=>!['single-gates','double-gates'].includes(id)).forEach(id=>$(id).addEventListener('input',summary));
+for(const type of ['single','double'])$(type+'-gates').addEventListener('input',()=>{const e=$(type+'-gates');if(e.value!==''&&e.checkValidity()){checkpoint();plan.extraGates[type]=Number(e.value)-placed(type);}summary();});
+function exportPlan(){const selections={};for(const id of optionIds)selections[id]=$(id).type==='checkbox'?$(id).checked:$(id).value;return {...plan,selections};}
+function loadPlan(raw){const next=validatePlan(raw);if(!next.runs.length)next.runs=[{points:[],lengths:[]}];if(!raw.extraGates){next.extraGates={single:Math.min(100,Math.max(0,Number(raw.selections?.['single-gates'])||0)),double:Math.min(100,Math.max(0,Number(raw.selections?.['double-gates'])||0))};}checkpoint();plan=next;active=plan.runs.length-1;if(raw.selections&&typeof raw.selections==='object'){for(const id of optionIds){const e=$(id),v=raw.selections[id];if(v==null)continue;const old=e.value;if(e.type==='checkbox'){if(typeof v==='boolean')e.checked=v;}else if(typeof v==='string'&&v.length<80){if(e.tagName==='SELECT'&&![...e.options].some(o=>o.value===v))continue;e.value=v;if(!e.checkValidity())e.value=old;}}}render();}
+$('save-plan').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(exportPlan(),null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='fence-wizards-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('load-plan').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>40000)throw Error('Plan file is too large.');loadPlan(JSON.parse(await file.text()));note('Saved layout loaded. Add the site address before sending.');}catch(error){note('Could not load this plan: '+error.message);}e.target.value='';};
+$('print-plan').onclick=()=>window.print();
+function planLink(){return location.origin+location.pathname+'#plan='+btoa(JSON.stringify(exportPlan())).replaceAll('+','-').replaceAll('/','_').replaceAll('=','');}
+const placed=type=>(plan.gates||[]).filter(g=>g.type===type).length;
+function gateDescriptions(){return (plan.gates||[]).map((g,i)=>`G${i+1}: ${g.type} gate, run ${g.run+1}, segment ${g.segment+1}, ${Math.round(g.t*100)}% from segment start`);}
+function drawGates(container){for(const [i,g] of (plan.gates||[]).entries()){const r=plan.runs[g.run],a=r.points[g.segment],b=r.points[g.segment+1],x=a[0]+(b[0]-a[0])*g.t,y=a[1]+(b[1]-a[1])*g.t;const group=svg('g',{'data-gate':i,tabindex:0,role:'button','aria-label':`Gate ${i+1}, ${g.type}. Select Remove gate, then press Enter to remove.`});group.addEventListener('keydown',e=>{if(gateTool==='remove'&&['Enter',' '].includes(e.key)){e.preventDefault();removeGate(i);}});group.append(svg('rect',{x:x-14,y:y-14,width:28,height:28,rx:4,fill:'#202526',stroke:'white','stroke-width':2}));const text=svg('text',{x,y:y+5,fill:'white','font-size':13,'text-anchor':'middle','font-weight':700});text.textContent=g.type==='single'?'S':'D';group.append(text);const label=svg('text',{x,y:y+31,fill:'#202526','font-size':12,'text-anchor':'middle','paint-order':'stroke',stroke:'#f5f7f3','stroke-width':4});label.textContent=`G${i+1}`;group.append(label);container.append(group);}}
+function addGate(run,segment,t){if((plan.gates||[]).length>=100){note('Maximum 100 located gates.');return;}checkpoint();(plan.gates??=[]).push({type:gateTool||'single',run,segment,t});render();note('Gate placed. Add another or choose Draw fence.');}
+function placeGateAt(p){let best=null;plan.runs.forEach((r,run)=>r.points.slice(1).forEach((b,segment)=>{const a=r.points[segment],dx=b[0]-a[0],dy=b[1]-a[1],d=dx*dx+dy*dy;if(!d)return;const t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/d));const distance=Math.hypot(p[0]-a[0]-dx*t,p[1]-a[1]-dy*t);if(!best||distance<best.distance)best={run,segment,t,distance};}));if(!best||best.distance>35){note('Click a fence line to place the gate.');return;}addGate(best.run,best.segment,best.t);}
+function renderGates(){for(const type of ['single','double']){const e=$(type+'-gates');e.min=placed(type);e.max=200;e.value=placed(type)+(plan.extraGates?.[type]||0);}}
+function removeGate(index){if(!plan.gates[index])return;checkpoint();plan.gates.splice(index,1);render();note('Gate removed. Undo restores it.');}
+function chooseGate(type){gateTool=type;for(const tool of ['single','double','remove'])$('gate-'+tool).setAttribute('aria-pressed',String(type===tool));$('gate-cancel').setAttribute('aria-pressed',String(!type));note(type==='remove'?'Click a gate marker to remove it.':type?`Click a fence line to add a ${type} gate.`:'Drawing fence lines.');}
+$('gate-single').onclick=()=>chooseGate('single');$('gate-double').onclick=()=>chooseGate('double');$('gate-remove').onclick=()=>chooseGate('remove');$('gate-cancel').onclick=()=>chooseGate(null);
+
+if(location.hash.startsWith('#plan=')){try{const encoded=location.hash.slice(6);if(encoded.length>20000)throw Error('Plan link too long');loadPlan(JSON.parse(atob(encoded.replaceAll('-','+').replaceAll('_','/'))));note('Shared layout loaded. Contact information and address are not stored in this link.');}catch{note('The shared plan could not be loaded. You can draw a new plan or load a saved file.');}}
+setupSubmission({getPlan:exportPlan,getOptions:inputs});
+render();

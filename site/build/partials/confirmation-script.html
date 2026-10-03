@@ -1,0 +1,29 @@
+<script type="module">
+  import { fmtMoney } from '/js/pricing.js';
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  let q = null;
+  try { q = JSON.parse(sessionStorage.getItem('fw-last-quote') || 'null'); } catch {}
+  if (q && id && q.id !== id) q = null;
+
+  if (id) {
+    document.getElementById('ref-id').textContent = id;
+    document.getElementById('ref-card').hidden = false;
+  }
+  if (q) {
+    const first = (q.name || '').split(' ')[0];
+    if (first) document.getElementById('confirm-title').innerHTML = `Thanks, ${escapeHtml(first)}! Your plan is <em>on its way to Richard.</em>`;
+    const how = { call: ` by phone at ${q.phone}`, text: ` by text at ${q.phone}`, email: ` by email at ${q.email}` }[q.contactPref];
+    if (how) document.getElementById('contact-pref').textContent = how;
+
+    const facts = [
+      ['Site', q.address], ['Fence', q.fenceType], ['Length', `${Number(q.feet).toLocaleString()} linear ft`], ['Rental', `${q.months} month${q.months > 1 ? 's' : ''}`],
+    ];
+    document.getElementById('summary-facts').innerHTML = facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${escapeHtml(String(v))}</dd></div>`).join('');
+    const lines = (q.lines || []).map(l => `<tr><td>${escapeHtml(l.label)}</td><td>${l.amount ? fmtMoney(l.amount) : 'Included'}</td></tr>`).join('');
+    const total = q.total != null ? `<tr class="total"><td>Preliminary total</td><td>${fmtMoney(q.total)}</td></tr>` : `<tr class="total"><td colspan="2">Richard will price this plan directly</td></tr>`;
+    document.querySelector('#summary-lines tbody').innerHTML = lines + total;
+    document.getElementById('summary').hidden = false;
+  }
+  function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+</script>

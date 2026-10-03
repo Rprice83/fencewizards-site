@@ -1,0 +1,197 @@
+[
+  {
+    "path": "/",
+    "source_url": "https://www.fencewizards.com/",
+    "type": "Home"
+  },
+  {
+    "path": "/about/",
+    "source_url": "https://www.fencewizards.com/about/",
+    "type": "Company/information page"
+  },
+  {
+    "path": "/blog/",
+    "source_url": "https://www.fencewizards.com/blog/",
+    "type": "Blog index"
+  },
+  {
+    "path": "/construction-fencing/",
+    "source_url": "https://www.fencewizards.com/construction-fencing/",
+    "type": "Use-case page"
+  },
+  {
+    "path": "/contact/",
+    "source_url": "https://www.fencewizards.com/contact/",
+    "type": "Company/information page"
+  },
+  {
+    "path": "/emergency-fencing/",
+    "source_url": "https://www.fencewizards.com/emergency-fencing/",
+    "type": "Use-case page"
+  },
+  {
+    "path": "/event-fencing/",
+    "source_url": "https://www.fencewizards.com/event-fencing/",
+    "type": "Use-case page"
+  },
+  {
+    "path": "/faq/",
+    "source_url": "https://www.fencewizards.com/faq/",
+    "type": "Company/information page"
+  },
+  {
+    "path": "/pricing/",
+    "source_url": "https://www.fencewizards.com/pricing/",
+    "type": "Company/information page"
+  },
+  {
+    "path": "/service-area/",
+    "source_url": "https://www.fencewizards.com/service-area/",
+    "type": "Service-area index"
+  },
+  {
+    "path": "/blog/emergency-fence-rental-indiana-same-week-perimeter-fencing-after-storms-fires-and-break-ins/",
+    "source_url": "https://www.fencewizards.com/blog/emergency-fence-rental-indiana-same-week-perimeter-fencing-after-storms-fires-and-break-ins/",
+    "type": "Blog article"
+  },
+  {
+    "path": "/blog/how-a-temporary-fence-rental-works/",
+    "source_url": "https://www.fencewizards.com/blog/how-a-temporary-fence-rental-works/",
+    "type": "Blog article"
+  },
+  {
+    "path": "/blog/how-much-does-temporary-fence-rental-cost/",
+    "source_url": "https://www.fencewizards.com/blog/how-much-does-temporary-fence-rental-cost/",
+    "type": "Blog article"
+  },
+  {
+    "path": "/blog/post-driven-chain-link-fence-rental-flood-repair-public-works-hamilton-marion-county/",
+    "source_url": "https://www.fencewizards.com/blog/post-driven-chain-link-fence-rental-flood-repair-public-works-hamilton-marion-county/",
+    "type": "Blog article"
+  },
+  {
+    "path": "/blog/printed-windscreen-for-construction-fence-indianapolis-branding-privacy-dust-control/",
+    "source_url": "https://www.fencewizards.com/blog/printed-windscreen-for-construction-fence-indianapolis-branding-privacy-dust-control/",
+    "type": "Blog article"
+  },
+  {
+    "path": "/blog/temporary-fence-panels-for-rent-in-indianapolis-fast-setup-flexible-configuratio-1788192322725/",
+    "source_url": "https://www.fencewizards.com/blog/temporary-fence-panels-for-rent-in-indianapolis-fast-setup-flexible-configuratio-1788192322725/",
+    "type": "Blog article"
+  },
+  {
+    "path": "/fence/barricades/",
+    "source_url": "https://www.fencewizards.com/fence/barricades/",
+    "type": "Fence-type page"
+  },
+  {
+    "path": "/fence/panels-and-stands/",
+    "source_url": "https://www.fencewizards.com/fence/panels-and-stands/",
+    "type": "Fence-type page"
+  },
+  {
+    "path": "/fence/post-driven-chain-link/",
+    "source_url": "https://www.fencewizards.com/fence/post-driven-chain-link/",
+    "type": "Fence-type page"
+  },
+  {
+    "path": "/fence/windscreen/",
+    "source_url": "https://www.fencewizards.com/fence/windscreen/",
+    "type": "Fence-type page"
+  },
+  {
+    "path": "/service-area/anderson/",
+    "source_url": "https://www.fencewizards.com/service-area/anderson/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/avon/",
+    "source_url": "https://www.fencewizards.com/service-area/avon/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/bloomington/",
+    "source_url": "https://www.fencewizards.com/service-area/bloomington/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/brownsburg/",
+    "source_url": "https://www.fencewizards.com/service-area/brownsburg/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/carmel/",
+    "source_url": "https://www.fencewizards.com/service-area/carmel/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/columbus/",
+    "source_url": "https://www.fencewizards.com/service-area/columbus/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/fishers/",
+    "source_url": "https://www.fencewizards.com/service-area/fishers/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/franklin/",
+    "source_url": "https://www.fencewizards.com/service-area/franklin/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/greenwood/",
+    "source_url": "https://www.fencewizards.com/service-area/greenwood/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/indianapolis/",
+    "source_url": "https://www.fencewizards.com/service-area/indianapolis/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/lafayette/",
+    "source_url": "https://www.fencewizards.com/service-area/lafayette/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/muncie/",
+    "source_url": "https://www.fencewizards.com/service-area/muncie/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/noblesville/",
+    "source_url": "https://www.fencewizards.com/service-area/noblesville/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/plainfield/",
+    "source_url": "https://www.fencewizards.com/service-area/plainfield/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/richmond/",
+    "source_url": "https://www.fencewizards.com/service-area/richmond/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/speedway/",
+    "source_url": "https://www.fencewizards.com/service-area/speedway/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/terre-haute/",
+    "source_url": "https://www.fencewizards.com/service-area/terre-haute/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/westfield/",
+    "source_url": "https://www.fencewizards.com/service-area/westfield/",
+    "type": "Location page"
+  },
+  {
+    "path": "/service-area/zionsville/",
+    "source_url": "https://www.fencewizards.com/service-area/zionsville/",
+    "type": "Location page"
+  }
+]

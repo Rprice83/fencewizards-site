@@ -1,0 +1,14 @@
+{
+  "name": "fence-wizards-quotes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:cloudflare": "wrangler pages dev dist",
+    "test:quotes": "node --test tests/quotes.test.mjs",
+    "build:functions": "wrangler pages functions build --outdir .sites-runtime/functions-build",
+    "db:local": "wrangler d1 migrations apply QUOTES_DB --local",
+    "deploy:cloudflare": "wrangler pages deploy dist"
+  },
+  "dependencies": {"jose": "^6.1.0"},
+  "devDependencies": {"wrangler": "^4.0.0"}
+}

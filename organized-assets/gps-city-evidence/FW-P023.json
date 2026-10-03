@@ -1,0 +1,92 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "43290",
+          "GEOID": "1806343290",
+          "CENTLAT": "+39.6616639",
+          "AREAWATER": 527621,
+          "STATE": "18",
+          "BASENAME": "Liberty",
+          "OID": "27690265308910",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.6569091",
+          "NAME": "Liberty township",
+          "OBJECTID": 21202,
+          "CENTLON": "-086.5016044",
+          "COUSUBCC": "T1",
+          "AREALAND": 127533787,
+          "INTPTLON": "-086.5010540",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453555",
+          "COUNTY": "063"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18063",
+          "CENTLAT": "+39.7694490",
+          "AREAWATER": 4880191,
+          "STATE": "18",
+          "BASENAME": "Hendricks",
+          "OID": "27590265295670",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.7734348",
+          "NAME": "Hendricks County",
+          "OBJECTID": 376,
+          "CENTLON": "-086.5099848",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450358",
+          "AREALAND": 1053850055,
+          "INTPTLON": "-086.5098717",
+          "MTFCC": "G4020",
+          "COUNTY": "063"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -86.468164,
+        "y": 39.618131
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

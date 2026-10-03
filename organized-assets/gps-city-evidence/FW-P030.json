@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "49374",
+          "GEOID": "1805349374",
+          "CENTLAT": "+40.4815675",
+          "AREAWATER": 16191,
+          "STATE": "18",
+          "BASENAME": "Mill",
+          "OID": "2769066247255",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.4840522",
+          "NAME": "Mill township",
+          "OBJECTID": 21921,
+          "CENTLON": "-085.6163650",
+          "COUSUBCC": "T1",
+          "AREALAND": 60033843,
+          "INTPTLON": "-085.6175195",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453626",
+          "COUNTY": "053"
+        }
+      ],
+      "Incorporated Places": [
+        {
+          "DISP_CLR": 3,
+          "STGEOMETRY_Area": 22534297.823920548,
+          "NECTAPCI": "N",
+          "GEOID": "1827054",
+          "CENTLAT": "+40.4886499",
+          "AREAWATER": 0,
+          "BASENAME": "Gas City",
+          "STATE": "18",
+          "OID": "2789066247265",
+          "LSADC": "25",
+          "PLACE": "27054",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.4886499",
+          "NAME": "Gas City city",
+          "OBJECTID": 24682,
+          "PLACECC": "C1",
+          "CENTLON": "-085.5943347",
+          "STGEOMETRY_Length": 49419.31415917295,
+          "CBSAPCI": "N",
+          "AREALAND": 13020252,
+          "INTPTLON": "-085.5943347",
+          "PLACENS": "02394866",
+          "MTFCC": "G4110"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18053",
+          "CENTLAT": "+40.5158162",
+          "AREAWATER": 2101803,
+          "STATE": "18",
+          "BASENAME": "Grant",
+          "OID": "2759066247244",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.5149325",
+          "NAME": "Grant County",
+          "OBJECTID": 2174,
+          "CENTLON": "-085.6547249",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450355",
+          "AREALAND": 1072484433,
+          "INTPTLON": "-085.6552156",
+          "MTFCC": "G4020",
+          "COUNTY": "053"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -85.616347,
+        "y": 40.478408
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "86372",
+          "GEOID": "1801186372",
+          "CENTLAT": "+39.9897311",
+          "AREAWATER": 321293,
+          "STATE": "18",
+          "BASENAME": "Zionsville",
+          "OID": "276904259195805",
+          "LSADC": "43",
+          "FUNCSTAT": "F",
+          "INTPTLAT": "+39.9915379",
+          "NAME": "Zionsville town",
+          "OBJECTID": 1265,
+          "CENTLON": "-086.3182174",
+          "COUSUBCC": "C5",
+          "AREALAND": 173949214,
+          "INTPTLON": "-086.3217621",
+          "MTFCC": "G4040",
+          "COUSUBNS": "02397761",
+          "COUNTY": "011"
+        }
+      ],
+      "Incorporated Places": [
+        {
+          "DISP_CLR": 4,
+          "STGEOMETRY_Area": 297233842.483353,
+          "NECTAPCI": "N",
+          "GEOID": "1886372",
+          "CENTLAT": "+39.9897311",
+          "AREAWATER": 321293,
+          "BASENAME": "Zionsville",
+          "STATE": "18",
+          "OID": "2789066080235",
+          "LSADC": "43",
+          "PLACE": "86372",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9915379",
+          "NAME": "Zionsville town",
+          "OBJECTID": 32417,
+          "PLACECC": "C5",
+          "CENTLON": "-086.3182174",
+          "STGEOMETRY_Length": 136439.03819394312,
+          "CBSAPCI": "N",
+          "AREALAND": 173949214,
+          "INTPTLON": "-086.3217621",
+          "PLACENS": "02397761",
+          "MTFCC": "G4110"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18011",
+          "CENTLAT": "+40.0508064",
+          "AREAWATER": 876741,
+          "STATE": "18",
+          "BASENAME": "Boone",
+          "OID": "2759066080213",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.0508916",
+          "NAME": "Boone County",
+          "OBJECTID": 2325,
+          "CENTLON": "-086.4687137",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450405",
+          "AREALAND": 1095260019,
+          "INTPTLON": "-086.4690137",
+          "MTFCC": "G4020",
+          "COUNTY": "011"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -86.244264,
+        "y": 40.054469
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}

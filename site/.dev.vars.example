@@ -1,0 +1,10 @@
+# Copy to .dev.vars for local development. Without RESEND_API_KEY, quote emails are
+# not sent; the email is saved in the database (email_html) so it can be previewed.
+RESEND_API_KEY=
+# Enables /api/dev/email-preview?id=FW-... to view the saved email. Never set in production.
+DEV_PREVIEW=true
+# Quote Inbox on localhost: signs you in as this staff member without Cloudflare Access. Never set in production.
+DEV_STAFF_EMAIL=dev@localhost
+STAFF_EMAILS=dev@localhost
+OWNER_EMAILS=dev@localhost
+STAFF_NAMES=dev@localhost=Local tester

@@ -1,0 +1,119 @@
+{
+  "result": {
+    "geographies": {
+      "States": [
+        {
+          "STATENS": "00448508",
+          "GEOID": "18",
+          "CENTLAT": "+39.9059401",
+          "AREAWATER": 1543803678,
+          "STATE": "18",
+          "BASENAME": "Indiana",
+          "STUSAB": "IN",
+          "OID": "2749051705222",
+          "LSADC": "00",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+39.9013136",
+          "DIVISION": "3",
+          "NAME": "Indiana",
+          "REGION": "2",
+          "OBJECTID": 15,
+          "CENTLON": "-086.2872768",
+          "AREALAND": 92786794385,
+          "INTPTLON": "-086.2919129",
+          "MTFCC": "G4000"
+        }
+      ],
+      "County Subdivisions": [
+        {
+          "COUSUB": "77480",
+          "GEOID": "1810777480",
+          "CENTLAT": "+40.0378590",
+          "AREAWATER": 715855,
+          "STATE": "18",
+          "BASENAME": "Union",
+          "OID": "2769067213833",
+          "LSADC": "44",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.0379875",
+          "NAME": "Union township",
+          "OBJECTID": 13821,
+          "CENTLON": "-086.8970128",
+          "COUSUBCC": "T1",
+          "AREALAND": 289046094,
+          "INTPTLON": "-086.8975873",
+          "MTFCC": "G4040",
+          "COUSUBNS": "00453926",
+          "COUNTY": "107"
+        }
+      ],
+      "Incorporated Places": [
+        {
+          "DISP_CLR": 2,
+          "STGEOMETRY_Area": 46861311.75879963,
+          "NECTAPCI": "N",
+          "GEOID": "1815742",
+          "CENTLAT": "+40.0402402",
+          "AREAWATER": 0,
+          "BASENAME": "Crawfordsville",
+          "STATE": "18",
+          "OID": "2789067213837",
+          "LSADC": "25",
+          "PLACE": "15742",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.0402402",
+          "NAME": "Crawfordsville city",
+          "OBJECTID": 29005,
+          "PLACECC": "C1",
+          "CENTLON": "-086.8979703",
+          "STGEOMETRY_Length": 75710.36730245718,
+          "CBSAPCI": "Y",
+          "AREALAND": 27434868,
+          "INTPTLON": "-086.8979703",
+          "PLACENS": "02393664",
+          "MTFCC": "G4110"
+        }
+      ],
+      "Counties": [
+        {
+          "GEOID": "18107",
+          "CENTLAT": "+40.0402807",
+          "AREAWATER": 2055936,
+          "STATE": "18",
+          "BASENAME": "Montgomery",
+          "OID": "2759067213823",
+          "LSADC": "06",
+          "FUNCSTAT": "A",
+          "INTPTLAT": "+40.0402962",
+          "NAME": "Montgomery County",
+          "OBJECTID": 1298,
+          "CENTLON": "-086.8932927",
+          "COUNTYCC": "H1",
+          "COUNTYNS": "00450374",
+          "AREALAND": 1306977633,
+          "INTPTLON": "-086.8927145",
+          "MTFCC": "G4020",
+          "COUNTY": "107"
+        }
+      ]
+    },
+    "input": {
+      "vintage": {
+        "isDefault": true,
+        "id": "4",
+        "vintageName": "Current_Current",
+        "vintageDescription": "Current Vintage - Current Benchmark"
+      },
+      "location": {
+        "x": -86.901397,
+        "y": 40.045017
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  }
+}
