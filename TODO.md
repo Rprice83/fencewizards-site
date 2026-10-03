@@ -66,18 +66,8 @@ Goal: management reporting for Richard (complements his bookkeeper/CPA, doesn't 
   - damage/loss
   - seasonal capacity (buy more inventory when utilization stays above ~80%)
 - [ ] **Later:** pricing/margin analysis by fence type, term and distance; job costing (crew hours, fuel); one-click COI sending; branded PDF proposals with e-signature; scheduling board; customer portal for GCs; vendor/purchase tracking.
-- [ ] **Other growth services to offer:**
-  - automated review requests (when a job is won or the fence comes down)
-  - quote follow-up reminders
-  - Google Business Profile management
-  - quarterly past-customer email and a Net 30 account offer
-  - bid-board and permit monitoring
-  - referral partnerships (restoration, adjusters, event planners)
-  - branded windscreen upsell
-  - monthly results report
 
 ## Later phases
-- [ ] **Proposal + one-page service agreement for Richard** (on hold until the user asks): about $2,000/mo retainer, build fee waived, 12-month minimum or sliding buyout of the waived build, ad spend/tools billed to Richard at cost, phased scope (months 1–3 launch/ads/tracking; 3–6 Field Notes/reviews/outbound; 6+ jobs/inventory/dashboards), annual review, all accounts in Richard's name, management reporting only (not bookkeeping/tax).
 - [x] Quote Inbox built (/staff/): list, status, notes, history, map of the drawn plan, call/text/email.
 - [ ] Quote Inbox launch: set up Cloudflare Access with Google sign-in (steps in site/README.md). Need Richard's Google email, yours, and any employees.
 - [ ] Field Notes automation: Richard emails photos and notes, a draft is generated (Claude API, following FIELD-NOTES.md), then approve and publish from the staff area. Step one (the file format, photo tool and Recent-jobs sections) is done; see FIELD-NOTES.md.

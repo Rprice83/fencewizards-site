@@ -15,7 +15,8 @@ New website for **Fence Wizards** (temporary fence rental, B2B, Greenwood IN; ow
 - **On hold:**
   - /pricing/ page (waiting on Richard).
   - Stripe payment requests (waiting on questionnaire section 5; design is in TODO.md).
-- **Next workstream:** Google Ads conversion tracking + landing pages (plan in TODO.md, section "Google Ads + landing pages"). Keep ads reports/notes in `marketing/google-ads/`. A separate cold-email outreach project for Richard lives in its own folder, not here.
+- **Next workstream:** Google Ads conversion tracking + landing pages (plan in TODO.md, section "Google Ads + landing pages"). Keep ads reports/notes in `marketing/google-ads/`.
+- **Kept out of this folder on purpose:** pricing, the service agreement and business notes live in the user's `Agency HQ` folder (see their personal CLAUDE.md). The cold-email outreach for Richard will be its own project folder.
 - **Not deployed yet:** everything runs locally. Launch needs Cloudflare (Pages + D1 + Access), Resend, and Google Maps/Places keys (see TODO.md and the site/README.md setup sections).
 
 ## Layout
@@ -67,5 +68,5 @@ Node isn't on the default PATH in fresh shells, so prefix with:
 - Hosting: Cloudflare Pages + D1 + Resend. Quote Inbox security: Cloudflare Access with Google sign-in (Richard uses Google), plus JWT and STAFF_EMAILS verification in server/staff-auth.js (fails closed).
 - Field Notes: draft → human approval → publish. Never auto-publish, never invent details.
 
-## Working style the user likes
-Ask before big choices; recommend an option. Verify changes in the Browser pane (desktop and mobile). Keep TODO.md current. Explain in plain language: the user isn't a developer, and Richard is non-technical.
+## Working on this project
+Verify changes in the Browser pane (desktop and mobile). Keep TODO.md current. Richard is non-technical, so anything he uses (Inbox, Field Notes intake, emails) must be dead simple. (General preferences about how the user likes to work are in their personal CLAUDE.md.)
