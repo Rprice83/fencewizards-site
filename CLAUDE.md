@@ -53,6 +53,12 @@ Node isn't on the default PATH in fresh shells, so prefix with:
 - Dev helpers: http://localhost:8788/api/dev/email-preview (latest email Richard would get); http://localhost:8788/staff/ (auto-signed-in locally via DEV_STAFF_EMAIL in `.dev.vars`)
 - Python: `$env:LOCALAPPDATA\Programs\Python\Python312\python.exe` (Pillow, pillow-heif, pymupdf installed). FFmpeg is installed via winget (Gyan.FFmpeg).
 
+## Showing the site on other computers
+- **Windows:** double-click `Start Website Preview.cmd` (project root).
+- **Mac:** everything Mac-specific is in `mac/`, kept separate from the Windows files. The user mostly works on Windows. The Mac gets a **zip**, not the whole folder: `Desktop\Fence Wizards site (Mac preview).zip`. **After site changes, rebuild the zip** so the Mac copy is current:
+  `git archive --format=zip --prefix="Fence Wizards site/" -o "C:\Users\gsvpr\OneDrive\Desktop\Fence Wizards site (Mac preview).zip" HEAD site mac CLAUDE.md TODO.md FIELD-NOTES.md .gitattributes` (commit first; it packs the last commit).
+- Keep `.command` files LF and executable in git (`.gitattributes` + `git update-index --chmod=+x`).
+
 ## Version history (git)
 - Local git repo at the project root (branch `main`, no remote). Git: `C:\Program Files\Git\cmd\git.exe` (may not be on PATH in old shells).
 - Commit a snapshot after each finished piece of work, with a plain-English message. Check `git status` first, and never commit `.dev.vars` or keys.
