@@ -51,6 +51,31 @@ Plan agreed 2026-10-02. Order: tracking → review Richard's account exports →
 - [ ] **Landing pages** under `/go/…`: noindex, minimal header, one goal (call / short form / estimator), headline matching the ad, proof, 3–4 FAQs. Likely set: general rental, construction, events & barricades, emergency (call-first), maybe post-driven. Final list depends on the search terms.
 - [ ] **Account cleanup:** heavy negative keywords (residential, backyard/dog/privacy fence, installers, repair, panels for sale, jobs), location = presence in the 80-mile radius, call ads during 7:30am–9pm, never send ads to the homepage.
 
+## Operations & reporting roadmap (future, after Google Ads)
+Goal: management reporting for Richard (complements his bookkeeper/CPA, doesn't replace them). Build in the staff area behind the same Access login.
+- [ ] **Job records:** "Won" quote → job with install/removal dates, actual footage, and panels/stands/gates used; term-ending reminders (extension upsell).
+- [ ] **Inventory:** counts by type (panels, stands, driven posts, gates, sandbags, barricades), what's in the yard vs out on jobs, damaged/lost.
+- [ ] **Accounting link:** connect his bookkeeping (QuickBooks / Xero / spreadsheet; ask Richard) and Stripe once payments are live.
+- [ ] **Owner dashboard:**
+  - revenue, jobs won, average job size
+  - money owed by age and days to get paid
+  - lead source ROI (cost per won job)
+  - quote win rate and response time
+  - revenue per panel and per linear foot, utilization, payback per panel
+  - repeat-customer value
+  - damage/loss
+  - seasonal capacity (buy more inventory when utilization stays above ~80%)
+- [ ] **Later:** pricing/margin analysis by fence type, term and distance; job costing (crew hours, fuel); one-click COI sending; branded PDF proposals with e-signature; scheduling board; customer portal for GCs; vendor/purchase tracking.
+- [ ] **Other growth services to offer:**
+  - automated review requests (when a job is won or the fence comes down)
+  - quote follow-up reminders
+  - Google Business Profile management
+  - quarterly past-customer email and a Net 30 account offer
+  - bid-board and permit monitoring
+  - referral partnerships (restoration, adjusters, event planners)
+  - branded windscreen upsell
+  - monthly results report
+
 ## Later phases
 - [x] Quote Inbox built (/staff/): list, status, notes, history, map of the drawn plan, call/text/email.
 - [ ] Quote Inbox launch: set up Cloudflare Access with Google sign-in (steps in site/README.md). Need Richard's Google email, yours, and any employees.
