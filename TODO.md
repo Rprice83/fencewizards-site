@@ -77,6 +77,7 @@ Goal: management reporting for Richard (complements his bookkeeper/CPA, doesn't 
   - monthly results report
 
 ## Later phases
+- [ ] **Proposal + one-page service agreement for Richard** (on hold until the user asks): about $2,000/mo retainer, build fee waived, 12-month minimum or sliding buyout of the waived build, ad spend/tools billed to Richard at cost, phased scope (months 1–3 launch/ads/tracking; 3–6 Field Notes/reviews/outbound; 6+ jobs/inventory/dashboards), annual review, all accounts in Richard's name, management reporting only (not bookkeeping/tax).
 - [x] Quote Inbox built (/staff/): list, status, notes, history, map of the drawn plan, call/text/email.
 - [ ] Quote Inbox launch: set up Cloudflare Access with Google sign-in (steps in site/README.md). Need Richard's Google email, yours, and any employees.
 - [ ] Field Notes automation: Richard emails photos and notes, a draft is generated (Claude API, following FIELD-NOTES.md), then approve and publish from the staff area. Step one (the file format, photo tool and Recent-jobs sections) is done; see FIELD-NOTES.md.
