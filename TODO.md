@@ -6,6 +6,7 @@
 - [ ] (Low priority now that the hosted demo exists; the Mac demo worked at the meeting.) **Mac preview "write EPIPE" error** with mac/Start Website Preview.command on the user's MacBook. Get the macOS version + chip and the Terminal output. Likely an old macOS (workerd needs ~13.5+); fix or document. The backup `Start Simple Preview (no forms).command` works meanwhile. Rebuild the Mac zip afterwards.
 
 ## Accounts & keys (needed before launch)
+- [ ] **Before Richard fires his current website company:** confirm *he* owns (logins in his name) the fencewizards.com domain registrar account, DNS, email (richard@fencewizards.com), Google Ads, Google Analytics, Google Business Profile and Search Console. Get access transferred first, then cut over.
 - [ ] **Google Maps API key**: satellite map + drawing in the estimator (replaces the free Esri imagery used during development, whose terms restrict commercial use).
 - [ ] **Google Places API key**: address autocomplete in the estimator (replaces OpenStreetMap/Nominatim search, which allows no autocomplete and 1 request/second).
 - [x] Hosted demo: Pages project `fencewizards` + D1 `fencewizards-quotes` in the user's Cloudflare account, auto-deploying from GitHub (2026-10-03).
