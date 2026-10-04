@@ -12,3 +12,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Client ad-account data (Google Ads exports, analyses): stays on this computer/OneDrive, never on GitHub
+marketing/google-ads/*
+!marketing/google-ads/README.md
