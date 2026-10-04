@@ -5,6 +5,7 @@
   "scripts": {
     "build": "node build/build.mjs",
     "check": "node build/check.mjs",
+    "cloudflare-build": "node build/build.mjs && node build/check.mjs && node --test",
     "dev": "node build/build.mjs && wrangler pages dev --port 8788",
     "db:migrate:local": "wrangler d1 migrations apply fencewizards-quotes --local",
     "db:migrate:remote": "wrangler d1 migrations apply fencewizards-quotes --remote",

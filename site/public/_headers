@@ -1,0 +1,8 @@
+# Cloudflare Pages response headers (hand-written, not generated).
+# Keep the demo/preview address (*.pages.dev) out of Google so it never competes with
+# the real site. Doesn't apply to www.fencewizards.com.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
