@@ -10,7 +10,7 @@
 - [ ] **Google Places API key**: address autocomplete in the estimator (replaces OpenStreetMap/Nominatim search, which allows no autocomplete and 1 request/second).
 - [x] Hosted demo: Pages project `fencewizards` + D1 `fencewizards-quotes` in the user's Cloudflare account, auto-deploying from GitHub (2026-10-03).
 - [ ] At launch: recreate the Pages project + D1 in a Fence Wizards-owned Cloudflare account (with the domain), update `database_id` in `site/wrangler.toml`, and apply `site/migrations` remotely.
-- [ ] Optional for the demo: set up Cloudflare Access on fencewizards.pages.dev so Richard can try the Quote Inbox.
+- [x] Quote Inbox on the demo: Cloudflare Access (team limestone-web-co, Google sign-in) for Richard + the user (2026-10-03).
 - [ ] Resend account: verify the sending domain (fencewizards.com), then set the `RESEND_API_KEY`, `QUOTE_FROM` and `QUOTE_TO` secrets in Cloudflare.
 - [ ] Cloudflare Turnstile (free spam protection) on the estimator submit. A hidden honeypot field is in place for now.
 - [ ] Send a real test quote to richard@fencewizards.com once Resend is set up, and confirm it lands in the inbox, not spam.
@@ -74,7 +74,7 @@ Goal: management reporting for Richard (complements his bookkeeper/CPA, doesn't 
 
 ## Later phases
 - [x] Quote Inbox built (/staff/): list, status, notes, history, map of the drawn plan, call/text/email.
-- [ ] Quote Inbox launch: set up Cloudflare Access with Google sign-in (steps in site/README.md). Need Richard's Google email, yours, and any employees.
+- [ ] Quote Inbox launch: redo the Access setup in the Fence Wizards Cloudflare account for www.fencewizards.com (steps in site/README.md; the demo setup is described in CLAUDE.md). Ask about any employees.
 - [ ] Field Notes automation: Richard emails photos and notes, a draft is generated (Claude API, following FIELD-NOTES.md), then approve and publish from the staff area. Step one (the file format, photo tool and Recent-jobs sections) is done; see FIELD-NOTES.md.
 - [ ] Ask Richard for the first job story (photos + the 7 answers in FIELD-NOTES.md).
 - [ ] **Payment requests (ON HOLD until Richard answers section 5 of the questionnaire):** an owner-only "Send payment request" button in the Quote Inbox. It sends a branded email from the fencewizards.com domain (via Resend) with a link to a Stripe-hosted invoice (card and/or ACH, PDF invoice, due date / Net 30). A Stripe webhook marks the quote Paid in the Inbox, Stripe sends the receipt, and Richard gets a copy of each request. It can be built and tested in Stripe test mode before his account exists. Open: Stripe account, sending address (richard@ vs billing@), payment methods, terms, card fees.
