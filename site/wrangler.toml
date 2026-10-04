@@ -15,11 +15,11 @@ QUOTE_FROM = "Fence Wizards Quotes <quotes@fencewizards.com>" # must be on a dom
 SITE_URL = "https://www.fencewizards.com"
 
 # Quote Inbox (/staff/): see "Quote Inbox setup" in README.md
-ACCESS_TEAM_DOMAIN = ""   # TODO: e.g. "fencewizards.cloudflareaccess.com"
-ACCESS_AUD = ""           # TODO: the Access application's Audience (AUD) tag
-STAFF_EMAILS = ""         # TODO: comma-separated Google emails allowed in (match the Access policy)
-OWNER_EMAILS = ""         # TODO: who can do owner-only things later (Stripe), e.g. Richard and you
-STAFF_NAMES = ""          # optional: "email=Richard,email=Name" so notes are signed with first names
+ACCESS_TEAM_DOMAIN = "limestone-web-co.cloudflareaccess.com"   # the developer's Zero Trust team (demo)
+ACCESS_AUD = "42e205aa47b1cb469410fcaafd737a5351bf4c943569a71935bc8b81af0f5ca3"   # "Quote Inbox" Access app (demo)
+STAFF_EMAILS = "richwarren1995@gmail.com,omniring09@gmail.com"  # must match the Access policy
+OWNER_EMAILS = "richwarren1995@gmail.com,omniring09@gmail.com"  # owner-only things later (Stripe)
+STAFF_NAMES = "richwarren1995@gmail.com=Richard"  # optional: "email=Name,..." so notes are signed with first names
 
 # Secrets (never commit): set with `wrangler pages secret put RESEND_API_KEY`
 # For local dev, put them in site/.dev.vars (see .dev.vars.example).
