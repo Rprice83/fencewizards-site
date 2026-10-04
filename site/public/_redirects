@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects (hand-written, not generated).
+# Every address on the old fencewizards.com exists on the new site except these.
+
+# /pricing/ is on hold (TODO.md). Temporary (302) until the real page is built, then delete this.
+/pricing   /#pricing   302
+/pricing/  /#pricing   302

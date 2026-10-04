@@ -5,12 +5,13 @@ import { post as costGuide } from './how-much-does-temporary-fence-rental-cost.m
 import { post as postDriven } from './post-driven-chain-link-fence-rental-flood-repair-public-works-hamilton-marion-county.mjs';
 import { post as windscreen } from './printed-windscreen-for-construction-fence-indianapolis-branding-privacy-dust-control.mjs';
 import { post as panels } from './temporary-fence-panels-for-rent-in-indianapolis-fast-setup-flexible-configuratio-1788192322725.mjs';
+import { post as eventPerimeter } from './event-fence-rental-indianapolis-how-festivals-races-and-venues-plan-a-temporary-perimeter.mjs';
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const formatDate = iso => { const [y, m, d] = iso.split('-').map(Number); return `${MONTHS[m - 1]} ${d}, ${y}`; };
 
 // Newest first; posts sharing a date keep the order of the original index.
-const POSTS = [emergency, windscreen, postDriven, costGuide, panels, rentalWorks]
+const POSTS = [emergency, windscreen, postDriven, costGuide, panels, eventPerimeter, rentalWorks]
   .map((p, i) => ({ p, i }))
   .sort((a, b) => b.p.date.localeCompare(a.p.date) || a.i - b.i)
   .map(({ p }) => p);

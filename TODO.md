@@ -7,6 +7,8 @@
 
 ## Accounts & keys (needed before launch)
 - [ ] **Before Richard fires his current website company:** confirm *he* owns (logins in his name) the fencewizards.com domain registrar account, DNS, email (richard@fencewizards.com), Google Ads, Google Analytics, Google Business Profile and Search Console. Get access transferred first, then cut over.
+- [ ] **URL match at launch (checked 2026-10-03):** every address in the live fencewizards.com sitemap exists on the new site, except `/pricing/` (temporary 302 to `/#pricing` in `site/public/_redirects`; remove when the page is built). Right before launch, re-run the check (live sitemap vs `site/public/.generated-pages.json`), because the current company may publish new posts. One did: the Aug 31 event-fence post, now copied. Then submit the new sitemap in Search Console.
+- [ ] At launch: make `fencewizards.com` (no www) redirect to `https://www.fencewizards.com` (it currently serves the site on both). Also redirect Richard's other domains seen in his Google Ads history, **fencerentalnearme.com** and **thefencewizards.com**, to the matching new pages if he owns them (ask).
 - [ ] **Google Maps API key**: satellite map + drawing in the estimator (replaces the free Esri imagery used during development, whose terms restrict commercial use).
 - [ ] **Google Places API key**: address autocomplete in the estimator (replaces OpenStreetMap/Nominatim search, which allows no autocomplete and 1 request/second).
 - [x] Hosted demo: Pages project `fencewizards` + D1 `fencewizards-quotes` in the user's Cloudflare account, auto-deploying from GitHub (2026-10-03).
