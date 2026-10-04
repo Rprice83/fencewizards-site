@@ -6,7 +6,7 @@ compatibility_date = "2025-09-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "fencewizards-quotes"
-database_id = "00000000-0000-0000-0000-000000000000" # TODO: replace with the real ID after `wrangler d1 create fencewizards-quotes`
+database_id = "a4fffd0b-7249-46c6-bb25-c1b223797b66" # demo DB in the developer's Cloudflare account; replace if moved to a Fence Wizards account
 migrations_dir = "migrations"
 
 [vars]
