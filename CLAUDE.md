@@ -4,7 +4,12 @@ New website for **Fence Wizards** (temporary fence rental, B2B, Greenwood IN; ow
 
 **Read first:** `TODO.md` (open items), then `site/README.md` (how it all runs). Open questions for Richard live in the shared doc https://claude.ai/code/artifact/ad94b6da-7898-4b05-8d0a-eede7e764fac ("Fence Wizards Website — Questions for Richard"). Add Richard-only questions there.
 
-## Status (as of 2026-10-02)
+## Latest (2026-10-03) — start here
+- The user met Richard to demo the site **on their Mac laptop**. The full Mac preview (`mac/Start Website Preview.command`) failed with **"write EPIPE"**, which is unresolved. The likely cause is the macOS version being too old for Cloudflare's local engine (workerd needs roughly macOS 13.5+). **Waiting on:** the user's macOS version and chip, plus the last ~15 Terminal lines. The workaround in place is `mac/Start Simple Preview (no forms).command` (plain Node server: every page, video and estimator pricing work; forms and the Inbox don't). After fixing anything Mac-related, **rebuild the Mac zip** (see "Showing the site on other computers").
+- Ask how the meeting went: Richard's reactions, and any questionnaire answers to apply.
+- Next planned workstream: Google Ads tracking + landing pages (TODO.md).
+
+## Status (as of 2026-10-03)
 - **Done:**
   - Full site in the new design: homepage with drone-video hero, all 38 original pages except /pricing/, /privacy/, 404.
   - Map estimator (/estimate/) with confirmation page.
@@ -12,6 +17,7 @@ New website for **Fence Wizards** (temporary fence rental, B2B, Greenwood IN; ow
   - Quote Inbox (/staff/).
   - Field Notes job-story system (step 1).
   - 22 passing tests, plus a link/asset checker.
+  - Preview launchers: Windows `Start Website Preview.cmd`; Mac `mac/` folder + Desktop zip.
 - **On hold:**
   - /pricing/ page (waiting on Richard).
   - Stripe payment requests (waiting on questionnaire section 5; design is in TODO.md).
