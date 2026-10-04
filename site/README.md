@@ -32,13 +32,20 @@ Change the page file in `build/pages/`, then run `npm run build` (and `npm run c
 Without a Resend key, emails aren't sent. They're saved with each submission, and you can view the latest at
 http://localhost:8788/api/dev/email-preview (or `?id=FW-...` / `?id=FW-M-...`). This needs `DEV_PREVIEW=true` in `.dev.vars`.
 
-## Going live (Cloudflare)
+## Deploying (Cloudflare Pages, automatic from GitHub)
+The hosted demo (https://fencewizards.pages.dev) deploys itself: every push to `main` on GitHub makes Cloudflare run
+`npm run cloudflare-build` (build + link check + tests) and publish `public/` with `functions/`. If any check fails, the previous version stays live.
+Pages project settings: root directory `site`, build command `npm run cloudflare-build`, output `public`.
+Hand-written files in `public/`: `_headers` (keeps `*.pages.dev` out of Google) and `_redirects` (old addresses with no page yet).
+
+Setting it up again in another Cloudflare account (e.g. Fence Wizards' own, at launch):
 1. `npx wrangler login`
 2. `npx wrangler d1 create fencewizards-quotes`, then paste the `database_id` into `wrangler.toml`
 3. `npm run db:migrate:remote`
-4. In Resend, verify fencewizards.com, then run `npx wrangler pages secret put RESEND_API_KEY`
-5. `npm run build && npm run deploy`, then connect the domain in the Cloudflare dashboard (build command `npm run build`, output `public`)
-6. Do **not** set `DEV_PREVIEW` in production.
+4. Dashboard → Workers & Pages → Create → **Pages** → Connect to Git, with the settings above
+5. In Resend, verify fencewizards.com, then add the `RESEND_API_KEY` secret to the Pages project
+6. Connect the domain in the Pages project, and redo the Quote Inbox Access setup below
+7. Do **not** set `DEV_PREVIEW` in production.
 
 See ../TODO.md for open items.
 
