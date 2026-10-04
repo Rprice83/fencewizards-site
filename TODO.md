@@ -3,12 +3,14 @@
 > **Questions for Richard** are collected in the shared doc "Fence Wizards Website — Questions for Richard" (https://claude.ai/code/artifact/ad94b6da-7898-4b05-8d0a-eede7e764fac). Update this list as his answers come in.
 
 ## Open issues
-- [ ] **Mac preview "write EPIPE" error** with mac/Start Website Preview.command on the user's MacBook. Get the macOS version + chip and the Terminal output. Likely an old macOS (workerd needs ~13.5+); fix or document. The backup `Start Simple Preview (no forms).command` works meanwhile. Rebuild the Mac zip afterwards.
+- [ ] (Low priority now that the hosted demo exists; the Mac demo worked at the meeting.) **Mac preview "write EPIPE" error** with mac/Start Website Preview.command on the user's MacBook. Get the macOS version + chip and the Terminal output. Likely an old macOS (workerd needs ~13.5+); fix or document. The backup `Start Simple Preview (no forms).command` works meanwhile. Rebuild the Mac zip afterwards.
 
 ## Accounts & keys (needed before launch)
 - [ ] **Google Maps API key**: satellite map + drawing in the estimator (replaces the free Esri imagery used during development, whose terms restrict commercial use).
 - [ ] **Google Places API key**: address autocomplete in the estimator (replaces OpenStreetMap/Nominatim search, which allows no autocomplete and 1 request/second).
-- [ ] Cloudflare account: create the Pages project and the D1 database (`fencewizards-quotes`), then apply `site/migrations`.
+- [x] Hosted demo: Pages project `fencewizards` + D1 `fencewizards-quotes` in the user's Cloudflare account, auto-deploying from GitHub (2026-10-03).
+- [ ] At launch: recreate the Pages project + D1 in a Fence Wizards-owned Cloudflare account (with the domain), update `database_id` in `site/wrangler.toml`, and apply `site/migrations` remotely.
+- [ ] Optional for the demo: set up Cloudflare Access on fencewizards.pages.dev so Richard can try the Quote Inbox.
 - [ ] Resend account: verify the sending domain (fencewizards.com), then set the `RESEND_API_KEY`, `QUOTE_FROM` and `QUOTE_TO` secrets in Cloudflare.
 - [ ] Cloudflare Turnstile (free spam protection) on the estimator submit. A hidden honeypot field is in place for now.
 - [ ] Send a real test quote to richard@fencewizards.com once Resend is set up, and confirm it lands in the inbox, not spam.

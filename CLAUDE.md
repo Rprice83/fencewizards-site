@@ -5,8 +5,8 @@ New website for **Fence Wizards** (temporary fence rental, B2B, Greenwood IN; ow
 **Read first:** `TODO.md` (open items), then `site/README.md` (how it all runs). Open questions for Richard live in the shared doc https://claude.ai/code/artifact/ad94b6da-7898-4b05-8d0a-eede7e764fac ("Fence Wizards Website — Questions for Richard"). Add Richard-only questions there.
 
 ## Latest (2026-10-03) — start here
-- The user met Richard to demo the site **on their Mac laptop**. The full Mac preview (`mac/Start Website Preview.command`) failed with **"write EPIPE"**, which is unresolved. The likely cause is the macOS version being too old for Cloudflare's local engine (workerd needs roughly macOS 13.5+). **Waiting on:** the user's macOS version and chip, plus the last ~15 Terminal lines. The workaround in place is `mac/Start Simple Preview (no forms).command` (plain Node server: every page, video and estimator pricing work; forms and the Inbox don't). After fixing anything Mac-related, **rebuild the Mac zip** (see "Showing the site on other computers").
-- Ask how the meeting went: Richard's reactions, and any questionnaire answers to apply.
+- The user met Richard and the Mac demo worked. Richard asked for a **hosted demo**, which is now live (see "Hosted demo" under Status). The hosted demo replaces the Mac zip for showing the site; the old Mac "write EPIPE" issue is low priority now.
+- Ask how the meeting went: Richard's reactions, and any questionnaire answers to apply (the user said they'd discuss it later).
 - Next planned workstream: Google Ads tracking + landing pages (TODO.md).
 
 ## Status (as of 2026-10-03)
@@ -23,7 +23,8 @@ New website for **Fence Wizards** (temporary fence rental, B2B, Greenwood IN; ow
   - Stripe payment requests (waiting on questionnaire section 5; design is in TODO.md).
 - **Next workstream:** Google Ads conversion tracking + landing pages (plan in TODO.md, section "Google Ads + landing pages"). Keep ads reports/notes in `marketing/google-ads/`.
 - **Kept out of this folder on purpose:** pricing, the service agreement and business notes live in the user's `Agency HQ` folder (see their personal CLAUDE.md). The cold-email outreach for Richard will be its own project folder.
-- **Not deployed yet:** everything runs locally. Launch needs Cloudflare (Pages + D1 + Access), Resend, and Google Maps/Places keys (see TODO.md and the site/README.md setup sections).
+- **Hosted demo (since 2026-10-03):** Cloudflare **Pages** project `fencewizards` (https://fencewizards.pages.dev) in the user's own Cloudflare account (omniring09@gmail.com), connected to the GitHub repo (see "Version history"). Pages settings: root dir `site`, build `npm run cloudflare-build`, output `public`. D1 `fencewizards-quotes` is created and migrated (remote). `*.pages.dev` is noindexed via `site/public/_headers`. Not set up yet: Resend (no emails go out, but submissions still save to D1), Cloudflare Access (so /staff/ stays locked, by design), and the custom domain. Plan: at launch, recreate the Pages project + D1 in a Fence Wizards Cloudflare account and put the new `database_id` in `wrangler.toml`.
+- **Not launched yet:** launch needs Resend, Cloudflare Access, the fencewizards.com domain, and Google Maps/Places keys (see TODO.md and the site/README.md setup sections).
 
 ## Layout
 ```
@@ -66,8 +67,9 @@ Node isn't on the default PATH in fresh shells, so prefix with:
 - Keep `.command` files LF and executable in git (`.gitattributes` + `git update-index --chmod=+x`).
 
 ## Version history (git)
-- Local git repo at the project root (branch `main`, no remote). Git: `C:\Program Files\Git\cmd\git.exe` (may not be on PATH in old shells).
-- Commit a snapshot after each finished piece of work, with a plain-English message. Check `git status` first, and never commit `.dev.vars` or keys.
+- Git repo at the project root, branch `main`, remote `origin` = https://github.com/Rprice83/fencewizards-site (private, the user's GitHub). Git: `C:\Program Files\Git\cmd\git.exe` (may not be on PATH in old shells).
+- Commit a snapshot after each finished piece of work, with a plain-English message, **then `git push`**. Check `git status` first, and never commit `.dev.vars` or keys.
+- **Every push to `main` auto-deploys the hosted demo**, so only push finished, tested work. Cloudflare runs `npm run cloudflare-build` (build + link check + tests). If any of those fail, the deploy stops and the previous version stays live.
 - Not tracked (too big, still on disk/OneDrive): `organized-assets/named-videos/` (raw 4K drone clips) and `organized-assets/working/`.
 
 ## Decisions already made (don't re-ask)
