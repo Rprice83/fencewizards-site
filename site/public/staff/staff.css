@@ -200,3 +200,6 @@ table.ib-lines tr.total td { border-top: 2px solid var(--ink); font-weight: 800;
 .st-actions button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
 .st-done { text-align: center; padding-top: 60px; }
 @media (max-width: 480px) { .st-row { grid-template-columns: 1fr; } }
+.ib-stories-btn { padding: 6px 12px; border-radius: 100px; background: var(--red); color: #fff; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.ib-stories-btn:hover { background: var(--red-600); }
+@media (max-width: 480px) { .ib-top-right .ib-site[target="_blank"] { display: none; } } /* "View site": room for the Job stories button */
