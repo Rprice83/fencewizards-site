@@ -38,7 +38,9 @@ The hosted demo (https://fencewizards.pages.dev) deploys itself: every push to `
 Pages project settings: root directory `site`, build command `npm run cloudflare-build`, output `public`.
 Hand-written files in `public/`: `_headers` (keeps `*.pages.dev` out of Google) and `_redirects` (old addresses with no page yet).
 
-Setting it up again in another Cloudflare account (e.g. Fence Wizards' own, at launch):
+Production also runs here (the developer's Cloudflare account hosts it as a managed service): at launch, add www.fencewizards.com as a custom domain on this Pages project.
+
+Setting it up from scratch in another Cloudflare account (e.g. for a new client site):
 1. `npx wrangler login`
 2. `npx wrangler d1 create fencewizards-quotes`, then paste the `database_id` into `wrangler.toml`
 3. `npm run db:migrate:remote`

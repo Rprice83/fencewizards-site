@@ -19,7 +19,7 @@ export const SITE = {
 // Third-party services wired into the pages. Public IDs only (secrets live in Cloudflare, never here).
 export const INTEGRATIONS = {
   // Cloudflare Turnstile (spam check on every form). This is Cloudflare's public TEST key: always passes, invisible.
-  // TODO.md: replace with the real site key from Fence Wizards' Cloudflare account at launch (and set TURNSTILE_SECRET).
+  // TODO.md: replace with the real site key (Turnstile widget in the hosting Cloudflare account) at launch (and set TURNSTILE_SECRET).
   turnstileSiteKey: '1x00000000000000000000BB',
 };
 

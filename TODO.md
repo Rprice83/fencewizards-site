@@ -12,11 +12,11 @@
 - [ ] **Google Maps API key**: satellite map + drawing in the estimator (replaces the free Esri imagery used during development, whose terms restrict commercial use).
 - [ ] **Google Places API key**: address autocomplete in the estimator (replaces OpenStreetMap/Nominatim search, which allows no autocomplete and 1 request/second).
 - [x] Hosted demo: Pages project `fencewizards` + D1 `fencewizards-quotes` in the user's Cloudflare account, auto-deploying from GitHub (2026-10-03).
-- [ ] At launch: recreate the Pages project + D1 in a Fence Wizards-owned Cloudflare account (with the domain), update `database_id` in `site/wrangler.toml`, and apply `site/migrations` remotely.
+- [ ] At launch: **production stays in the user's Cloudflare account** (managed service, decided 2026-10-05), same Pages project `fencewizards` and D1. Add www.fencewizards.com as a custom domain on the Pages project. The domain itself stays registered in Richard's name; either move its DNS (nameservers) to the user's Cloudflare account or add a CNAME at his DNS host. Clear the test quotes out of D1 before go-live.
 - [x] Quote Inbox on the demo: Cloudflare Access (team limestone-web-co, Google sign-in) for Richard + the user (2026-10-03).
 - [ ] Resend account: verify the sending domain (fencewizards.com), then set the `RESEND_API_KEY`, `QUOTE_FROM` and `QUOTE_TO` secrets in Cloudflare.
 - [x] Cloudflare Turnstile spam check on all three forms (estimator, quick quote, contact), verified on the server (`server/turnstile.js`), plus the honeypot. Built 2026-10-05; demo uses Cloudflare's public test keys.
-- [ ] **At launch:** create a Turnstile widget in Fence Wizards' Cloudflare account (domain www.fencewizards.com), put its site key in `INTEGRATIONS.turnstileSiteKey` (`site/build/lib/site.mjs`) and its secret as the `TURNSTILE_SECRET` Pages secret. Without the secret the check is skipped.
+- [ ] **At launch:** create a Turnstile widget in the user's Cloudflare account (hostnames www.fencewizards.com + fencewizards.pages.dev), put its site key in `INTEGRATIONS.turnstileSiteKey` (`site/build/lib/site.mjs`) and its secret as the `TURNSTILE_SECRET` Pages secret. Without the secret the check is skipped.
 - [ ] Send a real test quote to richard@fencewizards.com once Resend is set up, and confirm it lands in the inbox, not spam.
 - [ ] Final logo SVGs from the designer (current logos are cropped from the PDF proof).
 - [ ] License the Shuttleblock Narrow Bold Italic font (Barlow Condensed is the stand-in).
@@ -79,7 +79,7 @@ Goal: management reporting for Richard (complements his bookkeeper/CPA, doesn't 
 
 ## Later phases
 - [x] Quote Inbox built (/staff/): list, status, notes, history, map of the drawn plan, call/text/email.
-- [ ] Quote Inbox launch: redo the Access setup in the Fence Wizards Cloudflare account for www.fencewizards.com (steps in site/README.md; the demo setup is described in CLAUDE.md). Ask about any employees.
+- [ ] Quote Inbox launch: in the existing Access app "Quote Inbox" (team limestone-web-co), add www.fencewizards.com with paths `staff` and `api/staff`. Ask about any employees.
 - [ ] Field Notes automation: Richard emails photos and notes, a draft is generated (Claude API, following FIELD-NOTES.md), then approve and publish from the staff area. Step one (the file format, photo tool and Recent-jobs sections) is done; see FIELD-NOTES.md.
 - [ ] Ask Richard for the first job story (photos + the 7 answers in FIELD-NOTES.md).
 - [ ] **Payment requests (ON HOLD until Richard answers section 5 of the questionnaire):** an owner-only "Send payment request" button in the Quote Inbox. It sends a branded email from the fencewizards.com domain (via Resend) with a link to a Stripe-hosted invoice (card and/or ACH, PDF invoice, due date / Net 30). A Stripe webhook marks the quote Paid in the Inbox, Stripe sends the receipt, and Richard gets a copy of each request. It can be built and tested in Stripe test mode before his account exists. Open: Stripe account, sending address (richard@ vs billing@), payment methods, terms, card fees.
