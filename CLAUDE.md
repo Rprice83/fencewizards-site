@@ -56,7 +56,7 @@ Node isn't on the default PATH in fresh shells, so prefix with:
 `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')`
 - `node build/build.mjs` (add `--drafts` to include draft Field Notes), then `node build/check.mjs`, then `node --test`
 - Local server: the Browser pane's launch config **"fencewizards-site"** (`.claude/launch.json`, wrangler pages dev on :8788)
-- DB: `npx wrangler d1 migrations apply fencewizards-quotes --local` (set `$env:CI='true'`)
+- DB: `npx wrangler d1 migrations apply fencewizards-quotes --local` (set `$env:CI='true'`). **A new migration must also be applied with `--remote` BEFORE pushing code that uses it**: pushing deploys the code, but nothing migrates the live database automatically.
 - Dev helpers: http://localhost:8788/api/dev/email-preview (latest email Richard would get); http://localhost:8788/staff/ (auto-signed-in locally via DEV_STAFF_EMAIL in `.dev.vars`)
 - Python: `$env:LOCALAPPDATA\Programs\Python\Python312\python.exe` (Pillow, pillow-heif, pymupdf installed). FFmpeg is installed via winget (Gyan.FFmpeg).
 

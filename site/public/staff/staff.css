@@ -57,6 +57,9 @@ a { color: inherit; }
 .pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 100px; font-size: .72rem; font-weight: 700; background: var(--steel-100); color: var(--ink); white-space: nowrap; }
 .pill.type-quote { background: #fff0f0; color: var(--red-600); }
 .pill.type-inquiry { background: #eef3ff; color: #2D4FA0; }
+.pill.src-ads { background: #fff6dc; color: #7a5300; }
+.ib-src-detail { display: block; color: var(--muted); font-weight: 400; font-size: .8rem; }
+.ib-muted { color: var(--muted); font-weight: 400; }
 .st { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: .78rem; text-transform: capitalize; }
 .st::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--steel)); }
 .st-c-new { --c: var(--s-new); } .st-c-contacted { --c: var(--s-contacted); } .st-c-quoted { --c: var(--s-quoted); } .st-c-won { --c: var(--s-won); } .st-c-lost { --c: var(--s-lost); }

@@ -1,8 +1,9 @@
 // POST /api/contact — quick-quote form (JSON) and contact form (multipart, with optional files).
 // Saves the inquiry and emails Richard (files go along as email attachments).
 import { newQuoteId } from '../../server/quote.js';
-import { sendWithResend } from '../../server/email.js';
+import { sendWithResend, foundVia } from '../../server/email.js';
 import { verifyTurnstile, ROBOT_MESSAGE } from '../../server/turnstile.js';
+import { cleanSource, cleanHeard } from '../../public/js/source.js';
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -40,7 +41,11 @@ export async function onRequestPost(context) {
     name: str(fields.name, 120), phone: str(fields.phone, 40), email: str(fields.email, 200).toLowerCase(),
     location: str(fields.location, 300), fenceStyle: str(fields.fenceStyle, 60), feet: Math.min(Math.max(Number(fields.feet) || 0, 0), 100000) || null,
     duration: str(fields.duration, 40), message: str(fields.message, 5000), page: str(fields.page, 300),
+    heardAbout: cleanHeard(fields.heardAbout),
   };
+  let source = null;
+  try { source = cleanSource(JSON.parse(fields.source || 'null')); } catch { /* ignore */ }
+  d.source = source;
   if (!/^\/[\w\-/]*$/.test(d.page)) d.page = ''; // only a site path; it's shown as a link in the Quote Inbox
   if (!d.name) return json({ error: 'Please add your name.' }, 400);
   if (!d.phone && !d.email) return json({ error: 'Please add a phone number or email so Richard can reach you.' }, 400);
@@ -58,11 +63,11 @@ export async function onRequestPost(context) {
   const id = newQuoteId().replace('FW-', 'FW-M-');
   const fileNames = files.map(f => f.name);
 
-  await env.DB.prepare(`INSERT INTO inquiries (id, created_at, kind, page, name, phone, email, location, fence_style, feet, duration, message, file_names, user_agent)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).bind(
+  await env.DB.prepare(`INSERT INTO inquiries (id, created_at, kind, page, name, phone, email, location, fence_style, feet, duration, message, file_names, user_agent, source_json, heard_about)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).bind(
     id, new Date().toISOString(), kind, d.page || null, d.name, d.phone || null, d.email || null, d.location || null,
     d.fenceStyle || null, d.feet, d.duration || null, d.message || null, fileNames.length ? JSON.stringify(fileNames) : null,
-    (request.headers.get('User-Agent') || '').slice(0, 300),
+    (request.headers.get('User-Agent') || '').slice(0, 300), source ? JSON.stringify(source) : null, d.heardAbout,
   ).run();
 
   const mail = inquiryEmail(id, kind, d, fileNames, env.SITE_URL);
@@ -114,6 +119,7 @@ function inquiryEmail(id, kind, d, fileNames, siteUrl = '') {
     ${row('Linear feet', d.feet ? esc(d.feet.toLocaleString()) : '')}
     ${row('How long', esc(d.duration))}
     ${row('Attached files', fileNames.map(esc).join('<br>'))}
+    ${row('Found us via', foundVia(d))}
   </table>
   ${d.message ? `<p style="margin:18px 0 0;padding:12px 14px;background:#f7f7f7;border-radius:6px;white-space:pre-wrap">${esc(d.message)}</p>` : ''}
   <p style="margin:22px 0 0">${d.phone ? `<a href="tel:${esc(tel)}" style="display:inline-block;background:#ED1C24;color:#fff;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:4px">Call ${esc(d.name.split(' ')[0])}</a>` : ''}

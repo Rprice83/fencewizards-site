@@ -1,4 +1,26 @@
 (() => {
+  // Where this visitor came from, so a quote can say "Google Ads" (or a site, or direct). Kept in this browser
+  // for 90 days and sent with any form. A new ad click replaces it; ordinary visits keep the first one seen.
+  const SRC_KEY = 'fw-src';
+  const readSource = () => {
+    try {
+      const s = JSON.parse(localStorage.getItem(SRC_KEY) || 'null');
+      return s && Date.now() - s.t < 90 * 864e5 ? s : null;
+    } catch { return null; }
+  };
+  try {
+    const p = new URLSearchParams(location.search);
+    const fromUrl = {};
+    ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+      .forEach(k => { if (p.get(k)) fromUrl[k] = p.get(k).slice(0, 200); });
+    let referrer = '';
+    try { const r = new URL(document.referrer); if (r.host !== location.host) referrer = r.host; } catch { /* no referrer */ }
+    if (Object.keys(fromUrl).length || !readSource()) {
+      localStorage.setItem(SRC_KEY, JSON.stringify({ ...fromUrl, referrer, landing: location.pathname, t: Date.now() }));
+    }
+  } catch { /* storage blocked: forms just send no source */ }
+  window.fwSource = readSource;
+
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.menu-toggle');
   const links = document.getElementById('nav-links');
@@ -130,6 +152,7 @@
       fd.set('kind', form.dataset.kind || 'quick');
       fd.set('page', location.pathname);
       if (token) fd.set('cf-turnstile-response', token);
+      fd.set('source', JSON.stringify(readSource() || {}));
       try {
         const hasFiles = fileInput && fileInput.files.length;
         const res = await fetch('/api/contact', hasFiles

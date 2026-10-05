@@ -4,6 +4,7 @@
 import { esc, md, paras, plain } from './html.mjs';
 import { SITE, USES, TYPES, CITIES, BEFORE_YOU_CALL, INTEGRATIONS, city, cityHref } from './site.mjs';
 import { notesFor, notePhoto, formatDate } from './field-notes.mjs';
+import { HEARD_ABOUT } from '../../public/js/source.js';
 
 /* ---------- per-page structured-data collector (FAQ etc.) ---------- */
 let faqItems = [];
@@ -244,6 +245,9 @@ const DURATIONS = ['Under 1 month', '1–3 months', '3–6 months', '6–12 mont
 // Cloudflare Turnstile spam check. Invisible unless Cloudflare wants a click; main.js loads the script.
 export const turnstileWidget = () => `<div class="cf-turnstile" data-sitekey="${esc(INTEGRATIONS.turnstileSiteKey)}" data-appearance="interaction-only" data-size="flexible"></div>`;
 
+// Optional "How did you hear about us?" (stored with the request; choices in public/js/source.js)
+export const heardAboutField = ({ id = '', cls = '' } = {}) => `<label${cls ? ` class="${cls}"` : ''}><span>How did you hear about us? <i class="opt-label">(optional)</i></span><select name="heardAbout"${id ? ` id="${id}"` : ''}><option value="">Choose one</option>${HEARD_ABOUT.map(h => `<option>${esc(h)}</option>`).join('')}</select></label>`;
+
 // Quick quote form (posts to /api/contact). heading/text customize the pitch.
 export function quoteCta({ eyebrow = 'Get a quote', heading = 'Tell us about *the job.*', text = 'Five answers and Richard can price it. He takes every inquiry himself.', id = 'quote', tone = 'steel' }) {
   return section(tone, `    <div class="quote-grid">
@@ -272,6 +276,7 @@ export function quoteCta({ eyebrow = 'Get a quote', heading = 'Tell us about *th
         <label>How long do you need it?
           <select name="duration">${DURATIONS.map(s => `<option>${esc(s)}</option>`).join('')}</select>
         </label>
+        ${heardAboutField()}
         <label class="hp" aria-hidden="true">Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
         ${turnstileWidget()}
         <button type="submit" class="btn btn-red btn-lg btn-block">Send it to Richard</button>

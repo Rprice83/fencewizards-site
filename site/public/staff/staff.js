@@ -1,6 +1,7 @@
 // Quote Inbox front end. All customer-entered text goes through esc() before it touches the page.
 import { mapConfig } from '/estimate/map-providers.js';
 import { fmtMoney, FENCE_TYPES } from '/js/pricing.js';
+import { sourceLabel } from '/js/source.js';
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -74,7 +75,7 @@ function renderList() {
       return `<li><a href="#${esc(it.id)}" class="st-${esc(it.status)}"${state.current === it.id ? ' aria-current="true"' : ''}>
         <span class="ib-name">${esc(it.name)}</span><span class="ib-when">${ago(it.created_at)}</span>
         <span class="ib-sub">${esc(sub)}</span>
-        <span class="ib-meta"><span class="pill type-${it.type}">${quote ? 'Estimate' : 'Message'}</span><span class="st st-c-${esc(it.status)}">${esc(it.status)}</span>${what ? `<span>${esc(what)}</span>` : ''}${it.note_count ? `<span>💬 ${it.note_count}</span>` : ''}${total}</span>
+        <span class="ib-meta"><span class="pill type-${it.type}">${quote ? 'Estimate' : 'Message'}</span><span class="st st-c-${esc(it.status)}">${esc(it.status)}</span>${what ? `<span>${esc(what)}</span>` : ''}${sourceLabel(it.source).kind === 'ads' ? '<span class="pill src-ads">Google Ads</span>' : ''}${it.note_count ? `<span>💬 ${it.note_count}</span>` : ''}${total}</span>
       </a></li>`;
     }).join('');
   }
@@ -125,6 +126,15 @@ function renderDetail(it) {
     ${it.phone ? `<div><dt>Phone</dt><dd><a href="tel:${esc(tel)}">${esc(it.phone)}</a></dd></div>` : ''}
     ${it.email ? `<div><dt>Email</dt><dd><a href="mailto:${esc(it.email)}">${esc(it.email)}</a></dd></div>` : ''}
     ${address ? `<div><dt>${quote ? 'Project address' : 'Location'}</dt><dd>${esc(address)}</dd></div>` : ''}
+  </dl></div>`;
+
+  const src = sourceLabel(it.source);
+  const s = it.source || {};
+  const found = `<div class="ib-card"><h2>How they found us</h2><dl class="ib-dl">
+    <div><dt>Source</dt><dd>${src.kind === 'ads' ? '<span class="pill src-ads">Google Ads</span>' : esc(src.label)}${src.detail && src.kind !== 'ads' ? `<small class="ib-src-detail">${esc(src.detail)}</small>` : ''}</dd></div>
+    ${src.kind === 'ads' && src.detail ? `<div><dt>Campaign / keyword</dt><dd>${esc(src.detail)}</dd></div>` : ''}
+    <div><dt>They said</dt><dd>${it.heard_about ? esc(it.heard_about) : '<span class="ib-muted">Didn’t answer</span>'}</dd></div>
+    ${s.landing ? `<div><dt>First page they saw</dt><dd><a href="${esc(s.landing)}" target="_blank" rel="noopener">${esc(s.landing)}</a>${s.first_seen ? ` · ${esc(new Date(s.first_seen).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))}` : ''}</dd></div>` : ''}
   </dl></div>`;
 
   const emailWarn = it.email_status === 'failed'
@@ -193,7 +203,7 @@ function renderDetail(it) {
     ${(it.events || []).map(e => `<li><strong>${esc(e.actor)}</strong> changed status ${esc(e.detail || '')} · ${when(e.created_at)}</li>`).join('')}
   </ul></div>`;
 
-  $('#ib-detail').innerHTML = `<div class="ib-card-wrap">${head}${emailWarn}${contact}${body}${notes}${history}</div>`;
+  $('#ib-detail').innerHTML = `<div class="ib-card-wrap">${head}${emailWarn}${contact}${body}${found}${notes}${history}</div>`;
   $('#ib-detail').scrollTop = 0;
 
   $('#ib-back').addEventListener('click', () => { history_back(); });

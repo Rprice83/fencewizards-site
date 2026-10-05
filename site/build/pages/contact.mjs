@@ -1,4 +1,4 @@
-import { pageHero, faq, related, quoteCta, md, paras, turnstileWidget } from '../lib/components.mjs';
+import { pageHero, faq, related, quoteCta, md, paras, turnstileWidget, heardAboutField } from '../lib/components.mjs';
 import { SITE } from '../lib/site.mjs';
 
 const contactMain = `<section class="section tone-white contact-section">
@@ -38,6 +38,7 @@ const contactMain = `<section class="section tone-white contact-section">
         <span>Drag files here or click to choose. Up to 5 files, 15 MB total.</span>
         <span class="file-list"></span>
       </label>
+      ${heardAboutField()}
       <label class="hp" aria-hidden="true">Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       ${turnstileWidget()}
       <button type="submit" class="btn btn-red btn-lg btn-block">Send it to Richard</button>

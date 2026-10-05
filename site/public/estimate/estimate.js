@@ -639,8 +639,9 @@ form.addEventListener('submit', async e => {
     contact: {
       name: val('#c-name').trim(), company: val('#c-company').trim(), phone: val('#c-phone').trim(),
       email: val('#c-email').trim(), address: val('#c-address').trim(), notes: val('#c-notes').trim(),
-      contactPref: radio('contactPref'), website: val('#c-website'),
+      contactPref: radio('contactPref'), website: val('#c-website'), heardAbout: val('#c-heard'),
     },
+    source: window.fwSource?.() || null,
     clientTotal: est.priced ? est.total : null,
   };
 

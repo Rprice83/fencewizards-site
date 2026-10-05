@@ -41,6 +41,7 @@ export default {
         ] },
         { paras: [
           '**What your browser sends automatically.** When you submit a form we record the date and time, the page you sent it from, and your browser\'s user-agent (the browser and device type). Our hosting provider also keeps standard server logs, which include IP addresses, to run and protect the site.',
+          '**How you found us.** So we know which advertising works, the site remembers in your browser (for up to 90 days) how you first arrived: the website that sent you, the first page you saw, and, if you clicked one of our Google ads, the ad\'s click code and campaign. This is sent with any form you submit, together with your answer to "How did you hear about us?" if you give one.',
           '**What stays on your device.** The estimator saves your plan in your browser\'s local storage, so a refresh doesn\'t lose your work. That copy never leaves your device unless you send the plan, and it\'s cleared when you do. If you press "Use my location", your browser asks permission and uses your location only to center the map. We receive coordinates only for a fence you draw and send.',
           'We don\'t use advertising cookies, tracking pixels or analytics on this site.',
         ] },

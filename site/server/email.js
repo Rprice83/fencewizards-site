@@ -1,11 +1,19 @@
 // Notification email to Richard for a new quote request (sent with Resend).
 import { fmtMoney, FENCE_TYPES, PRICE_SHEET_VERSION } from '../public/js/pricing.js';
 import { planSegments, planGeoJSON } from './quote.js';
+import { sourceLabel } from '../public/js/source.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const PROJECT = { construction: 'Construction', event: 'Event', emergency: 'Emergency', other: 'Other' };
 const PREF = { call: 'Call', text: 'Text', email: 'Email' };
 const BALLAST = { standard: 'Standard (1 bag/stand)', plus2: '3 bags per stand', plus3: '4 bags per stand' };
+
+// "Google Ads · fence rental near me" plus what they picked in "How did you hear about us?"
+export function foundVia(d) {
+  const s = sourceLabel(d.source);
+  const parts = [s.kind === 'unknown' ? '' : `${s.label}${s.detail && s.kind !== 'direct' ? ` (${s.detail})` : ''}`, d.heardAbout ? `They said: ${d.heardAbout}` : ''].filter(Boolean);
+  return parts.map(esc).join('<br>');
+}
 
 export function quoteEmail(id, q, env) {
   const { contact: c, options: o, estimate: est } = q;
@@ -72,6 +80,7 @@ export function quoteEmail(id, q, env) {
     ${row('Phone', `<a href="tel:${esc(tel)}" style="color:#ED1C24">${esc(c.phone)}</a>`)}
     ${row('Email', `<a href="mailto:${esc(c.email)}" style="color:#ED1C24">${esc(c.email)}</a>`)}
     ${row('Prefers', esc(PREF[c.contactPref]))}
+    ${foundVia(q) ? row('Found us via', foundVia(q)) : ''}
   </table>`)}
 
   ${section('Project', `<table role="presentation" width="100%" style="font-size:14px">
