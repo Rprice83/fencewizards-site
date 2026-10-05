@@ -13,6 +13,7 @@
   <meta property="og:url" content="https://www.fencewizards.com/quote-confirmation/">
   <meta property="og:image" content="https://www.fencewizards.com/assets/img/skyline-panels-indianapolis-1600.jpg">
   <link rel="icon" href="/assets/brand/mark-fw-800.png">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Barlow Condensed stands in for Shuttleblock Narrow Bold Italic until the brand font is licensed -->
@@ -171,6 +172,13 @@
   let q = null;
   try { q = JSON.parse(sessionStorage.getItem('fw-last-quote') || 'null'); } catch {}
   if (q && id && q.id !== id) q = null;
+
+  // Count the estimator lead once (this page can be reloaded or revisited)
+  if (q && id) {
+    try {
+      if (!sessionStorage.getItem(`fw-counted-${id}`)) { window.fwTrack?.lead('estimate', id); sessionStorage.setItem(`fw-counted-${id}`, '1'); }
+    } catch {}
+  }
 
   if (id) {
     document.getElementById('ref-id').textContent = id;

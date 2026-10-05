@@ -21,6 +21,15 @@ export const INTEGRATIONS = {
   // Cloudflare Turnstile (spam check on every form). This is Cloudflare's public TEST key: always passes, invisible.
   // TODO.md: replace with the real site key (Turnstile widget in the hosting Cloudflare account) at launch (and set TURNSTILE_SECRET).
   turnstileSiteKey: '1x00000000000000000000BB',
+
+  // Google tag (Google Ads + Google Analytics 4). While these are empty, no Google code loads at all.
+  // TODO.md: fill in from Richard's own accounts at launch, with his OK.
+  googleAdsId: '',         // e.g. 'AW-123456789' (Google Ads → Goals → Conversions → a conversion's tag setup)
+  ga4Id: '',               // e.g. 'G-ABC123XYZ' (a Google Analytics 4 property in Richard's name)
+  adsLeadLabel: '',        // label of the "Website lead" conversion (estimator, quote and contact forms)
+  adsPhoneTapLabel: '',    // label of the "Phone tap" conversion (taps on the phone number)
+  adsWebsiteCallLabel: '', // label of the "Calls from website" conversion: Google shows ad visitors a forwarding
+                           // number in place of the real one, so calls of 60s+ count (they still ring Richard)
 };
 
 export const USES = [

@@ -1,6 +1,24 @@
 // Page shell: <head>, header/nav, footer, structured data.
 import { esc, plain } from './html.mjs';
-import { SITE, USES, TYPES, COMPANY, CITIES, cityHref } from './site.mjs';
+import { SITE, USES, TYPES, COMPANY, CITIES, INTEGRATIONS, cityHref } from './site.mjs';
+
+// Google tag for Google Ads + GA4, or nothing when no IDs are set. main.js (window.fwTrack) sends the events
+// it lists in window.FW_GTAG: form leads and phone taps.
+export function googleTag(int = INTEGRATIONS) {
+  const ads = int.googleAdsId || '', ga4 = int.ga4Id || '';
+  if (ads && !/^AW-\d+$/.test(ads)) throw new Error(`INTEGRATIONS.googleAdsId looks wrong: ${ads}`);
+  if (ga4 && !/^G-[A-Z0-9]+$/.test(ga4)) throw new Error(`INTEGRATIONS.ga4Id looks wrong: ${ga4}`);
+  if (!ads && !ga4) return '';
+  const sendTo = label => (ads && label ? `${ads}/${label}` : '');
+  const cfg = { lead: sendTo(int.adsLeadLabel), phone: sendTo(int.adsPhoneTapLabel), ga4: !!ga4 };
+  const calls = sendTo(int.adsWebsiteCallLabel);
+  return `<script async src="https://www.googletagmanager.com/gtag/js?id=${esc(ads || ga4)}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());${
+    ads ? `gtag('config',${JSON.stringify(ads)});` : ''}${
+    ga4 ? `gtag('config',${JSON.stringify(ga4)});` : ''}${
+    calls ? `gtag('config',${JSON.stringify(calls)},{phone_conversion_number:${JSON.stringify(SITE.phone)}});` : ''
+  }window.FW_GTAG=${JSON.stringify(cfg)};</script>`;
+}
 
 const chevron = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
 const phoneIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z" fill="currentColor"/></svg>';
@@ -134,6 +152,7 @@ export function layout(page) {
   <meta property="og:url" content="${canonical}">
   <meta property="og:image" content="${SITE.url}${page.ogImageUrl || `/assets/img/${page.ogImage || 'skyline-panels-indianapolis'}-1600.jpg`}">
   <link rel="icon" href="/assets/brand/mark-fw-800.png">
+  ${googleTag()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Barlow Condensed stands in for Shuttleblock Narrow Bold Italic until the brand font is licensed -->

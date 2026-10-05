@@ -21,6 +21,23 @@
   } catch { /* storage blocked: forms just send no source */ }
   window.fwSource = readSource;
 
+  // Google Ads / Analytics events. Does nothing unless the Google tag is on (INTEGRATIONS in build/lib/site.mjs).
+  // The request id goes along as transaction_id so a lead is never counted twice.
+  const gtagOn = () => window.FW_GTAG && typeof window.gtag === 'function';
+  window.fwTrack = {
+    lead(formType, id) {
+      if (!gtagOn()) return;
+      if (FW_GTAG.lead) gtag('event', 'conversion', { send_to: FW_GTAG.lead, transaction_id: id || '' });
+      if (FW_GTAG.ga4) gtag('event', 'generate_lead', { form_type: formType });
+    },
+    phoneTap() {
+      if (!gtagOn()) return;
+      if (FW_GTAG.phone) gtag('event', 'conversion', { send_to: FW_GTAG.phone });
+      if (FW_GTAG.ga4) gtag('event', 'phone_tap', { page_path: location.pathname });
+    },
+  };
+  document.addEventListener('click', e => { if (e.target.closest && e.target.closest('a[href^="tel:"]')) window.fwTrack.phoneTap(); });
+
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.menu-toggle');
   const links = document.getElementById('nav-links');
@@ -160,6 +177,7 @@
           : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries([...fd.entries()].filter(([, v]) => typeof v === 'string'))) });
         const data = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+        window.fwTrack.lead(form.dataset.kind === 'contact' ? 'contact' : 'quick', data.id);
         form.classList.add('sent');
         status.className = 'form-status ok';
         const first = (fd.get('name') || '').toString().trim().split(' ')[0];
