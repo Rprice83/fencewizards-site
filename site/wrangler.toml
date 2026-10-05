@@ -6,10 +6,19 @@ compatibility_date = "2025-09-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "fencewizards-quotes"
-database_id = "a4fffd0b-7249-46c6-bb25-c1b223797b66" # demo DB in the developer's Cloudflare account; replace if moved to a Fence Wizards account
+database_id = "a4fffd0b-7249-46c6-bb25-c1b223797b66" # in the developer's Cloudflare account (managed hosting: demo and production)
 migrations_dir = "migrations"
 
+# Field Notes intake: original job-story photos (private; staff area only).
+# OFF until R2 is enabled in the Cloudflare dashboard and the bucket exists (TODO.md):
+#   npx wrangler r2 bucket create fencewizards-field-notes   then uncomment these 3 lines and push.
+# Local dev (wrangler pages dev) simulates R2, so uncomment them locally to test uploads.
+# [[r2_buckets]]
+# binding = "PHOTOS"
+# bucket_name = "fencewizards-field-notes"
+
 [vars]
+STORY_NOTIFY = "omniring09@gmail.com"   # who reviews new job stories (comma-separated)
 QUOTE_TO = "richard@fencewizards.com"
 QUOTE_FROM = "Fence Wizards Quotes <quotes@fencewizards.com>" # must be on a domain verified in Resend
 SITE_URL = "https://www.fencewizards.com"

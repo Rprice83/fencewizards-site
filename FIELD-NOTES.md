@@ -7,9 +7,11 @@ Each job story is one text file in `site/content/field-notes/` plus its photos. 
 
 ---
 
-## 1. What Richard sends (save this on his phone)
+## 1. What Richard sends
 
-Text or email it any time after a job goes in. Rough is fine, and voice-to-text is fine.
+**The normal way (stage 1, built 2026-10-05):** in the staff area, **Quote Inbox → Job stories → + New job story** (`/staff/stories/`). He picks the photos from his phone and answers the questions below in a form, and the reviewer (`STORY_NOTIFY` in `wrangler.toml`) gets an email once Resend is set up. The originals are stored privately in R2 (bucket `fencewizards-field-notes`). Each story shows in the staff area with its photos, answers and a status (New → Drafted → Published / Archived).
+
+Texting or emailing still works too. Rough is fine, and voice-to-text is fine.
 
 **Photos:** 3 to 8 straight off the phone (originals, not screenshots). Include a wide shot of the whole run, a close-up of something specific (gates, windscreen, posts in the ground), and the crew or truck at work if possible.
 
@@ -26,7 +28,8 @@ Text or email it any time after a job goes in. Rough is fine, and voice-to-text 
 
 ## 2. Publishing it (with Claude Code)
 
-1. Put the photos in a folder (anywhere), then ask Claude: *"Make a field note from these photos and Richard's notes: …"* and paste his text.
+1. **From the staff area:** ask Claude *"Make a field note from job story FN-…"*. Claude runs `node tools/pull-field-note.mjs FN-…` (in `site/`), which downloads the original photos plus `story.md`/`answers.json` to `organized-assets/working/field-notes/<id>/` (not in git), and uses that folder below. When the story is published, set its status to Published in the staff area.
+   **From a text or email:** put the photos in a folder (anywhere), then ask Claude: *"Make a field note from these photos and Richard's notes: …"* and paste his text.
 2. Claude will:
    - pick a slug (e.g. `bloomington-campus-perimeter-oct-2026`) and run
      `python tools/add-field-note-photos.py <slug> <photo folder>`, which resizes the photos, **strips their GPS/metadata**, and reports which town they were taken nearest to
@@ -59,6 +62,7 @@ To take a note down, delete its `.md` file and photo folder and rebuild. The bui
 
 ---
 
-## Later (with the Quote Inbox)
+## Later stages
 
-Richard emails photos to a Field Notes address, or uses a form in the staff area. A draft is generated automatically using these same rules, and someone presses Publish. The file format above is already what that system will produce.
+- **Stage 2:** when a story is sent, a draft is written automatically with the Claude API (Claude Opus 5.5, following the writing rules above; a few cents per story, billed to the user's Anthropic Console account with a spend limit; key as a Cloudflare secret).
+- **Stage 3:** a review screen in the staff area: edit the draft, pick and reorder photos, then Publish. Publish commits the Markdown and photos to GitHub (photo resizing/GPS stripping can run in a GitHub Action with `tools/add-field-note-photos.py`), and Cloudflare rebuilds the site. The file format above is already what that system will produce.
