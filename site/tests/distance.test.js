@@ -46,7 +46,12 @@ test('with a key → driving miles from Google, then cached (no second lookup)',
 
 test('Google slow, failing or without a route → straight-line fallback', async () => {
   const env = { GOOGLE_MAPS_SERVER_KEY: 'k', DB: fakeDb() };
-  const slow = (url, init) => new Promise((_, reject) => init.signal.addEventListener('abort', () => reject(new Error('timeout'))));
+  // A reply that would arrive after a second; the 50 ms timeout must win. (The ref'd timer keeps Node's event loop
+  // alive until the abort fires; AbortSignal.timeout's own timer doesn't, and older Node test runners stop early.)
+  const slow = (url, init) => new Promise((_, reject) => {
+    const late = setTimeout(() => reject(new Error('too late')), 1000);
+    init.signal.addEventListener('abort', () => { clearTimeout(late); reject(new Error('timeout')); });
+  });
   assert.equal((await distanceFromIndy(...LAFAYETTE, env, { fetchImpl: slow, timeoutMs: 50 })).method, 'straight');
   assert.equal((await distanceFromIndy(...LAFAYETTE, env, { fetchImpl: async () => ({ ok: false }) })).method, 'straight');
   assert.equal((await distanceFromIndy(...LAFAYETTE, env, { fetchImpl: google(0) })).method, 'straight');
