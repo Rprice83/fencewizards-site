@@ -27,7 +27,8 @@
 - [ ] Term boundaries: the estimator reads "up to 12 / 12–18" as ≤12 and 13–18 months, and "up to 18 / 18–24 / 24 and on" as ≤18, 19–23 and 24+. Confirm.
 - [ ] Standard panel width (the estimator assumes 10 ft panels to estimate stand counts for windscreen ballast).
 - [ ] Do gate openings get deducted from billed footage? (Currently not deducted.)
-- [ ] The 50+ mile surcharge: the estimator measures straight-line distance from downtown Indianapolis. Confirm that's the intended measure (driving distance needs Google).
+- [x] The 50+ mile surcharge: Richard wants **driving miles from downtown Indianapolis** (his yard is downtown), straight line as the fallback. Built 2026-10-05: `server/distance.js` (Google Routes API, 2.5 s timeout, D1 cache per ~100 m), `/api/distance` for the live estimate, quote API recomputes on submit; email/Inbox say "driving" or "straight line".
+- [ ] **At launch, for driving miles:** create a Google Cloud API key with **only the Routes API** enabled (API restriction), set a daily quota cap (e.g. 500 requests/day) and a billing budget alert, then add it as the `GOOGLE_MAPS_SERVER_KEY` Pages secret. Until then the estimator uses straight-line miles. Decide whose Google Cloud billing account holds the keys (the user's, as part of the managed service, or Richard's). Optional: confirm with Richard whether to keep the 50-mile cutoff now that road miles run ~20–30% higher than straight-line.
 - [ ] Branded windscreen orders under 6 ("slightly more per unit"): the estimator prices at $800 each and flags it for Richard.
 - [ ] Sales tax: estimates are shown pre-tax.
 - [ ] Short-term/event discounts: the homepage mentions a short-job discount, but the price sheet lists none.

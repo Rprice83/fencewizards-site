@@ -165,7 +165,7 @@ function renderDetail(it) {
       <div class="ib-stat"><span>Fence</span><strong>${esc(fenceName(it.fence_type))}${o.height === 8 ? ' · 8 ft' : ''}</strong></div>
       <div class="ib-stat"><span>Rental</span><strong>${it.months} mo</strong></div>
       <div class="ib-stat"><span>Install by</span><strong>${it.start_date ? esc(new Date(`${it.start_date}T12:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })) : '—'}</strong></div>
-      <div class="ib-stat"><span>From Indy</span><strong>${it.distance_miles != null ? `${Math.round(it.distance_miles)} mi` : '—'}</strong></div>
+      <div class="ib-stat"><span>From Indy</span><strong>${it.distance_miles != null ? `${Math.round(it.distance_miles)} mi${it.distance_method === 'driving' ? ' drive' : ''}` : '—'}</strong></div>
       <div class="ib-stat"><span>Project</span><strong>${esc(PROJECT[it.project_type] || '—')}</strong></div>
     </div></div>
     ${it.plan && !it.plan.manual && it.plan.runs?.length ? `<div class="ib-card"><h2>Their fence plan</h2><div class="ib-map" id="ib-map"></div>

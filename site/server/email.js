@@ -85,7 +85,7 @@ export function quoteEmail(id, q, env) {
 
   ${section('Project', `<table role="presentation" width="100%" style="font-size:14px">
     ${row('Site', `${esc(c.address)}<br><a href="${mapsUrl}" style="color:#ED1C24;font-weight:400">Open in Google Maps</a>${satUrl ? ` · <a href="${satUrl}" style="color:#ED1C24;font-weight:400">Satellite view</a>` : ''}`)}
-    ${row('Distance from downtown Indy', q.distanceMiles != null ? `≈${Math.round(q.distanceMiles)} mi (straight line)` : 'Unknown (not located on map)')}
+    ${row('Distance from downtown Indy', q.distanceMiles != null ? `≈${Math.round(q.distanceMiles)} mi (${q.distanceMethod === 'driving' ? 'driving' : 'straight line'})` : 'Unknown (not located on map)')}
     ${row('Project type', esc(PROJECT[o.projectType]))}
     ${row('Fence', `${esc(fence)}${o.height === 8 ? ' · 8 ft (special order)' : ' · 6 ft'}`)}
     ${row('Rental length', `${o.months} month${o.months > 1 ? 's' : ''}`)}

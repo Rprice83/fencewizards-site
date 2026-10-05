@@ -4,6 +4,7 @@ import { quoteEmail, sendWithResend } from '../../server/email.js';
 import { PRICE_SHEET_VERSION } from '../../public/js/pricing.js';
 import { verifyTurnstile, ROBOT_MESSAGE } from '../../server/turnstile.js';
 import { cleanSource, cleanHeard } from '../../public/js/source.js';
+import { distanceFromIndy } from '../../server/distance.js';
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
@@ -27,6 +28,11 @@ export async function onRequestPost(context) {
     if (err instanceof InputError) return json({ error: err.message }, 400);
     throw err;
   }
+  // Driving miles from downtown Indy for the 50+ mile surcharge (straight line if Google can't answer)
+  if (q.site) {
+    const distance = await distanceFromIndy(q.site.lat, q.site.lng, env);
+    if (distance.method === 'driving') q = buildQuote(body, { distance });
+  }
 
   if (!env.DB) return json({ error: 'Quote storage is not configured.' }, 500);
 
@@ -40,15 +46,15 @@ export async function onRequestPost(context) {
       id, created_at, name, company, email, phone, contact_pref, address, customer_notes,
       project_type, fence_type, months, start_date, feet, site_lat, site_lng, distance_miles,
       priced, estimate_total, price_sheet_version, plan_json, options_json, estimate_json, user_agent,
-      source_json, heard_about
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+      source_json, heard_about, distance_method
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
     .bind(
       id, now, c.name, c.company || null, c.email, c.phone, c.contactPref, c.address, c.notes || null,
       o.projectType, o.fenceType, o.months, o.startDate, q.feet, q.site?.lat ?? null, q.site?.lng ?? null, q.distanceMiles,
       est.priced ? 1 : 0, est.priced ? est.total : null, PRICE_SHEET_VERSION,
       JSON.stringify(q.plan), JSON.stringify({ ...o, gates: q.gates }), JSON.stringify(est),
       (request.headers.get('User-Agent') || '').slice(0, 300),
-      q.source ? JSON.stringify(q.source) : null, q.heardAbout,
+      q.source ? JSON.stringify(q.source) : null, q.heardAbout, q.distanceMethod,
     ).run();
 
   // Email Richard without making the customer wait on it

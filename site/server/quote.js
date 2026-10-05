@@ -73,7 +73,8 @@ export function planSegments(run) {
   });
 }
 
-export function buildQuote(body) {
+// distance: optional { miles, method } from server/distance.js (driving miles); default = straight line
+export function buildQuote(body, { distance } = {}) {
   if (!body || typeof body !== 'object') throw new InputError('Invalid request.');
   const c = body.contact || {};
   const contact = {
@@ -111,7 +112,8 @@ export function buildQuote(body) {
   let site = null;
   if (pts.length) site = { lat: pts.reduce((s, p) => s + p[0], 0) / pts.length, lng: pts.reduce((s, p) => s + p[1], 0) / pts.length };
   else if (body.site && isLat(body.site.lat) && isLng(body.site.lng)) site = { lat: body.site.lat, lng: body.site.lng };
-  const distanceMiles = site ? Math.round(milesFromIndy(site.lat, site.lng) * 10) / 10 : null;
+  const distanceMiles = !site ? null : distance ? distance.miles : Math.round(milesFromIndy(site.lat, site.lng) * 10) / 10;
+  const distanceMethod = !site ? null : distance ? distance.method : 'straight';
 
   const startDate = /^\d{4}-\d{2}-\d{2}$/.test(o.startDate || '') ? o.startDate : null;
   const options = {
@@ -134,8 +136,8 @@ export function buildQuote(body) {
     farZone: ['yes', 'no', 'unsure'].includes(o.farZone) ? o.farZone : 'unsure',
   };
 
-  const estimate = computeEstimate({ ...options, feet, runs: runCount, gates, distanceMiles });
-  return { contact, plan, options, feet, gates, site, distanceMiles, estimate };
+  const estimate = computeEstimate({ ...options, feet, runs: runCount, gates, distanceMiles, distanceMethod });
+  return { contact, plan, options, feet, gates, site, distanceMiles, distanceMethod, estimate };
 }
 
 // FW-YYMMDD-XXXX, no ambiguous characters

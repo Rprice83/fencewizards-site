@@ -76,7 +76,8 @@ const money = n => Math.round(n * 100) / 100;
  *   topRail, windscreen ('none'|'plain'), ballast ('standard'|'plus2'|'plus3'),
  *   postsEveryOther, extraSandbags, asphaltPosts,
  *   chainLocks, gateWheels, brandedScreens,
- *   damageWaiver, distanceMiles (number|null), farZone ('yes'|'no'|'unsure', used when distance unknown)
+ *   damageWaiver, distanceMiles (number|null), distanceMethod ('driving'|'straight', for the label),
+ *   farZone ('yes'|'no'|'unsure', used when distance unknown)
  * }
  * returns { lines, subtotal, waiver, total, reviews, assumptions, priced }
  */
@@ -158,7 +159,7 @@ export function computeEstimate(raw = {}) {
   const dist = Number.isFinite(raw.distanceMiles) ? raw.distanceMiles : null;
   if (priced) {
     if (dist !== null) {
-      if (dist >= RATES.farMiles) add('travel', `Distance surcharge · site ≈${Math.round(dist)} mi from Indianapolis`, feet, 'ft', RATES.farSurchargePerFoot);
+      if (dist >= RATES.farMiles) add('travel', `Distance surcharge · site ≈${Math.round(dist)} ${raw.distanceMethod === 'driving' ? 'driving miles' : 'mi'} from downtown Indianapolis`, feet, 'ft', RATES.farSurchargePerFoot);
     } else if (raw.farZone === 'yes') {
       add('travel', 'Distance surcharge · 50+ mi from Indianapolis', feet, 'ft', RATES.farSurchargePerFoot);
     } else if (raw.farZone !== 'no') {

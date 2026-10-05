@@ -390,6 +390,32 @@ const num = id => Number($(id).value) || 0;
 const radio = name => form.querySelector(`input[name="${name}"]:checked`)?.value;
 const isManual = () => $('#manual-mode').checked;
 
+// Driving miles from downtown Indy (asked from /api/distance, which uses Google and caches). Until the answer
+// arrives, or if it never does, the estimate uses straight-line miles; the server makes the same lookup on submit.
+const drive = { key: null, miles: null, method: null, timer: null };
+const siteKeyOf = sp => `${sp[0].toFixed(3)},${sp[1].toFixed(3)}`;
+function distanceFor(sp) {
+  if (!sp) return { miles: null, method: null };
+  if (drive.key === siteKeyOf(sp) && drive.miles != null) return { miles: drive.miles, method: drive.method };
+  return { miles: Math.round(milesFromIndy(sp[0], sp[1]) * 10) / 10, method: 'straight' };
+}
+function refreshDriving() {
+  const sp = sitePoint();
+  const key = sp && siteKeyOf(sp);
+  if (!key || key === drive.key) return;
+  drive.key = key; drive.miles = null; drive.method = null;
+  clearTimeout(drive.timer);
+  drive.timer = setTimeout(async () => {
+    try {
+      const res = await fetch(`/api/distance?lat=${encodeURIComponent(sp[0])}&lng=${encodeURIComponent(sp[1])}`);
+      const d = await res.json();
+      if (drive.key !== key || !res.ok || !Number.isFinite(d.miles)) return; // the site moved on, or no answer
+      drive.miles = d.miles; drive.method = d.method;
+      renderSummary();
+    } catch { /* keep the straight-line figure */ }
+  }, 500); // wait until drawing pauses
+}
+
 function sitePoint() {
   const pts = plan.runs.flatMap(r => r.points);
   if (pts.length) return [pts.reduce((s, p) => s + p[0], 0) / pts.length, pts.reduce((s, p) => s + p[1], 0) / pts.length];
@@ -426,7 +452,8 @@ function estimateInput() {
     gateWheels: num('#gate-wheels'),
     brandedScreens: num('#branded-screens'),
     damageWaiver: $('#damage-waiver').checked,
-    distanceMiles: sp ? Math.round(milesFromIndy(sp[0], sp[1]) * 10) / 10 : null,
+    distanceMiles: distanceFor(sp).miles,
+    distanceMethod: distanceFor(sp).method,
     farZone: radio('farZone'),
   };
 }
@@ -515,6 +542,7 @@ function renderSummary() {
 }
 
 function changed() {
+  refreshDriving();
   updateFootage();
   renderSegments();
   syncVisibility();
