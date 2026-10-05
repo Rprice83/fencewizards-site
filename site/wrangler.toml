@@ -18,6 +18,7 @@ bucket_name = "fencewizards-field-notes"
 STORY_NOTIFY = "omniring09@gmail.com"   # who reviews new job stories (comma-separated)
 QUOTE_TO = "richard@fencewizards.com"
 QUOTE_FROM = "Fence Wizards Quotes <quotes@fencewizards.com>" # must be on a domain verified in Resend
+CONFIRM_FROM = "Fence Wizards <quotes@fencewizards.com>"      # customer confirmation emails (Reply-To goes to QUOTE_TO)
 SITE_URL = "https://www.fencewizards.com"
 
 # Quote Inbox (/staff/): see "Quote Inbox setup" in README.md

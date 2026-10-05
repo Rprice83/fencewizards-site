@@ -5,6 +5,7 @@ import { PRICE_SHEET_VERSION } from '../../public/js/pricing.js';
 import { verifyTurnstile, ROBOT_MESSAGE } from '../../server/turnstile.js';
 import { cleanSource, cleanHeard } from '../../public/js/source.js';
 import { distanceFromIndy } from '../../server/distance.js';
+import { sendConfirmation } from '../../server/confirm.js';
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
@@ -74,6 +75,7 @@ export async function onRequestPost(context) {
     }
   };
   context.waitUntil(notify());
+  context.waitUntil(sendConfirmation(env, 'quotes', id, new URL(request.url).origin)); // customer's "we have it" email
 
   return json({
     ok: true, id,

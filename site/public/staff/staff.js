@@ -205,7 +205,7 @@ function renderDetail(it) {
   </div>`;
 
   const history = `<div class="ib-card"><h2>History</h2><ul class="ib-history">
-    <li><strong>Received</strong> · ${when(it.created_at)}${it.email_status ? ` · notification email ${esc(it.email_status)}` : ''}</li>
+    <li><strong>Received</strong> · ${when(it.created_at)}${it.email_status ? ` · notification email ${esc(it.email_status)}` : ''}${it.confirm_status && it.confirm_status !== 'no-email' ? ` · customer confirmation email ${esc(it.confirm_status)}` : ''}</li>
     ${(it.events || []).map(e => `<li><strong>${esc(e.actor)}</strong> ${e.action === 'value' ? `set ${esc(e.detail || '')}` : `changed status ${esc(e.detail || '')}`} · ${when(e.created_at)}</li>`).join('')}
   </ul></div>`;
 
