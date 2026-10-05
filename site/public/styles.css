@@ -519,6 +519,7 @@ p { margin: 0 0 1em; }
 .mega a[aria-current="page"] { background: var(--steel-100); border-left-color: var(--red); }
 .mega-right { left: auto; right: -12px; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.cf-turnstile:not(:empty) { margin: 4px 0 2px; }
 
 /* ---------- page hero ---------- */
 .page-hero { position: relative; min-height: 560px; display: flex; align-items: flex-end; overflow: hidden; background: var(--ink-900); color: #fff; isolation: isolate; }

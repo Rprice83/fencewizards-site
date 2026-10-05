@@ -1,5 +1,6 @@
 // The map estimator (/estimate/) and its confirmation page. Markup lives in build/partials/.
 import { readFileSync } from 'node:fs';
+import { turnstileWidget } from '../lib/components.mjs';
 
 const partial = name => readFileSync(new URL(`../partials/${name}`, import.meta.url), 'utf8');
 
@@ -19,7 +20,7 @@ export default [
       '<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>',
       '<script type="module" src="/estimate/estimate.js"></script>',
     ],
-    main: partial('estimate.html'),
+    main: partial('estimate.html').replace('<!--TURNSTILE-->', turnstileWidget()),
   },
   {
     path: '/quote-confirmation/',

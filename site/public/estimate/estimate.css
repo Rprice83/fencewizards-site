@@ -203,6 +203,7 @@ kbd { padding: 1px 6px; border: 1px solid var(--steel); border-bottom-width: 2px
 .counter input:focus { outline: none; border-color: var(--red); }
 
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.cf-turnstile:not(:empty) { margin: 8px 0; }
 
 .step-actions { margin-top: 8px; }
 .step-actions.split { display: flex; justify-content: space-between; gap: 12px; }

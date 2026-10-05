@@ -2,6 +2,7 @@
 import { buildQuote, newQuoteId, InputError } from '../../server/quote.js';
 import { quoteEmail, sendWithResend } from '../../server/email.js';
 import { PRICE_SHEET_VERSION } from '../../public/js/pricing.js';
+import { verifyTurnstile, ROBOT_MESSAGE } from '../../server/turnstile.js';
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
@@ -16,6 +17,9 @@ export async function onRequestPost(context) {
 
   // Honeypot: bots fill the hidden "website" field. Pretend success, store nothing.
   if (body?.contact?.website) return json({ ok: true, id: newQuoteId() });
+
+  const human = await verifyTurnstile(body?.turnstile, env, request.headers.get('CF-Connecting-IP'));
+  if (!human.ok) return json({ error: ROBOT_MESSAGE, robot: true }, 400);
 
   let q;
   try { q = buildQuote(body); } catch (err) {

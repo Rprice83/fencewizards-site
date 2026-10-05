@@ -1,4 +1,4 @@
-import { pageHero, faq, related, quoteCta, md, paras } from '../lib/components.mjs';
+import { pageHero, faq, related, quoteCta, md, paras, turnstileWidget } from '../lib/components.mjs';
 import { SITE } from '../lib/site.mjs';
 
 const contactMain = `<section class="section tone-white contact-section">
@@ -39,6 +39,7 @@ const contactMain = `<section class="section tone-white contact-section">
         <span class="file-list"></span>
       </label>
       <label class="hp" aria-hidden="true">Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      ${turnstileWidget()}
       <button type="submit" class="btn btn-red btn-lg btn-block">Send it to Richard</button>
       <p class="form-status" role="status" aria-live="polite"></p>
       <p class="form-note">Files stay on your device until you send. If an upload gives you trouble, email it to <a href="mailto:${SITE.email}">${SITE.email}</a> with your name. <a href="/privacy/">Privacy policy</a></p>

@@ -598,6 +598,17 @@ map.on('moveend', saveDraft);
 /* =========================================================
    SUBMIT
    ========================================================= */
+// Cloudflare Turnstile token (main.js loads the widget script); wait briefly if it isn't ready yet
+async function turnstileToken() {
+  if (!form.querySelector('.cf-turnstile')) return '';
+  for (let i = 0; i < 40; i++) {
+    const v = form.querySelector('[name="cf-turnstile-response"]')?.value;
+    if (v) return v;
+    await new Promise(r => setTimeout(r, 150));
+  }
+  return '';
+}
+
 form.addEventListener('submit', async e => {
   e.preventDefault();
   const errEl = $('#form-error');
@@ -636,6 +647,7 @@ form.addEventListener('submit', async e => {
   const btn = $('#submit-btn');
   btn.disabled = true;
   btn.firstChild.textContent = 'Sending… ';
+  payload.turnstile = await turnstileToken();
   try {
     const res = await fetch('/api/quotes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     const data = await res.json().catch(() => ({}));
@@ -650,6 +662,7 @@ form.addEventListener('submit', async e => {
     clearDraft();
     location.href = `/quote-confirmation/?id=${encodeURIComponent(data.id)}`;
   } catch (err) {
+    try { const w = form.querySelector('.cf-turnstile'); if (w && window.turnstile) window.turnstile.reset(w); } catch { /* ignore */ } // tokens are single-use
     errEl.innerHTML = `We couldn’t send your plan (${err.message}). Please try again, or call Richard at <a href="tel:+13172964015">(317) 296-4015</a>.`;
     errEl.hidden = false;
     btn.disabled = false;

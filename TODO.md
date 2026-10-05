@@ -15,7 +15,8 @@
 - [ ] At launch: recreate the Pages project + D1 in a Fence Wizards-owned Cloudflare account (with the domain), update `database_id` in `site/wrangler.toml`, and apply `site/migrations` remotely.
 - [x] Quote Inbox on the demo: Cloudflare Access (team limestone-web-co, Google sign-in) for Richard + the user (2026-10-03).
 - [ ] Resend account: verify the sending domain (fencewizards.com), then set the `RESEND_API_KEY`, `QUOTE_FROM` and `QUOTE_TO` secrets in Cloudflare.
-- [ ] Cloudflare Turnstile (free spam protection) on the estimator submit. A hidden honeypot field is in place for now.
+- [x] Cloudflare Turnstile spam check on all three forms (estimator, quick quote, contact), verified on the server (`server/turnstile.js`), plus the honeypot. Built 2026-10-05; demo uses Cloudflare's public test keys.
+- [ ] **At launch:** create a Turnstile widget in Fence Wizards' Cloudflare account (domain www.fencewizards.com), put its site key in `INTEGRATIONS.turnstileSiteKey` (`site/build/lib/site.mjs`) and its secret as the `TURNSTILE_SECRET` Pages secret. Without the secret the check is skipped.
 - [ ] Send a real test quote to richard@fencewizards.com once Resend is set up, and confirm it lands in the inbox, not spam.
 - [ ] Final logo SVGs from the designer (current logos are cropped from the PDF proof).
 - [ ] License the Shuttleblock Narrow Bold Italic font (Barlow Condensed is the stand-in).

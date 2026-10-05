@@ -72,6 +72,25 @@
     });
   }
 
+  // Cloudflare Turnstile spam check: load its script only on pages with a form
+  if (document.querySelector('.cf-turnstile')) {
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  // The token can take a moment after the page loads; wait briefly rather than fail the send
+  const turnstileToken = async form => {
+    if (!form.querySelector('.cf-turnstile')) return '';
+    for (let i = 0; i < 40; i++) {
+      const v = form.querySelector('[name="cf-turnstile-response"]')?.value;
+      if (v) return v;
+      await new Promise(r => setTimeout(r, 150));
+    }
+    return '';
+  };
+  const resetTurnstile = form => { try { const w = form.querySelector('.cf-turnstile'); if (w && window.turnstile) window.turnstile.reset(w); } catch { /* ignore */ } };
+
   // Quick-quote and contact forms → /api/contact
   document.querySelectorAll('form.js-inquiry').forEach(form => {
     const status = form.querySelector('.form-status');
@@ -106,9 +125,11 @@
       const label = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Sending…';
+      const token = await turnstileToken(form);
       const fd = new FormData(form);
       fd.set('kind', form.dataset.kind || 'quick');
       fd.set('page', location.pathname);
+      if (token) fd.set('cf-turnstile-response', token);
       try {
         const hasFiles = fileInput && fileInput.files.length;
         const res = await fetch('/api/contact', hasFiles
@@ -121,6 +142,7 @@
         const first = (fd.get('name') || '').toString().trim().split(' ')[0];
         status.textContent = `Thanks${first ? `, ${first}` : ''}! Richard has your details and will reach out within 24 hours.`;
       } catch (err) {
+        resetTurnstile(form); // tokens are single-use
         status.className = 'form-status err';
         status.innerHTML = '';
         status.append(`${err.message} You can also call Richard at `);

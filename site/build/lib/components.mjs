@@ -2,7 +2,7 @@
 // Text fields accept inline markup (see html.mjs `md`): [link](/url/), **bold**, *accent*.
 // `tone` sets the section background: 'paper' (default), 'white', 'steel', 'dark'.
 import { esc, md, paras, plain } from './html.mjs';
-import { SITE, USES, TYPES, CITIES, BEFORE_YOU_CALL, city, cityHref } from './site.mjs';
+import { SITE, USES, TYPES, CITIES, BEFORE_YOU_CALL, INTEGRATIONS, city, cityHref } from './site.mjs';
 import { notesFor, notePhoto, formatDate } from './field-notes.mjs';
 
 /* ---------- per-page structured-data collector (FAQ etc.) ---------- */
@@ -241,6 +241,9 @@ export function related({ cities = ['indianapolis', 'greenwood', 'carmel', 'fish
 const STYLES = ['Panels & stands', 'Post-driven chain link', 'Windscreen', 'Crowd-control barricades', 'Not sure yet'];
 const DURATIONS = ['Under 1 month', '1–3 months', '3–6 months', '6–12 months', 'Over 12 months', 'Not sure yet'];
 
+// Cloudflare Turnstile spam check. Invisible unless Cloudflare wants a click; main.js loads the script.
+export const turnstileWidget = () => `<div class="cf-turnstile" data-sitekey="${esc(INTEGRATIONS.turnstileSiteKey)}" data-appearance="interaction-only" data-size="flexible"></div>`;
+
 // Quick quote form (posts to /api/contact). heading/text customize the pitch.
 export function quoteCta({ eyebrow = 'Get a quote', heading = 'Tell us about *the job.*', text = 'Five answers and Richard can price it. He takes every inquiry himself.', id = 'quote', tone = 'steel' }) {
   return section(tone, `    <div class="quote-grid">
@@ -270,6 +273,7 @@ export function quoteCta({ eyebrow = 'Get a quote', heading = 'Tell us about *th
           <select name="duration">${DURATIONS.map(s => `<option>${esc(s)}</option>`).join('')}</select>
         </label>
         <label class="hp" aria-hidden="true">Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        ${turnstileWidget()}
         <button type="submit" class="btn btn-red btn-lg btn-block">Send it to Richard</button>
         <p class="form-status" role="status" aria-live="polite"></p>
         <p class="form-note">Richard reaches out within 24 hours, usually much sooner. <a href="/privacy/">How we use your details</a></p>

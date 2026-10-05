@@ -8,3 +8,6 @@ DEV_STAFF_EMAIL=dev@localhost
 STAFF_EMAILS=dev@localhost
 OWNER_EMAILS=dev@localhost
 STAFF_NAMES=dev@localhost=Local tester
+# Cloudflare Turnstile spam check. This is Cloudflare's public TEST secret (always passes).
+# Production uses the real secret: `npx wrangler pages secret put TURNSTILE_SECRET`.
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA

@@ -56,7 +56,7 @@ export default {
         { heading: 'Who helps us handle it', paras: [
           'A few service providers process information for us, only to provide their service:',
         ], list: [
-          '**Cloudflare** hosts the website and stores form submissions and estimator plans.',
+          '**Cloudflare** hosts the website and stores form submissions and estimator plans. Its Turnstile check runs on our forms to stop spam bots; it looks at technical signals from your browser, not the details you type.',
           '**Resend** delivers the emails that send your request to Richard, including any files you attach.',
           '**Map providers.** The estimator\'s satellite and street maps come from Esri, and address search from OpenStreetMap\'s Nominatim service. When you search, the text you type is sent to that service. The Contact and Service Area pages show an embedded Google Map, and Google may set its own cookies when it loads.',
           '**Fonts and code libraries** come from Google Fonts and cdnjs (Cloudflare). Your browser contacts them to load the page.',

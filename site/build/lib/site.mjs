@@ -16,6 +16,13 @@ export const SITE = {
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Fence+Wizards+Rent+A+Fence+Greenwood+IN',
 };
 
+// Third-party services wired into the pages. Public IDs only (secrets live in Cloudflare, never here).
+export const INTEGRATIONS = {
+  // Cloudflare Turnstile (spam check on every form). This is Cloudflare's public TEST key: always passes, invisible.
+  // TODO.md: replace with the real site key from Fence Wizards' Cloudflare account at launch (and set TURNSTILE_SECRET).
+  turnstileSiteKey: '1x00000000000000000000BB',
+};
+
 export const USES = [
   { slug: 'construction', href: '/construction-fencing/', name: 'Construction', long: 'Construction site fencing', blurb: 'Panels, chain link, gates and windscreen for sites that keep changing.' },
   { slug: 'events', href: '/event-fencing/', name: 'Events', long: 'Event fencing', blurb: 'Barricades and panel runs set on your run of show.' },

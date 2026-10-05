@@ -2,6 +2,7 @@
 // Saves the inquiry and emails Richard (files go along as email attachments).
 import { newQuoteId } from '../../server/quote.js';
 import { sendWithResend } from '../../server/email.js';
+import { verifyTurnstile, ROBOT_MESSAGE } from '../../server/turnstile.js';
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -30,6 +31,9 @@ export async function onRequestPost(context) {
   } catch { return json({ error: 'Invalid request.' }, 400); }
 
   if (fields.website) return json({ ok: true }); // honeypot
+
+  const human = await verifyTurnstile(fields['cf-turnstile-response'], env, request.headers.get('CF-Connecting-IP'));
+  if (!human.ok) return json({ error: ROBOT_MESSAGE, robot: true }, 400);
 
   const kind = fields.kind === 'contact' ? 'contact' : 'quick';
   const d = {
