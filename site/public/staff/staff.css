@@ -147,3 +147,11 @@ table.ib-lines tr.total td { border-top: 2px solid var(--ink); font-weight: 800;
 }
 
 @media (max-width: 1180px) { .ib-grid2 { grid-template-columns: 1fr; } }
+
+/* Won jobs: amount + Google Ads export */
+.ib-won { border-left: 4px solid #1f8a4c; }
+.ib-won-amount { display: flex; align-items: center; gap: 12px; margin: 0 0 6px; font-size: 1.4rem; }
+.ib-won-amount button, .ib-export { padding: 7px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: #fff; font-weight: 700; font-size: .85rem; cursor: pointer; }
+.ib-export { text-align: left; }
+.ib-export small { font-weight: 500; color: var(--muted); }
+.ib-won-amount button:hover, .ib-export:hover { border-color: var(--red); }

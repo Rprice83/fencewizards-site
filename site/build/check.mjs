@@ -1,7 +1,8 @@
 // Checks the built site: every internal link and asset resolves, one H1 per page, titles/descriptions present.
 // Run: npm run check   (after npm run build)
 import { readdir, readFile, access } from 'node:fs/promises';
-import { join, dirname } from 'node:path';
+import { join, dirname, relative } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const PUB = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
@@ -39,6 +40,20 @@ for (const f of files) {
     if (!await exists(target)) problems.push(`${rel}: broken link/asset ${r}`);
   }
 }
-console.log(`Checked ${files.length} HTML files.`);
+// Browser scripts aren't loaded by the tests, so at least make sure each one parses
+const scripts = [];
+const walkJs = async dir => {
+  for (const e of await readdir(dir, { withFileTypes: true })) {
+    const p = join(dir, e.name);
+    if (e.isDirectory()) await walkJs(p); else if (/\.m?js$/.test(e.name)) scripts.push(p);
+  }
+};
+await walkJs(PUB);
+for (const p of scripts) {
+  const r = spawnSync(process.execPath, ['--check', p], { encoding: 'utf8' });
+  if (r.status !== 0) problems.push(`${relative(PUB, p)}: JavaScript syntax error\n${(r.stderr || '').split('\n').slice(0, 5).join('\n')}`);
+}
+
+console.log(`Checked ${files.length} HTML files and ${scripts.length} scripts.`);
 if (problems.length) { console.log(`${problems.length} problem(s):\n` + problems.join('\n')); process.exit(1); }
 console.log('No problems found.');

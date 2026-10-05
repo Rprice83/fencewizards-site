@@ -70,7 +70,8 @@ function renderList() {
     ul.innerHTML = state.items.map(it => {
       const quote = it.type === 'quote';
       const sub = [it.company, it.location].filter(Boolean).join(' · ') || it.message || '';
-      const total = quote ? (it.priced ? `<span class="ib-total">${fmtMoney(it.total)}</span>` : '<span class="ib-total pending">Needs pricing</span>') : '';
+      const total = it.status === 'won' && it.won_value != null ? `<span class="ib-total">Won ${fmtMoney(it.won_value)}</span>`
+        : quote ? (it.priced ? `<span class="ib-total">${fmtMoney(it.total)}</span>` : '<span class="ib-total pending">Needs pricing</span>') : '';
       const what = [fenceName(it.fence), it.feet ? `${Math.round(it.feet).toLocaleString()} ft` : '', it.months ? `${it.months} mo` : ''].filter(Boolean).join(' · ');
       return `<li><a href="#${esc(it.id)}" class="st-${esc(it.status)}"${state.current === it.id ? ' aria-current="true"' : ''}>
         <span class="ib-name">${esc(it.name)}</span><span class="ib-when">${ago(it.created_at)}</span>
@@ -137,6 +138,11 @@ function renderDetail(it) {
     ${s.landing ? `<div><dt>First page they saw</dt><dd><a href="${esc(s.landing)}" target="_blank" rel="noopener">${esc(s.landing)}</a>${s.first_seen ? ` · ${esc(new Date(s.first_seen).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))}` : ''}</dd></div>` : ''}
   </dl></div>`;
 
+  const won = it.status === 'won' ? `<div class="ib-card ib-won"><h2>Won job</h2>
+    <p class="ib-won-amount"><strong>${it.won_value != null ? fmtMoney(it.won_value) : 'No amount yet'}</strong> <button type="button" id="ib-won-edit">${it.won_value != null ? 'Change' : 'Add amount'}</button></p>
+    <p class="ib-muted">${src.kind === 'ads' && s.gclid ? 'From a Google ad: this job and its amount go in the next “Download for Google Ads” file, so Google learns which searches bring paying work.' : 'Not from a Google ad click, so it won’t be in the Google Ads file.'}</p>
+  </div>` : '';
+
   const emailWarn = it.email_status === 'failed'
     ? `<div class="ib-warn"><strong>The notification email for this request failed to send</strong>, so it may only be here. (${esc(it.email_error || '')})</div>` : '';
 
@@ -200,15 +206,16 @@ function renderDetail(it) {
 
   const history = `<div class="ib-card"><h2>History</h2><ul class="ib-history">
     <li><strong>Received</strong> · ${when(it.created_at)}${it.email_status ? ` · notification email ${esc(it.email_status)}` : ''}</li>
-    ${(it.events || []).map(e => `<li><strong>${esc(e.actor)}</strong> changed status ${esc(e.detail || '')} · ${when(e.created_at)}</li>`).join('')}
+    ${(it.events || []).map(e => `<li><strong>${esc(e.actor)}</strong> ${e.action === 'value' ? `set ${esc(e.detail || '')}` : `changed status ${esc(e.detail || '')}`} · ${when(e.created_at)}</li>`).join('')}
   </ul></div>`;
 
-  $('#ib-detail').innerHTML = `<div class="ib-card-wrap">${head}${emailWarn}${contact}${body}${found}${notes}${history}</div>`;
+  $('#ib-detail').innerHTML = `<div class="ib-card-wrap">${head}${emailWarn}${won}${contact}${body}${found}${notes}${history}</div>`;
   $('#ib-detail').scrollTop = 0;
 
   $('#ib-back').addEventListener('click', () => { history_back(); });
   document.querySelectorAll('[data-set-status]').forEach(b => b.addEventListener('click', () => changeStatus(it, b.dataset.setStatus)));
   $('#ib-note-form').addEventListener('submit', e => addNote(e, it));
+  $('#ib-won-edit')?.addEventListener('click', () => editWonValue(it));
   if (quote && it.plan && !it.plan.manual && it.plan.runs?.length) drawPlan(it);
 }
 
@@ -249,10 +256,32 @@ function drawPlan(it) {
   });
 }
 
+// Ask for the job amount (Google Ads learns from it). null = cancelled.
+function askWonValue(it) {
+  const suggestion = it.won_value ?? (it.type === 'quote' && it.priced ? Math.round(it.estimate_total) : '');
+  return window.prompt('What is the job worth? Enter the amount in dollars, like 2500.\nThis tells Google Ads which ads bring paying work. You can change it later, or leave it blank.', suggestion);
+}
+
+async function editWonValue(it) {
+  const v = askWonValue(it);
+  if (v === null) return;
+  try {
+    await api(`items/${encodeURIComponent(it.id)}`, { method: 'PATCH', body: JSON.stringify({ wonValue: v.trim() }) });
+    toast(v.trim() ? 'Job amount saved' : 'Job amount cleared');
+    await Promise.all([openItem(it.id), loadList()]);
+  } catch (e) { if (e.message !== 'forbidden') toast(e.message, true); }
+}
+
 async function changeStatus(it, status) {
   if (it.status === status) return;
+  const body = { status };
+  if (status === 'won') {
+    const v = askWonValue(it);
+    if (v === null) return; // cancelled: leave the status alone
+    body.wonValue = v.trim();
+  }
   try {
-    await api(`items/${encodeURIComponent(it.id)}`, { method: 'PATCH', body: JSON.stringify({ status }) });
+    await api(`items/${encodeURIComponent(it.id)}`, { method: 'PATCH', body: JSON.stringify(body) });
     toast(`Marked ${status}`);
     await Promise.all([openItem(it.id), loadList()]);
   } catch (e) { if (e.message !== 'forbidden') toast(e.message, true); }
@@ -278,12 +307,29 @@ async function addNote(e, it) {
 document.querySelectorAll('#ib-tabs button').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('#ib-tabs button').forEach(x => x.setAttribute('aria-selected', String(x === b)));
   state.status = b.dataset.status;
+  $('#ib-export').hidden = state.status !== 'won';
   loadList();
 }));
 let qTimer;
 $('#ib-q').addEventListener('input', e => { clearTimeout(qTimer); qTimer = setTimeout(() => { state.q = e.target.value.trim(); loadList(); }, 250); });
 $('#ib-type').addEventListener('change', e => { state.type = e.target.value; loadList(); });
 $('#ib-more').addEventListener('click', () => loadList({ append: true }));
+
+// Won jobs from Google ad clicks (last 90 days) as Google Ads' upload file
+$('#ib-export').addEventListener('click', async () => {
+  try {
+    const res = await fetch('/api/staff/export/google-ads?days=90', { credentials: 'same-origin' });
+    if (res.status === 403) { toast('Your sign-in expired. Reload the page to sign in again.', true); return; }
+    if (!res.ok) throw new Error(`Error ${res.status}`);
+    const n = Number(res.headers.get('X-Jobs')), missing = Number(res.headers.get('X-Missing-Value'));
+    if (!n) { toast('No won jobs from Google ads in the last 90 days yet.'); return; }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(await res.blob());
+    a.download = (res.headers.get('Content-Disposition') || '').match(/filename="([^"]+)"/)?.[1] || 'won-jobs-for-google-ads.csv';
+    a.click();
+    toast(`${n} won job${n > 1 ? 's' : ''} from Google ads in the file${missing ? ` (${missing} without an amount)` : ''}.`);
+  } catch (e) { toast(e.message, true); }
+});
 window.addEventListener('hashchange', () => { const id = location.hash.slice(1); if (id) openItem(id); else history_back(); });
 document.addEventListener('visibilitychange', () => { if (!document.hidden) loadList(); }); // fresh list when Richard comes back to the tab
 setInterval(() => { if (!document.hidden) loadList(); }, 60000);

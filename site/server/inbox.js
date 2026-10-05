@@ -67,6 +67,15 @@ export async function getItem(db, id) {
   return item;
 }
 
+// Job amount entered when a request is won: dollars, 0–10M, or null to clear. Throws on anything else.
+export function parseWonValue(v) {
+  if (v === null || v === '') return null;
+  const n = Math.round(Number(String(v).replace(/[$,\s]/g, '')) * 100) / 100;
+  if (!Number.isFinite(n) || n < 0 || n > 10_000_000) throw new Error('Enter the job amount in dollars, like 2500.');
+  return n;
+}
+const money = n => `$${Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+
 export async function setStatus(db, id, status, actor) {
   if (!STATUSES.includes(status)) throw new Error('Unknown status');
   const table = tableFor(id);
@@ -74,11 +83,35 @@ export async function setStatus(db, id, status, actor) {
   if (!row) return null;
   if (row.status === status) return { changed: false };
   const now = new Date().toISOString();
+  // won_at = when the job was won (the conversion time sent to Google Ads); cleared if it's un-won
+  const wonAt = status === 'won' ? now : null;
   await db.batch([
-    db.prepare(`UPDATE ${table} SET status = ?, updated_at = ? WHERE id = ?`).bind(status, now, id),
+    db.prepare(`UPDATE ${table} SET status = ?, updated_at = ?, won_at = ? WHERE id = ?`).bind(status, now, wonAt, id),
     db.prepare('INSERT INTO events (item_id, created_at, actor, action, detail) VALUES (?,?,?,?,?)').bind(id, now, actor, 'status', `${row.status} → ${status}`),
   ]);
   return { changed: true };
+}
+
+export async function setWonValue(db, id, value, actor) {
+  const table = tableFor(id);
+  const row = await db.prepare(`SELECT won_value FROM ${table} WHERE id = ?`).bind(id).first();
+  if (!row) return null;
+  if (row.won_value === value) return { changed: false };
+  const now = new Date().toISOString();
+  await db.batch([
+    db.prepare(`UPDATE ${table} SET won_value = ?, updated_at = ? WHERE id = ?`).bind(value, now, id),
+    db.prepare('INSERT INTO events (item_id, created_at, actor, action, detail) VALUES (?,?,?,?,?)').bind(id, now, actor, 'value', value == null ? 'job amount cleared' : `job amount ${money(value)}`),
+  ]);
+  return { changed: true };
+}
+
+// Won jobs that came from a Google ad click, for the offline-conversion upload. Newest first.
+export async function wonAdJobs(db, { since }) {
+  const sql = `SELECT id, name, won_at, won_value, source_json FROM quotes WHERE status = 'won' AND won_at >= ? AND source_json IS NOT NULL
+    UNION ALL SELECT id, name, won_at, won_value, source_json FROM inquiries WHERE status = 'won' AND won_at >= ? AND source_json IS NOT NULL
+    ORDER BY won_at DESC`;
+  const { results } = await db.prepare(sql).bind(since, since).all();
+  return results.map(r => ({ ...r, source: parseJson(r.source_json) })).filter(r => r.source?.gclid);
 }
 
 export async function addNote(db, id, body, actor) {
