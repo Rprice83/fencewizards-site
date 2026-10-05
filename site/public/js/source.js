@@ -12,8 +12,9 @@ export const HEARD_ABOUT = [
   'Other',
 ];
 
-const KEYS = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'referrer', 'landing'];
-const CLICK_IDS = ['gclid', 'gbraid', 'wbraid'];
+const KEYS = ['gclid', 'gbraid', 'wbraid', 'msclkid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'referrer', 'landing'];
+const GOOGLE_IDS = ['gclid', 'gbraid', 'wbraid'];
+const CLICK_IDS = [...GOOGLE_IDS, 'msclkid']; // msclkid = Microsoft Advertising's click id
 
 // Keep only the fields we expect, in the shapes we expect. Returns null when there's nothing useful.
 export function cleanSource(raw) {
@@ -37,8 +38,11 @@ export function sourceLabel(s) {
   if (!s) return { kind: 'unknown', label: 'Not recorded', detail: '' };
   const campaign = [s.utm_campaign, s.utm_term].filter(Boolean).join(' · ');
   if (isAdClick(s)) {
-    const google = CLICK_IDS.some(k => s[k]) || /google/i.test(s.utm_source || '');
-    return { kind: 'ads', label: google ? 'Google Ads' : `${s.utm_source || 'Paid'} ads`, detail: campaign };
+    const label = GOOGLE_IDS.some(k => s[k]) ? 'Google Ads'
+      : s.msclkid || /bing|microsoft/i.test(s.utm_source || '') ? 'Microsoft Ads'
+      : /google/i.test(s.utm_source || '') ? 'Google Ads'
+      : `${s.utm_source || 'Paid'} ads`;
+    return { kind: 'ads', label, detail: campaign };
   }
   if (s.utm_source) return { kind: 'campaign', label: s.utm_source, detail: campaign };
   const r = (s.referrer || '').toLowerCase().replace(/^www\./, '');

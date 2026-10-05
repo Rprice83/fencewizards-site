@@ -11,7 +11,7 @@
   try {
     const p = new URLSearchParams(location.search);
     const fromUrl = {};
-    ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+    ['gclid', 'gbraid', 'wbraid', 'msclkid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
       .forEach(k => { if (p.get(k)) fromUrl[k] = p.get(k).slice(0, 200); });
     let referrer = '';
     try { const r = new URL(document.referrer); if (r.host !== location.host) referrer = r.host; } catch { /* no referrer */ }

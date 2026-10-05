@@ -76,7 +76,7 @@ function renderList() {
       return `<li><a href="#${esc(it.id)}" class="st-${esc(it.status)}"${state.current === it.id ? ' aria-current="true"' : ''}>
         <span class="ib-name">${esc(it.name)}</span><span class="ib-when">${ago(it.created_at)}</span>
         <span class="ib-sub">${esc(sub)}</span>
-        <span class="ib-meta"><span class="pill type-${it.type}">${quote ? 'Estimate' : 'Message'}</span><span class="st st-c-${esc(it.status)}">${esc(it.status)}</span>${what ? `<span>${esc(what)}</span>` : ''}${sourceLabel(it.source).kind === 'ads' ? '<span class="pill src-ads">Google Ads</span>' : ''}${it.note_count ? `<span>💬 ${it.note_count}</span>` : ''}${total}</span>
+        <span class="ib-meta"><span class="pill type-${it.type}">${quote ? 'Estimate' : 'Message'}</span><span class="st st-c-${esc(it.status)}">${esc(it.status)}</span>${what ? `<span>${esc(what)}</span>` : ''}${sourceLabel(it.source).kind === 'ads' ? `<span class="pill src-ads">${esc(sourceLabel(it.source).label)}</span>` : ''}${it.note_count ? `<span>💬 ${it.note_count}</span>` : ''}${total}</span>
       </a></li>`;
     }).join('');
   }
@@ -132,7 +132,7 @@ function renderDetail(it) {
   const src = sourceLabel(it.source);
   const s = it.source || {};
   const found = `<div class="ib-card"><h2>How they found us</h2><dl class="ib-dl">
-    <div><dt>Source</dt><dd>${src.kind === 'ads' ? '<span class="pill src-ads">Google Ads</span>' : esc(src.label)}${src.detail && src.kind !== 'ads' ? `<small class="ib-src-detail">${esc(src.detail)}</small>` : ''}</dd></div>
+    <div><dt>Source</dt><dd>${src.kind === 'ads' ? `<span class="pill src-ads">${esc(src.label)}</span>` : esc(src.label)}${src.detail && src.kind !== 'ads' ? `<small class="ib-src-detail">${esc(src.detail)}</small>` : ''}</dd></div>
     ${src.kind === 'ads' && src.detail ? `<div><dt>Campaign / keyword</dt><dd>${esc(src.detail)}</dd></div>` : ''}
     <div><dt>They said</dt><dd>${it.heard_about ? esc(it.heard_about) : '<span class="ib-muted">Didn’t answer</span>'}</dd></div>
     ${s.landing ? `<div><dt>First page they saw</dt><dd><a href="${esc(s.landing)}" target="_blank" rel="noopener">${esc(s.landing)}</a>${s.first_seen ? ` · ${esc(new Date(s.first_seen).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))}` : ''}</dd></div>` : ''}
@@ -140,7 +140,7 @@ function renderDetail(it) {
 
   const won = it.status === 'won' ? `<div class="ib-card ib-won"><h2>Won job</h2>
     <p class="ib-won-amount"><strong>${it.won_value != null ? fmtMoney(it.won_value) : 'No amount yet'}</strong> <button type="button" id="ib-won-edit">${it.won_value != null ? 'Change' : 'Add amount'}</button></p>
-    <p class="ib-muted">${src.kind === 'ads' && s.gclid ? 'From a Google ad: this job and its amount go in the next “Download for Google Ads” file, so Google learns which searches bring paying work.' : 'Not from a Google ad click, so it won’t be in the Google Ads file.'}</p>
+    <p class="ib-muted">${src.kind === 'ads' && s.gclid ? 'From a Google ad: this job and its amount go in the next “Download for Google Ads” file, so Google learns which searches bring paying work.' : s.msclkid ? 'From a Microsoft ad. Its click code is saved, for sending won jobs back to Microsoft Ads once that’s set up.' : 'Not from a Google ad click, so it won’t be in the Google Ads file.'}</p>
   </div>` : '';
 
   const emailWarn = it.email_status === 'failed'

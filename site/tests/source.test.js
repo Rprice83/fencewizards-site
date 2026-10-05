@@ -24,12 +24,21 @@ test('cleanHeard only accepts the listed answers', () => {
 test('sourceLabel: ads, search, social, other sites, direct', () => {
   assert.deepEqual(sourceLabel({ gclid: 'abc', utm_campaign: 'Temp fence', utm_term: 'fence rental' }), { kind: 'ads', label: 'Google Ads', detail: 'Temp fence · fence rental' });
   assert.equal(sourceLabel({ utm_source: 'google', utm_medium: 'cpc' }).label, 'Google Ads');
-  assert.equal(sourceLabel({ utm_source: 'bing', utm_medium: 'cpc' }).label, 'bing ads');
+  assert.equal(sourceLabel({ utm_source: 'facebook', utm_medium: 'paid' }).label, 'facebook ads');
   assert.equal(sourceLabel({ referrer: 'www.google.com' }).kind, 'search');
   assert.equal(sourceLabel({ referrer: 'm.facebook.com' }).kind, 'social');
   assert.deepEqual(sourceLabel({ referrer: 'indybuilders.org' }), { kind: 'referral', label: 'Another website', detail: 'indybuilders.org' });
   assert.equal(sourceLabel({ landing: '/' }).kind, 'direct');
   assert.equal(sourceLabel(null).kind, 'unknown');
+});
+
+test('Microsoft Ads clicks (msclkid) are kept and labelled', () => {
+  assert.equal(cleanSource({ msclkid: 'abc123DEF' }).msclkid, 'abc123DEF');
+  assert.equal(cleanSource({ msclkid: 'bad id!' }), null);
+  assert.deepEqual(sourceLabel({ msclkid: 'abc', utm_campaign: 'Temp fence' }), { kind: 'ads', label: 'Microsoft Ads', detail: 'Temp fence' });
+  assert.equal(sourceLabel({ utm_source: 'bing', utm_medium: 'cpc' }).label, 'Microsoft Ads');
+  assert.equal(sourceLabel({ gclid: 'g', msclkid: 'm' }).label, 'Google Ads'); // both present: the Google click id wins
+  assert.equal(isAdClick({ msclkid: 'x' }), true);
 });
 
 test('isAdClick recognizes Google click ids and paid utm mediums only', () => {
