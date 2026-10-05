@@ -69,7 +69,7 @@ Node isn't on the default PATH in fresh shells, so prefix with:
 ## Version history (git)
 - Git repo at the project root, branch `main`, remote `origin` = https://github.com/Rprice83/fencewizards-site (private, the user's GitHub). Git: `C:\Program Files\Git\cmd\git.exe` (may not be on PATH in old shells).
 - Commit a snapshot after each finished piece of work, with a plain-English message, **then `git push`**. Check `git status` first, and never commit `.dev.vars` or keys.
-- **Every push to `main` auto-deploys the hosted demo**, so only push finished, tested work. Cloudflare runs `npm run cloudflare-build` (build + link check + tests). If any of those fail, the deploy stops and the previous version stays live.
+- **Every push to `main` auto-deploys the hosted demo**, so only push finished, tested work. Cloudflare runs `npm run cloudflare-build` (build + link check + tests). If any of those fail, the deploy stops and the previous version stays live. **After every push, confirm the build succeeded**: `npx wrangler pages deployment list --project-name fencewizards --json` (from `site/`). Status `Active` = still building, `Failure` = failed (the old version stays up), a time like "2 minutes ago" = live. Cloudflare builds with Node 22 (`site/.nvmrc`); a test that passes locally on a newer Node can still fail there (2026-10-05: five builds failed silently because of a timer-based test).
 - Not tracked (too big, still on disk/OneDrive): `organized-assets/named-videos/` (raw 4K drone clips) and `organized-assets/working/`.
 
 ## Decisions already made (don't re-ask)
