@@ -77,3 +77,17 @@ signed token and checks `STAFF_EMAILS` on every request, so if Access were ever 
    sign in with Google, and use Share → **Add to Home Screen** so it opens like an app.
 
 To add or remove someone: update the Access policy **and** `STAFF_EMAILS`. Removing someone from the Access policy locks them out immediately.
+## Secrets and switches
+Secrets live only in Cloudflare (`npx wrangler pages secret put NAME --project-name fencewizards`), never in git:
+- `RESEND_API_KEY`: email (Richard's notifications, customer confirmations, job-story alerts). Without it emails are skipped and saved for preview.
+- `TURNSTILE_SECRET`: spam check on the forms (the demo uses Cloudflare's public test secret). Without it the check is skipped.
+- `GOOGLE_MAPS_SERVER_KEY`: Routes-API-only key for driving miles. Without it the estimator uses straight-line miles.
+
+Public IDs are in `INTEGRATIONS` in `build/lib/site.mjs` (Turnstile site key, Google Ads/GA4 IDs and labels, Microsoft UET tag ID). Empty = that code isn't on the page at all; the privacy policy wording follows automatically. Email senders/recipients are `[vars]` in `wrangler.toml` (`QUOTE_TO`, `QUOTE_FROM`, `CONFIRM_FROM`, `STORY_NOTIFY`).
+
+## Other features
+- **Lead sources:** `public/js/main.js` remembers the ad click (gclid/msclkid), UTM tags and referrer for 90 days; forms send it with "How did you hear about us?". Shown in the Inbox and Richard's emails.
+- **Won jobs → ad platforms:** marking a request Won asks for the job amount; the Won tab downloads offline-conversion files for Google Ads and Microsoft Ads (`server/google-ads.js`, `server/microsoft-ads.js`). Upload monthly; click IDs expire after 90 days.
+- **Ad landing pages:** `build/pages/go/*.mjs` (`landing: true` = no menu, short footer; `noindex`).
+- **Job stories:** `/staff/stories/` (photos to R2 bucket `fencewizards-field-notes`); drafting workflow in `../FIELD-NOTES.md`.
+- **Customer confirmation email:** `server/customer-email.js`; preview locally at `/api/dev/customer-email?id=FW-…`.

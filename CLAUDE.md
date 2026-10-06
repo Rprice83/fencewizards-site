@@ -4,27 +4,20 @@ New website for **Fence Wizards** (temporary fence rental, B2B, Greenwood IN; ow
 
 **Read first:** `TODO.md` (open items), then `site/README.md` (how it all runs). Open questions for Richard live in the shared doc https://claude.ai/code/artifact/ad94b6da-7898-4b05-8d0a-eede7e764fac ("Fence Wizards Website — Questions for Richard"). Add Richard-only questions there.
 
-## Latest (2026-10-03) — start here
-- The user met Richard and the Mac demo worked. Richard asked for a **hosted demo**, which is now live (see "Hosted demo" under Status). The hosted demo replaces the Mac zip for showing the site; the old Mac "write EPIPE" issue is low priority now.
-- Ask how the meeting went: Richard's reactions, and any questionnaire answers to apply (the user said they'd discuss it later).
-- Next planned workstream: Google Ads tracking + landing pages (TODO.md).
+## Latest (2026-10-06) — start here
+- **Go-live is waiting on Richard and on access**, not on building. The Richard-facing checklist (shared doc; the user must share it with him): https://claude.ai/code/artifact/48cf04bb-f3fd-4f30-8694-ba89e6262065. Critical path: (1) domain + account ownership in Richard's name before he drops his current web company (unlocks Resend email, the domain switch, clean Google setup); (2) his answers in the questions doc (pricing: 19–23 mo panel rate, minimum charge, damage waiver; facts; privacy retention).
+- **The user's to-dos:** Google Cloud permissions on Richard's project: add `fencewizards.pages.dev/*` + `localhost:8788/*` to the Maps/Places browser key, enable **Places API (New)** + **Map Tiles API**, and create a separate Routes-only server key (they set it themselves with `wrangler pages secret put GOOGLE_MAPS_SERVER_KEY`). Then Claude switches the estimator to Google (`public/estimate/map-providers.js`) and confirms driving miles. Never paste keys in chat.
+- **Built since 2026-10-03 (all live on the demo, tested):** spam protection (Turnstile), lead-source tracking (gclid/msclkid/UTM/referrer + "How did you hear about us?"), Won job amount + "Download for Google Ads" / "Download for Microsoft Ads" files, Google tag + Microsoft UET tag (both **off** until Richard's IDs exist), driving-distance surcharge (straight line until the key exists), Field Notes stage 1 (Job stories form in the staff area, R2 photos), customer confirmation email (sends once Resend is set up), four Google Ads landing pages under `/go/` (checked against the account's real search terms), footer credit "Website by Limestone Web Co" → limestonewebco.com (not live yet), scroll fade-in fix, homepage hero height cap.
+- **Google Ads:** analysis + deck done; Step 1 (tracking cleanup in his account) done 2026-10-04, before/after check due ~2026-11-01 to 11-15 (`marketing/google-ads/changelog.md`). Richard prefers uncapped bids and advertising outside Indianapolis; the plan respects that (fix tracking first; location split by keyword type). Next ads work = Phase 3 restructure (tight ad groups per landing page, keyword-matched ads) at launch, then a Microsoft Ads test 4–6 weeks after launch. See TODO.md "Google Ads + landing pages".
+- Open small items: the user's display name for Inbox notes (only Richard has one in `STAFF_NAMES`); Richard's OK on the footer credit.
 
-## Status (as of 2026-10-03)
-- **Done:**
-  - Full site in the new design: homepage with drone-video hero, all 38 original pages except /pricing/, /privacy/, 404.
-  - Map estimator (/estimate/) with confirmation page.
-  - Wired quote and contact forms (with file upload).
-  - Quote Inbox (/staff/).
-  - Field Notes job-story system (step 1).
-  - 22 passing tests, plus a link/asset checker.
-  - Preview launchers: Windows `Start Website Preview.cmd`; Mac `mac/` folder + Desktop zip.
-- **On hold:**
-  - /pricing/ page (waiting on Richard).
-  - Stripe payment requests (waiting on questionnaire section 5; design is in TODO.md).
-- **Next workstream:** Google Ads conversion tracking + landing pages (plan in TODO.md, section "Google Ads + landing pages"). Keep ads reports/notes in `marketing/google-ads/` (git-ignored on purpose: client account data never goes to GitHub). First analysis: `marketing/google-ads/analysis-2026-10-03.md`. Game-plan deck for Richard (private Artifact, share from its Share menu): https://claude.ai/artifact/CWEfY6zRPnGSdAhXpJYkxd. Plan: same ~$2,500/mo budget, Phase 1 settings fixes, then tracking + landing pages with the new site. No account changes until he approves.
-- **Kept out of this folder on purpose:** pricing, the service agreement and business notes live in the user's `Agency HQ` folder (see their personal CLAUDE.md). The cold-email outreach for Richard will be its own project folder.
-- **Hosted demo (since 2026-10-03):** Cloudflare **Pages** project `fencewizards` (https://fencewizards.pages.dev) in the user's own Cloudflare account (omniring09@gmail.com), connected to the GitHub repo (see "Version history"). Pages settings: root dir `site`, build `npm run cloudflare-build`, output `public`. D1 `fencewizards-quotes` is created and migrated (remote). `*.pages.dev` is noindexed via `site/public/_headers`. **Quote Inbox works on the demo:** Cloudflare Access team `limestone-web-co` (the user's agency, reused for future client demos), app "Quote Inbox" on fencewizards.pages.dev paths `staff` + `api/staff`, policy "Staff" = Richard (richwarren1995@gmail.com) + the user (omniring09@gmail.com), sign-in with Google (OAuth client in the user's Google Cloud project "Limestone Web Co Sign-in"). Values are in `wrangler.toml`. To add a person, update the Access policy **and** `STAFF_EMAILS`. Per-version URLs (`<hash>.fencewizards.pages.dev`) aren't behind Access, but server/staff-auth.js still refuses them. Not set up yet: Resend (no emails go out, but submissions still save to D1; Richard must check the Inbox) and the custom domain. **Production hosting = the user's Cloudflare account** (a managed service the user provides; decided 2026-10-05). At launch the same Pages project, D1 and Access team serve www.fencewizards.com. Richard still owns his domain, email and Google accounts.
-- **Not launched yet:** launch needs Resend, Cloudflare Access, the fencewizards.com domain, Google Maps/Places keys, and **website lead tracking + ad-source capture (TODO.md, "MUST BE DONE BEFORE LAUNCH")** (see TODO.md and the site/README.md setup sections).
+## Status (as of 2026-10-06)
+- **Done:** full site (all original URLs + /privacy/, 404); map estimator with live price; quote/contact forms with file upload; Quote Inbox (/staff/) with source tags, Won amounts and ad-platform downloads; Job stories (/staff/stories/); customer confirmation email; ad landing pages (/go/); Google + Microsoft tracking (off until IDs); 59 passing tests + a link/asset/JS-syntax checker.
+- **On hold:** /pricing/ page (waiting on Richard; /pricing/ 302s to /#pricing via `public/_redirects`); Stripe payment requests (questionnaire section 5); Field Notes stages 2–3 (AI draft via Claude API, then a Publish screen).
+- **Google Ads:** reports/notes in `marketing/google-ads/` (git-ignored on purpose: client account data never goes to GitHub). Analysis: `analysis-2026-10-03.md`; change log: `changelog.md`. Game-plan deck (private Artifact): https://claude.ai/artifact/CWEfY6zRPnGSdAhXpJYkxd (Richard's feedback since: keep uncapped bids, keep out-of-town ads; the deck's Phase 1 card still shows the original plan). No account changes without his OK.
+- **Kept out of this folder on purpose:** pricing, the service agreement and business notes live in the user's `Agency HQ` folder. The cold-email outreach for Richard will be its own project folder.
+- **Hosting (managed service, decided 2026-10-05):** everything runs in the **user's** Cloudflare account (omniring09@gmail.com): Pages project `fencewizards` (https://fencewizards.pages.dev, auto-deploys from GitHub; root dir `site`, build `npm run cloudflare-build`, output `public`), D1 `fencewizards-quotes` (migrations 0001–0007 applied remotely), R2 bucket `fencewizards-field-notes` (binding `PHOTOS`), Turnstile (test keys on the demo), Access team `limestone-web-co` (app "Quote Inbox" on paths `staff` + `api/staff`; policy "Staff" = Richard richwarren1995@gmail.com + the user; Google sign-in via the user's Google Cloud project "Limestone Web Co Sign-in"). At launch the same project serves www.fencewizards.com. Richard owns his domain, email, Google Ads/Analytics/Business Profile and Google Cloud keys. To add a staff person: Access policy **and** `STAFF_EMAILS`.
+- **Not launched yet:** see the go-live checklist and TODO.md ("Accounts & keys", "MUST BE DONE AT LAUNCH").
 
 ## Layout
 ```
@@ -37,17 +30,21 @@ version-2/                ChatGPT's attempt (reference only, don't edit)
 site/                     THE WEBSITE (Cloudflare Pages project)
   build/pages/*.mjs       one module per page (content lives here)
   build/partials/         hand-built HTML: home, estimator, confirmation
-  build/lib/              site.mjs (phone/email/towns/nav: single source), components.mjs, layout.mjs, field-notes.mjs, area-map.mjs
+  build/lib/              site.mjs (phone/email/towns/nav, INTEGRATIONS = public IDs for Turnstile/Google/Microsoft, CREDIT: single source), components.mjs, layout.mjs (header/footer, googleTag(), microsoftTag(), landing variant), landing.mjs (/go/ hero), field-notes.mjs, area-map.mjs
+  build/pages/go/         Google Ads landing pages (landing: true, noindex)
   build/AUTHORING.md      rules + component API for writing pages
   content/field-notes/    job stories as Markdown (+ _TEMPLATE.md)
   public/                 deployed output. The HTML is GENERATED, so never hand-edit public/**/index.html (except public/staff/*, which is hand-written)
   public/js/pricing.js    price-sheet engine, shared by browser + server
+  public/js/source.js     lead-source cleaning/labels + "How did you hear about us?" list (browser + server)
+  public/js/main.js       site JS: menu, fade-ins, forms, source capture (window.fwSource), tracking events (window.fwTrack), Turnstile
   public/estimate/        estimator app (map-providers.js = the only file to change for Google Maps)
-  public/staff/           Quote Inbox app
-  functions/api/          quotes.js, contact.js, staff/* (behind Access), dev/email-preview.js
-  server/                 quote.js (server-side validation/pricing), email.js, inbox.js, staff-auth.js
-  migrations/             D1 schema 0001–0003
+  public/staff/           Quote Inbox app; public/staff/stories/ = Job stories (Field Notes intake)
+  functions/api/          quotes.js, contact.js, distance.js, staff/* (behind Access: items, stories, export/google-ads + microsoft-ads), dev/* (local previews)
+  server/                 quote.js, email.js (Richard's emails), customer-email.js + confirm.js (customer confirmation), inbox.js, staff-auth.js, turnstile.js, distance.js (Routes API + cache), stories.js, google-ads.js, microsoft-ads.js
+  migrations/             D1 schema 0001–0007 (0004 source + won value, 0005 distance cache, 0006 stories, 0007 confirm status)
   tools/add-field-note-photos.py   resize + strip GPS + detect town from photo GPS
+  tools/pull-field-note.mjs        download a Job story (photos + answers) for drafting: node tools/pull-field-note.mjs FN-…
   tests/                  node --test
 ```
 
@@ -57,7 +54,8 @@ Node isn't on the default PATH in fresh shells, so prefix with:
 - `node build/build.mjs` (add `--drafts` to include draft Field Notes), then `node build/check.mjs`, then `node --test`
 - Local server: the Browser pane's launch config **"fencewizards-site"** (`.claude/launch.json`, wrangler pages dev on :8788)
 - DB: `npx wrangler d1 migrations apply fencewizards-quotes --local` (set `$env:CI='true'`). **A new migration must also be applied with `--remote` BEFORE pushing code that uses it**: pushing deploys the code, but nothing migrates the live database automatically.
-- Dev helpers: http://localhost:8788/api/dev/email-preview (latest email Richard would get); http://localhost:8788/staff/ (auto-signed-in locally via DEV_STAFF_EMAIL in `.dev.vars`)
+- Dev helpers: http://localhost:8788/api/dev/email-preview (latest email Richard would get); /api/dev/customer-email?id=FW-… (customer confirmation); http://localhost:8788/staff/ (auto-signed-in locally via DEV_STAFF_EMAIL in `.dev.vars`)
+- Testing tracking: temporarily put pretend IDs in `INTEGRATIONS`, build, check `dataLayer` / `uetq` in the browser, then **set them back to empty strings** and rebuild before committing.
 - Python: `$env:LOCALAPPDATA\Programs\Python\Python312\python.exe` (Pillow, pillow-heif, pymupdf installed). FFmpeg is installed via winget (Gyan.FFmpeg).
 
 ## Showing the site on other computers
@@ -76,11 +74,14 @@ Node isn't on the default PATH in fresh shells, so prefix with:
 - Brand: red #ED1C24, ink #231F20, silver. Barlow Condensed stands in for Shuttleblock (paid). Logos are cropped from the PDF until the designer's SVGs arrive.
 - Phone **(317) 296-4015** and **richard@fencewizards.com** everywhere. The truck wraps' old 4508 number in photos is fine.
 - The drone reel is the hero video (must stay). Photos come from the full-res originals (800/1600 sizes).
-- Estimator: free Esri imagery + Nominatim during development, swapped for Google later. It shows a live preliminary price. Panels at 19–23 months use $8.20/ft temporarily. The damage waiver is an optional add-on. No minimum yet.
+- Estimator: free Esri imagery + Nominatim during development, swapped for Google later (blocking for launch: Esri isn't licensed for commercial use). It shows a live preliminary price. Panels at 19–23 months use $8.20/ft temporarily. The damage waiver is an optional add-on. No minimum yet. The 50+ mile surcharge uses **driving miles from downtown Indianapolis** (Richard's yard is downtown), straight line as the fallback.
 - **Pricing-claim policy:** never state "standard rental up to 12 months" or "short-job discounts". 8 ft = special order. "Flat price, removal included, no rent clock" is fine.
 - Copy: keep the original wording, polish it, never invent facts. Alt text describes only what's visible (no town or customer names).
 - Hosting: Cloudflare Pages + D1 + Resend. Quote Inbox security: Cloudflare Access with Google sign-in (Richard uses Google), plus JWT and STAFF_EMAILS verification in server/staff-auth.js (fails closed).
 - Field Notes: draft → human approval → publish. Never auto-publish, never invent details.
+- Email: Resend, set up properly once domain access exists (not a test sender). Customer confirmation goes from "Fence Wizards" <quotes@fencewizards.com>, Reply-To Richard.
+- Ad landing pages: minimal header (no menu) but keep the footer's address/contact/privacy (Google rewards transparency); copy only from the site's own pages.
+- Microsoft Ads: a small separate test (~$300–500/mo) 4–6 weeks after launch, importing the cleaned-up Google campaign.
 
 ## Working on this project
 Verify changes in the Browser pane (desktop and mobile). Keep TODO.md current. Richard is non-technical, so anything he uses (Inbox, Field Notes intake, emails) must be dead simple. (General preferences about how the user likes to work are in their personal CLAUDE.md.)
