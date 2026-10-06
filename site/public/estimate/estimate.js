@@ -357,15 +357,16 @@ searchForm.addEventListener('submit', async e => {
 });
 document.addEventListener('click', e => { if (!e.target.closest('#search-form')) resultsEl.hidden = true; });
 
-function chooseSite(r) {
+// fillAddress: false when the label isn't a real address (a location we couldn't look up)
+function chooseSite(r, { fillAddress = true } = {}) {
   site = { lat: r.lat, lng: r.lng, label: r.label };
   resultsEl.hidden = true;
-  $('#search-input').value = r.label;
+  $('#search-input').value = fillAddress ? r.label : '';
   map.flyTo([r.lat, r.lng], 19, { duration: 1.2 });
   if (siteMarker) siteMarker.remove();
   siteMarker = L.circleMarker([r.lat, r.lng], { radius: 7, color: '#fff', weight: 2, fillColor: '#ED1C24', fillOpacity: 1, interactive: false }).addTo(map);
   const addr = $('#c-address');
-  if (!addr.value || addr.dataset.auto === '1') { addr.value = r.label; addr.dataset.auto = '1'; }
+  if (!addr.value || addr.dataset.auto === '1') { addr.value = fillAddress ? r.label.slice(0, 300) : ''; addr.dataset.auto = '1'; }
   if (!plan.runs.length) setTool('draw');
   changed();
 }
@@ -375,7 +376,13 @@ $('#locate-btn').addEventListener('click', () => {
   if (!navigator.geolocation) return hint('Location isn’t available in this browser.');
   hint('Finding your location…');
   navigator.geolocation.getCurrentPosition(
-    pos => chooseSite({ lat: pos.coords.latitude, lng: pos.coords.longitude, label: 'My current location' }),
+    async pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      // Look up the street address so Richard gets a real one, never "my location"
+      const label = await geocoder.reverse(lat, lng).catch(() => null);
+      chooseSite({ lat, lng, label: label || 'Your current location' }, { fillAddress: !!label });
+      if (!label) hint('Found you on the map. Please type the project’s street address in the form too, so Richard can find it.');
+    },
     () => hint('Couldn’t get your location. Search the address instead.'),
     { enableHighAccuracy: true, timeout: 10000 },
   );
@@ -626,17 +633,6 @@ map.on('moveend', saveDraft);
 /* =========================================================
    SUBMIT
    ========================================================= */
-// Cloudflare Turnstile token (main.js loads the widget script); wait briefly if it isn't ready yet
-async function turnstileToken() {
-  if (!form.querySelector('.cf-turnstile')) return '';
-  for (let i = 0; i < 40; i++) {
-    const v = form.querySelector('[name="cf-turnstile-response"]')?.value;
-    if (v) return v;
-    await new Promise(r => setTimeout(r, 150));
-  }
-  return '';
-}
-
 form.addEventListener('submit', async e => {
   e.preventDefault();
   const errEl = $('#form-error');
@@ -667,7 +663,7 @@ form.addEventListener('submit', async e => {
     contact: {
       name: val('#c-name').trim(), company: val('#c-company').trim(), phone: val('#c-phone').trim(),
       email: val('#c-email').trim(), address: val('#c-address').trim(), notes: val('#c-notes').trim(),
-      contactPref: radio('contactPref'), website: val('#c-website'), heardAbout: val('#c-heard'),
+      contactPref: radio('contactPref'), hp: val('#c-hp'), heardAbout: val('#c-heard'),
     },
     source: window.fwSource?.() || null,
     clientTotal: est.priced ? est.total : null,
@@ -676,14 +672,17 @@ form.addEventListener('submit', async e => {
   const btn = $('#submit-btn');
   btn.disabled = true;
   btn.firstChild.textContent = 'Sending… ';
-  payload.turnstile = await turnstileToken();
+  // Cloudflare Turnstile spam check (main.js loads the widget and waits briefly for its token)
+  const spam = window.fwSpamCheck ? await window.fwSpamCheck(form) : { token: '', blocked: false };
+  payload.turnstile = spam.token;
+  payload.turnstileBlocked = spam.blocked;
   try {
     const res = await fetch('/api/quotes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.id) throw new Error(data.error || 'Something went wrong.');
     try {
       sessionStorage.setItem('fw-last-quote', JSON.stringify({
-        id: data.id, name: payload.contact.name, phone: payload.contact.phone, email: payload.contact.email, contactPref: payload.contact.contactPref,
+        id: data.id, track: data.track !== false, name: payload.contact.name, phone: payload.contact.phone, email: payload.contact.email, contactPref: payload.contact.contactPref,
         address: payload.contact.address, fenceType: FENCE_TYPES[input.fenceType], months: input.months, feet: Math.round(input.feet),
         total: data.estimate?.priced ? data.estimate.total : null, lines: data.estimate?.lines || est.lines,
       }));

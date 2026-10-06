@@ -12,13 +12,13 @@ const LIST_SQL = `
   SELECT 'quote' AS type, q.id, q.created_at, q.status, q.name, q.company, q.phone, q.email, q.address AS location,
          q.fence_type AS fence, q.feet, q.months, q.priced, q.estimate_total AS total, NULL AS message,
          (SELECT COUNT(*) FROM notes n WHERE n.item_id = q.id) AS note_count, q.email_status,
-         q.source_json, q.heard_about, q.won_value
+         q.source_json, q.heard_about, q.won_value, q.spam_check
   FROM quotes q
   UNION ALL
   SELECT 'inquiry' AS type, i.id, i.created_at, i.status, i.name, NULL, i.phone, i.email, i.location,
          i.fence_style, i.feet, NULL, 0, NULL, i.message,
          (SELECT COUNT(*) FROM notes n WHERE n.item_id = i.id), i.email_status,
-         i.source_json, i.heard_about, i.won_value
+         i.source_json, i.heard_about, i.won_value, i.spam_check
   FROM inquiries i`;
 
 export async function listItems(db, { status, type, q, before, limit = 100 }) {

@@ -2,6 +2,7 @@
 import { mapConfig } from '/estimate/map-providers.js';
 import { fmtMoney, FENCE_TYPES } from '/js/pricing.js';
 import { sourceLabel } from '/js/source.js';
+import { spamFlag } from '/js/spam-check.js';
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -76,7 +77,7 @@ function renderList() {
       return `<li><a href="#${esc(it.id)}" class="st-${esc(it.status)}"${state.current === it.id ? ' aria-current="true"' : ''}>
         <span class="ib-name">${esc(it.name)}</span><span class="ib-when">${ago(it.created_at)}</span>
         <span class="ib-sub">${esc(sub)}</span>
-        <span class="ib-meta"><span class="pill type-${it.type}">${quote ? 'Estimate' : 'Message'}</span><span class="st st-c-${esc(it.status)}">${esc(it.status)}</span>${what ? `<span>${esc(what)}</span>` : ''}${sourceLabel(it.source).kind === 'ads' ? `<span class="pill src-ads">${esc(sourceLabel(it.source).label)}</span>` : ''}${it.note_count ? `<span>💬 ${it.note_count}</span>` : ''}${total}</span>
+        <span class="ib-meta"><span class="pill type-${it.type}">${quote ? 'Estimate' : 'Message'}</span><span class="st st-c-${esc(it.status)}">${esc(it.status)}</span>${what ? `<span>${esc(what)}</span>` : ''}${sourceLabel(it.source).kind === 'ads' ? `<span class="pill src-ads">${esc(sourceLabel(it.source).label)}</span>` : ''}${spamFlag(it.spam_check) ? `<span class="pill spam">⚠ ${esc(spamFlag(it.spam_check).short)}</span>` : ''}${it.note_count ? `<span>💬 ${it.note_count}</span>` : ''}${total}</span>
       </a></li>`;
     }).join('');
   }
@@ -145,6 +146,8 @@ function renderDetail(it) {
 
   const emailWarn = it.email_status === 'failed'
     ? `<div class="ib-warn"><strong>The notification email for this request failed to send</strong>, so it may only be here. (${esc(it.email_error || '')})</div>` : '';
+  const flag = spamFlag(it.spam_check);
+  const spamWarn = flag ? `<div class="ib-warn"><strong>${esc(flag.short)}:</strong> ${esc(flag.long)}</div>` : '';
 
   let body = '';
   if (quote) {
@@ -209,7 +212,7 @@ function renderDetail(it) {
     ${(it.events || []).map(e => `<li><strong>${esc(e.actor)}</strong> ${e.action === 'value' ? `set ${esc(e.detail || '')}` : `changed status ${esc(e.detail || '')}`} · ${when(e.created_at)}</li>`).join('')}
   </ul></div>`;
 
-  $('#ib-detail').innerHTML = `<div class="ib-card-wrap">${head}${emailWarn}${won}${contact}${body}${found}${notes}${history}</div>`;
+  $('#ib-detail').innerHTML = `<div class="ib-card-wrap">${head}${spamWarn}${emailWarn}${won}${contact}${body}${found}${notes}${history}</div>`;
   $('#ib-detail').scrollTop = 0;
 
   $('#ib-back').addEventListener('click', () => { history_back(); });

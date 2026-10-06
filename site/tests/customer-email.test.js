@@ -14,8 +14,8 @@ const origin = 'https://www.fencewizards.com';
 test('quote confirmation: subject, greeting, reference, plan, estimate and Richard\'s phone', () => {
   const m = customerEmail(quote, { origin });
   assert.equal(m.to, 'dana@example.com');
-  assert.match(m.subject, /^We have your fence plan, Dana\. Reference FW-261005-ABCD$/);
-  assert.match(m.html, /Thanks, Dana!/);
+  assert.match(m.subject, /^We have your fence plan\. Reference FW-261005-ABCD$/);
+  assert.match(m.html, /Thanks! Your fence plan/);
   assert.match(m.html, /by text message/);
   assert.match(m.html, /413 linear ft/);
   assert.match(m.html, /\$2,614\.82/);
@@ -31,10 +31,11 @@ test('an unpriced plan says Richard will price it, with no total', () => {
   assert.doesNotMatch(m.html, /Preliminary total/);
 });
 
-test('contact message confirmation shows what they wrote', () => {
-  const m = customerEmail({ id: 'FW-M-261005-WXYZ', kind: 'contact', name: 'Pat', email: 'pat@example.com', location: 'Fishers', message: 'Need fence for a festival in May.' }, { origin });
-  assert.match(m.subject, /We have your message, Pat/);
-  assert.match(m.html, /Need fence for a festival in May\./);
+test('contact message confirmation: fixed wording, file count, nothing they typed', () => {
+  const m = customerEmail({ id: 'FW-M-261005-WXYZ', kind: 'contact', name: 'Pat', email: 'pat@example.com', location: 'Fishers', message: 'Need fence for a festival in May.', file_names: '["a.pdf","b.jpg"]' }, { origin });
+  assert.match(m.subject, /^We have your message\. Reference FW-M-261005-WXYZ$/);
+  assert.match(m.html, /2 files/);
+  assert.doesNotMatch(m.html + m.text + m.subject, /festival|Pat|Fishers|a\.pdf/);
 });
 
 test('no email address → no confirmation (the quick-quote form asks only for a phone)', () => {
@@ -42,8 +43,8 @@ test('no email address → no confirmation (the quick-quote form asks only for a
   assert.equal(customerEmail(null, { origin }), null);
 });
 
-test('anything the customer typed is escaped', () => {
-  const m = customerEmail({ ...quote, name: '<script>alert(1)</script>', address: '"><img src=x onerror=alert(1)>' }, { origin });
-  assert.doesNotMatch(m.html, /<script>alert|<img src=x/);
-  assert.match(m.html, /&lt;img src=x/);
+test('nothing the customer typed goes in, so the email can’t carry a spammer’s text to a stranger', () => {
+  const spam = 'Your account is locked, log in at http://evil.example';
+  const m = customerEmail({ ...quote, name: spam, address: spam, customer_notes: spam, company: spam }, { origin });
+  assert.doesNotMatch(m.html + m.text + m.subject, /evil\.example|account is locked/);
 });

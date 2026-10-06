@@ -1,23 +1,23 @@
 // Confirmation email to the customer ("Richard has your request"), built from the saved database row so the
 // sent email and the dev preview are identical. Table layout + inline styles: renders in Outlook, Gmail, Apple Mail.
 // Sent from CONFIRM_FROM with Reply-To = Richard (QUOTE_TO). No marketing content (privacy policy).
+// Nothing the visitor typed goes in (no name, address, message or file names), only fixed facts we control: otherwise
+// anyone could put a stranger's address in the form and use this email to send them their own text from Richard's domain.
 import { fmtMoney, FENCE_TYPES } from '../public/js/pricing.js';
 import { SITE as SITE_FACTS } from '../build/lib/site.mjs'; // phone, email, address: the site's single source
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const parse = s => { try { return JSON.parse(s); } catch { return null; } };
-const firstName = name => String(name || '').trim().split(/\s+/)[0] || '';
 const PREF = { call: 'phone call', text: 'text message', email: 'email' };
 
 const INK = '#231F20', RED = '#ED1C24', MUTED = '#6A6667', LINE = '#E4E3E1', PAPER = '#F4F4F3';
 const FONT = 'Arial, Helvetica, sans-serif';
 const DISPLAY = `'Barlow Condensed', 'Arial Narrow', Arial, sans-serif`;
 
-// What the customer sent, as [label, value] rows (values plain text; escaped on output)
+// What the customer asked for, as [label, value] rows (values plain text; escaped on output). Fixed choices only.
 function quoteFacts(r, o) {
   const gates = o?.gates ? [o.gates.single && `${o.gates.single} single`, o.gates.double && `${o.gates.double} double`].filter(Boolean).join(', ') : '';
   return [
-    ['Site', r.address],
     ['Fence', `${FENCE_TYPES[r.fence_type] || 'Not sure yet'}${o?.height === 8 ? ' · 8 ft (special order)' : ''}`],
     ['Length', `${Math.round(r.feet).toLocaleString()} linear ft`],
     ['Rental', `${r.months} month${r.months > 1 ? 's' : ''}`],
@@ -26,12 +26,10 @@ function quoteFacts(r, o) {
   ].filter(([, v]) => v);
 }
 function inquiryFacts(r) {
+  const files = (parse(r.file_names) || []).length;
   return [
-    ['Project location', r.location],
-    ['Fence style', r.fence_style],
     ['Linear feet', r.feet ? `${Math.round(r.feet).toLocaleString()} ft` : ''],
-    ['How long', r.duration],
-    ['Attached files', (parse(r.file_names) || []).join(', ')],
+    ['Attached files', files ? `${files} file${files > 1 ? 's' : ''}` : ''],
   ].filter(([, v]) => v);
 }
 
@@ -42,13 +40,12 @@ function inquiryFacts(r) {
 export function customerEmail(row, { origin, phone = SITE_FACTS.phone, tel = SITE_FACTS.tel, email = SITE_FACTS.email } = {}) {
   if (!row?.email) return null;
   const isQuote = !row.id.startsWith('FW-M-');
-  const first = firstName(row.name);
   const est = isQuote ? parse(row.estimate_json) : null;
   const o = isQuote ? parse(row.options_json) : null;
   const facts = isQuote ? quoteFacts(row, o) : inquiryFacts(row);
   const how = isQuote && PREF[row.contact_pref] ? ` by ${PREF[row.contact_pref]}` : '';
   const what = isQuote ? 'fence plan' : row.kind === 'contact' ? 'message' : 'request';
-  const subject = `We have your ${what}, ${first || 'thanks'}. Reference ${row.id}`;
+  const subject = `We have your ${what}. Reference ${row.id}`;
   const preheader = `Richard has your ${what} and will reach out within 24 hours.`;
 
   const factRows = facts.map(([k, v]) => `<tr>
@@ -69,8 +66,6 @@ export function customerEmail(row, { origin, phone = SITE_FACTS.phone, tel = SIT
       <p style="margin:10px 0 0;color:${MUTED};font:13px/1.5 ${FONT}">Before tax. This is a preliminary price from your plan; Richard confirms the final price after he reviews your site. One flat price, removal included.</p>`
       : `<p style="margin:24px 0 0;padding:14px 16px;background:${PAPER};border-radius:8px;color:${INK};font:14px/1.5 ${FONT}">Richard will price this plan for you directly.</p>`;
   }
-  const message = !isQuote && row.message
-    ? `<p style="margin:16px 0 0;padding:14px 16px;background:${PAPER};border-radius:8px;color:${INK};font:14px/1.5 ${FONT};white-space:pre-wrap">${esc(row.message)}</p>` : '';
 
   const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>${esc(subject)}</title></head>
@@ -82,14 +77,13 @@ export function customerEmail(row, { origin, phone = SITE_FACTS.phone, tel = SIT
       <a href="${esc(origin)}/" style="text-decoration:none"><img src="${esc(origin)}/assets/brand/logo-horizontal-reversed-800.png" width="190" height="66" alt="Fence Wizards" style="display:block;border:0;width:190px;height:auto"></a>
     </td></tr>
     <tr><td style="padding:30px 28px 8px">
-      <h1 style="margin:0;font:800 italic 30px/1.1 ${DISPLAY};text-transform:uppercase;letter-spacing:.01em;color:${INK}">Thanks${first ? `, ${esc(first)}` : ''}! Your ${what} is <span style="color:${RED}">on its way to Richard.</span></h1>
+      <h1 style="margin:0;font:800 italic 30px/1.1 ${DISPLAY};text-transform:uppercase;letter-spacing:.01em;color:${INK}">Thanks! Your ${what} is <span style="color:${RED}">on its way to Richard.</span></h1>
       <p style="margin:14px 0 0;color:${INK};font:16px/1.55 ${FONT}">Richard will reach out within 24 hours${esc(how)}, usually much sooner. He takes every request himself.</p>
       <table role="presentation" cellpadding="0" cellspacing="0" style="margin:20px 0 0"><tr><td style="padding:10px 14px;border:1.5px dashed ${LINE};border-radius:8px;font:13px ${FONT};color:${MUTED}">Your reference: <strong style="color:${INK};font:700 15px ${FONT};letter-spacing:.04em">${esc(row.id)}</strong></td></tr></table>
     </td></tr>
     <tr><td style="padding:8px 28px 4px">
-      <h2 style="margin:20px 0 6px;font:800 italic 20px/1.2 ${DISPLAY};text-transform:uppercase;letter-spacing:.02em;color:${INK}">What you sent us</h2>
+      <h2 style="margin:20px 0 6px;font:800 italic 20px/1.2 ${DISPLAY};text-transform:uppercase;letter-spacing:.02em;color:${INK}">What you asked for</h2>
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${factRows}</table>
-      ${message}
       ${estimateBlock}
     </td></tr>
     <tr><td style="padding:24px 28px 30px">
@@ -114,13 +108,12 @@ export function customerEmail(row, { origin, phone = SITE_FACTS.phone, tel = SIT
 </body></html>`;
 
   const text = [
-    `Thanks${first ? `, ${first}` : ''}! Your ${what} is on its way to Richard.`,
+    `Thanks! Your ${what} is on its way to Richard.`,
     `Richard will reach out within 24 hours${how}, usually much sooner.`,
     `Your reference: ${row.id}`,
     '',
-    'WHAT YOU SENT US',
+    'WHAT YOU ASKED FOR',
     ...facts.map(([k, v]) => `${k}: ${v}`),
-    !isQuote && row.message ? `\n${row.message}` : '',
     isQuote && est && row.priced ? ['', 'YOUR PRELIMINARY ESTIMATE', ...(est.lines || []).map(l => `- ${l.label}: ${l.amount ? fmtMoney(l.amount) : 'Included'}`),
       `Preliminary total: ${fmtMoney(row.estimate_total)} (before tax; Richard confirms the final price)`].join('\n') : '',
     isQuote && est && !row.priced ? '\nRichard will price this plan for you directly.' : '',

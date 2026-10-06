@@ -58,6 +58,7 @@ a { color: inherit; }
 .pill.type-quote { background: #fff0f0; color: var(--red-600); }
 .pill.type-inquiry { background: #eef3ff; color: #2D4FA0; }
 .pill.src-ads { background: #fff6dc; color: #7a5300; }
+.pill.spam { background: #fff7e6; color: #6b4a00; border: 1px solid #f0d9a8; }
 .ib-src-detail { display: block; color: var(--muted); font-weight: 400; font-size: .8rem; }
 .ib-muted { color: var(--muted); font-weight: 400; }
 .st { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: .78rem; text-transform: capitalize; }

@@ -277,7 +277,7 @@ export function quoteCta({ eyebrow = 'Get a quote', heading = 'Tell us about *th
           <select name="duration">${DURATIONS.map(s => `<option>${esc(s)}</option>`).join('')}</select>
         </label>
         ${heardAboutField()}
-        <label class="hp" aria-hidden="true">Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="hp" aria-hidden="true">Leave empty<input type="text" name="fw_hp" tabindex="-1" autocomplete="off" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other"></label>
         ${turnstileWidget()}
         <button type="submit" class="btn btn-red btn-lg btn-block">Send it to Richard</button>
         <p class="form-status" role="status" aria-live="polite"></p>

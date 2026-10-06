@@ -34,4 +34,12 @@ export const geocoder = {
     const rows = await res.json();
     return rows.map(r => ({ label: r.display_name.replace(/, United States$/, ''), lat: Number(r.lat), lng: Number(r.lon) }));
   },
+  // Street address for a point ("Use my location"). Returns a label, or null if there's no street-level answer.
+  async reverse(lat, lng) {
+    const params = new URLSearchParams({ lat: String(lat), lon: String(lng), format: 'jsonv2', zoom: '18' });
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?${params}`, { headers: { Accept: 'application/json' } });
+    if (!res.ok) throw new Error(`Lookup failed (${res.status})`);
+    const r = await res.json();
+    return r?.address?.road && r.display_name ? r.display_name.replace(/, United States$/, '') : null;
+  },
 };

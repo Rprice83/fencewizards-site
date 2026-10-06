@@ -3,15 +3,19 @@
 //
 // Env: TURNSTILE_SECRET (Cloudflare secret, never committed). Without it the check is skipped
 // (the honeypot field still catches simple bots); TODO.md makes setting it a launch step.
-// If Cloudflare itself can't be reached we let the form through: a lost lead costs more than one spam message.
+// Returns { status } and server/spam-check.js decides what to do with it:
+//   passed | skipped (no secret) | no-token | failed (Cloudflare says not a person)
+//   | setup-error (Cloudflare refused our secret) | unreachable (Cloudflare didn't answer)
 
 export const ROBOT_MESSAGE = 'We couldn’t confirm you’re not a robot. Please try sending again.';
 
 const VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+const SETUP_ERRORS = ['missing-input-secret', 'invalid-input-secret'];
 
 export async function verifyTurnstile(token, env, ip, { fetchImpl = fetch } = {}) {
-  if (!env.TURNSTILE_SECRET) return { ok: true, skipped: true };
-  if (typeof token !== 'string' || !token || token.length > 2048) return { ok: false };
+  if (!env.TURNSTILE_SECRET) return { status: 'skipped' };
+  if (typeof token !== 'string' || !token) return { status: 'no-token' };
+  if (token.length > 2048) return { status: 'failed' };
 
   const body = new FormData();
   body.set('secret', env.TURNSTILE_SECRET);
@@ -19,9 +23,11 @@ export async function verifyTurnstile(token, env, ip, { fetchImpl = fetch } = {}
   if (ip) body.set('remoteip', ip);
 
   let res;
-  try { res = await fetchImpl(VERIFY_URL, { method: 'POST', body }); } catch { return { ok: true, unreachable: true }; }
-  if (!res.ok) return { ok: true, unreachable: true };
+  try { res = await fetchImpl(VERIFY_URL, { method: 'POST', body }); } catch { return { status: 'unreachable' }; }
+  if (!res.ok) return { status: 'unreachable' };
   const data = await res.json().catch(() => null);
-  if (!data) return { ok: true, unreachable: true };
-  return { ok: data.success === true, codes: data['error-codes'] || [] };
+  if (!data) return { status: 'unreachable' };
+  if (data.success === true) return { status: 'passed' };
+  const codes = data['error-codes'] || [];
+  return { status: codes.some(c => SETUP_ERRORS.includes(c)) ? 'setup-error' : 'failed', codes };
 }

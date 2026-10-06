@@ -5,6 +5,7 @@ import { sendWithResend, foundVia } from '../../server/email.js';
 import { verifyTurnstile, ROBOT_MESSAGE } from '../../server/turnstile.js';
 import { cleanSource, cleanHeard } from '../../public/js/source.js';
 import { sendConfirmation } from '../../server/confirm.js';
+import { spamVerdict, flagMail } from '../../server/spam-check.js';
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -32,10 +33,13 @@ export async function onRequestPost(context) {
     }
   } catch { return json({ error: 'Invalid request.' }, 400); }
 
-  if (fields.website) return json({ ok: true }); // honeypot
+  if (!fields || typeof fields !== 'object') return json({ error: 'Invalid request.' }, 400);
 
-  const human = await verifyTurnstile(fields['cf-turnstile-response'], env, request.headers.get('CF-Connecting-IP'));
-  if (!human.ok) return json({ error: ROBOT_MESSAGE, robot: true }, 400);
+  // Spam check: the hidden "leave this empty" field + Turnstile. Doubtful requests are saved and flagged, not dropped.
+  const { status: check } = await verifyTurnstile(fields['cf-turnstile-response'], env, request.headers.get('CF-Connecting-IP'));
+  const verdict = spamVerdict({ honeypot: fields.fw_hp, check, blocked: fields.turnstileBlocked === 'true' });
+  if (verdict.reject) return json({ error: ROBOT_MESSAGE, robot: true }, 400);
+  if (!verdict.save) return json({ ok: true, track: false }); // a bot: pretend success, store nothing
 
   const kind = fields.kind === 'contact' ? 'contact' : 'quick';
   const d = {
@@ -64,14 +68,14 @@ export async function onRequestPost(context) {
   const id = newQuoteId().replace('FW-', 'FW-M-');
   const fileNames = files.map(f => f.name);
 
-  await env.DB.prepare(`INSERT INTO inquiries (id, created_at, kind, page, name, phone, email, location, fence_style, feet, duration, message, file_names, user_agent, source_json, heard_about)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).bind(
+  await env.DB.prepare(`INSERT INTO inquiries (id, created_at, kind, page, name, phone, email, location, fence_style, feet, duration, message, file_names, user_agent, source_json, heard_about, spam_check)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).bind(
     id, new Date().toISOString(), kind, d.page || null, d.name, d.phone || null, d.email || null, d.location || null,
     d.fenceStyle || null, d.feet, d.duration || null, d.message || null, fileNames.length ? JSON.stringify(fileNames) : null,
-    (request.headers.get('User-Agent') || '').slice(0, 300), source ? JSON.stringify(source) : null, d.heardAbout,
+    (request.headers.get('User-Agent') || '').slice(0, 300), source ? JSON.stringify(source) : null, d.heardAbout, verdict.flag,
   ).run();
 
-  const mail = inquiryEmail(id, kind, d, fileNames, env.SITE_URL);
+  const mail = flagMail(inquiryEmail(id, kind, d, fileNames, env.SITE_URL), verdict.flag);
   const attachments = await Promise.all(files.map(async f => ({ filename: f.name, content: toBase64(await f.arrayBuffer()) })));
 
   const notify = async () => {
@@ -87,8 +91,10 @@ export async function onRequestPost(context) {
     }
   };
   context.waitUntil(notify());
-  context.waitUntil(sendConfirmation(env, 'inquiries', id, new URL(request.url).origin)); // customer's "we have it" email
-  return json({ ok: true, id });
+  context.waitUntil(verdict.confirm
+    ? sendConfirmation(env, 'inquiries', id, new URL(request.url).origin) // customer's "we have it" email
+    : env.DB.prepare(`UPDATE inquiries SET confirm_status='not sent (spam check)' WHERE id=?`).bind(id).run());
+  return json({ ok: true, id, track: verdict.track });
 }
 
 export const onRequest = () => json({ error: 'Method not allowed.' }, 405);

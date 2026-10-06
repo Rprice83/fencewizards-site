@@ -9,6 +9,13 @@
       "port": 8788
     },
     {
+      "name": "fencewizards-site-alt",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
+      "runtimeArgs": ["site/node_modules/wrangler/bin/wrangler.js", "pages", "dev", "--cwd", "site", "--port", "8790", "--ip", "127.0.0.1", "--inspector-port", "9231"],
+      "env": { "WRANGLER_SEND_METRICS": "false", "CI": "true" },
+      "port": 8790
+    },
+    {
       "name": "chatgpt-version-2",
       "runtimeExecutable": "C:\\Users\\gsvpr\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
       "runtimeArgs": ["-m", "http.server", "5174", "--directory", "version-2/dist"],

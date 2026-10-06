@@ -144,17 +144,19 @@
     const s = document.createElement('script');
     s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
     s.async = true; s.defer = true;
+    s.onerror = () => { window.fwTurnstileBlocked = true; }; // e.g. a company network blocks it: the server lets the form through, flagged
     document.head.appendChild(s);
   }
-  // The token can take a moment after the page loads; wait briefly rather than fail the send
-  const turnstileToken = async form => {
-    if (!form.querySelector('.cf-turnstile')) return '';
-    for (let i = 0; i < 40; i++) {
+  // The token can take a moment after the page loads; wait briefly rather than fail the send.
+  // → { token, blocked }: blocked = the spam-check script never loaded, so no token can ever come.
+  window.fwSpamCheck = async form => {
+    if (!form.querySelector('.cf-turnstile')) return { token: '', blocked: false };
+    for (let i = 0; i < 40 && !window.fwTurnstileBlocked; i++) {
       const v = form.querySelector('[name="cf-turnstile-response"]')?.value;
-      if (v) return v;
+      if (v) return { token: v, blocked: false };
       await new Promise(r => setTimeout(r, 150));
     }
-    return '';
+    return { token: '', blocked: !!window.fwTurnstileBlocked || !window.turnstile };
   };
   const resetTurnstile = form => { try { const w = form.querySelector('.cf-turnstile'); if (w && window.turnstile) window.turnstile.reset(w); } catch { /* ignore */ } };
 
@@ -192,11 +194,12 @@
       const label = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Sending…';
-      const token = await turnstileToken(form);
+      const { token, blocked } = await window.fwSpamCheck(form);
       const fd = new FormData(form);
       fd.set('kind', form.dataset.kind || 'quick');
       fd.set('page', location.pathname);
       if (token) fd.set('cf-turnstile-response', token);
+      if (blocked) fd.set('turnstileBlocked', 'true');
       fd.set('source', JSON.stringify(readSource() || {}));
       try {
         const hasFiles = fileInput && fileInput.files.length;
@@ -205,7 +208,7 @@
           : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries([...fd.entries()].filter(([, v]) => typeof v === 'string'))) });
         const data = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(data.error || 'Something went wrong.');
-        window.fwTrack.lead(form.dataset.kind === 'contact' ? 'contact' : 'quick', data.id);
+        if (data.track !== false) window.fwTrack.lead(form.dataset.kind === 'contact' ? 'contact' : 'quick', data.id);
         form.classList.add('sent');
         status.className = 'form-status ok';
         const first = (fd.get('name') || '').toString().trim().split(' ')[0];

@@ -175,7 +175,7 @@
   if (q && id && q.id !== id) q = null;
 
   // Count the estimator lead once (this page can be reloaded or revisited)
-  if (q && id) {
+  if (q && id && q.track !== false) {
     try {
       if (!sessionStorage.getItem(`fw-counted-${id}`)) { window.fwTrack?.lead('estimate', id); sessionStorage.setItem(`fw-counted-${id}`, '1'); }
     } catch {}

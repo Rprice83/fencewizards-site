@@ -6,6 +6,7 @@ import { verifyTurnstile, ROBOT_MESSAGE } from '../../server/turnstile.js';
 import { cleanSource, cleanHeard } from '../../public/js/source.js';
 import { distanceFromIndy } from '../../server/distance.js';
 import { sendConfirmation } from '../../server/confirm.js';
+import { spamVerdict, flagMail } from '../../server/spam-check.js';
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
@@ -18,11 +19,11 @@ export async function onRequestPost(context) {
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Invalid request.' }, 400); }
 
-  // Honeypot: bots fill the hidden "website" field. Pretend success, store nothing.
-  if (body?.contact?.website) return json({ ok: true, id: newQuoteId() });
-
-  const human = await verifyTurnstile(body?.turnstile, env, request.headers.get('CF-Connecting-IP'));
-  if (!human.ok) return json({ error: ROBOT_MESSAGE, robot: true }, 400);
+  // Spam check: the hidden "leave this empty" field + Turnstile. Doubtful requests are saved and flagged, not dropped.
+  const { status: check } = await verifyTurnstile(body?.turnstile, env, request.headers.get('CF-Connecting-IP'));
+  const verdict = spamVerdict({ honeypot: body?.contact?.hp, check, blocked: body?.turnstileBlocked === true });
+  if (verdict.reject) return json({ error: ROBOT_MESSAGE, robot: true }, 400);
+  if (!verdict.save) return json({ ok: true, id: newQuoteId(), track: false }); // a bot: pretend success, store nothing
 
   let q;
   try { q = buildQuote(body); } catch (err) {
@@ -47,19 +48,19 @@ export async function onRequestPost(context) {
       id, created_at, name, company, email, phone, contact_pref, address, customer_notes,
       project_type, fence_type, months, start_date, feet, site_lat, site_lng, distance_miles,
       priced, estimate_total, price_sheet_version, plan_json, options_json, estimate_json, user_agent,
-      source_json, heard_about, distance_method
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+      source_json, heard_about, distance_method, spam_check
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
     .bind(
       id, now, c.name, c.company || null, c.email, c.phone, c.contactPref, c.address, c.notes || null,
       o.projectType, o.fenceType, o.months, o.startDate, q.feet, q.site?.lat ?? null, q.site?.lng ?? null, q.distanceMiles,
       est.priced ? 1 : 0, est.priced ? est.total : null, PRICE_SHEET_VERSION,
       JSON.stringify(q.plan), JSON.stringify({ ...o, gates: q.gates }), JSON.stringify(est),
       (request.headers.get('User-Agent') || '').slice(0, 300),
-      q.source ? JSON.stringify(q.source) : null, q.heardAbout, q.distanceMethod,
+      q.source ? JSON.stringify(q.source) : null, q.heardAbout, q.distanceMethod, verdict.flag,
     ).run();
 
   // Email Richard without making the customer wait on it
-  const mail = quoteEmail(id, q, env);
+  const mail = flagMail(quoteEmail(id, q, env), verdict.flag);
   const notify = async () => {
     if (!env.RESEND_API_KEY) {
       await env.DB.prepare(`UPDATE quotes SET email_status='skipped', email_error=?, email_html=? WHERE id=?`)
@@ -75,10 +76,12 @@ export async function onRequestPost(context) {
     }
   };
   context.waitUntil(notify());
-  context.waitUntil(sendConfirmation(env, 'quotes', id, new URL(request.url).origin)); // customer's "we have it" email
+  context.waitUntil(verdict.confirm
+    ? sendConfirmation(env, 'quotes', id, new URL(request.url).origin) // customer's "we have it" email
+    : env.DB.prepare(`UPDATE quotes SET confirm_status='not sent (spam check)' WHERE id=?`).bind(id).run());
 
   return json({
-    ok: true, id,
+    ok: true, id, track: verdict.track,
     estimate: { priced: est.priced, total: est.priced ? est.total : null, lines: est.lines.map(({ label, amount }) => ({ label, amount })) },
   });
 }
