@@ -50,18 +50,20 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // Mobile drawer
-  toggle.addEventListener('click', () => {
-    const open = header.classList.toggle('nav-open');
-    toggle.setAttribute('aria-expanded', open);
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    header.classList.remove('nav-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }));
+  // Mobile drawer (ad landing pages have no menu)
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const open = header.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      header.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }));
+  }
 
   // Dropdown triggers (click/tap + keyboard; hover handled in CSS on desktop)
   document.querySelectorAll('.has-menu').forEach(item => {

@@ -36,8 +36,9 @@ function menu(label, items, path, align) {
         </li>`;
 }
 
-export function header({ path, solid }) {
-  return `<header class="site-header${solid ? ' scrolled' : ''}"${solid ? ' data-solid' : ''} id="top">
+// landing: Google Ads landing pages get no menu (logo, phone and "Get a quote" to the form on the page)
+export function header({ path, solid, landing = false }) {
+  return `<header class="site-header${solid ? ' scrolled' : ''}${landing ? ' lp-header' : ''}"${solid ? ' data-solid' : ''} id="top">
   <div class="utility-bar">
     <div class="container utility-inner">
       <p class="utility-note"><span class="dot" aria-hidden="true"></span>Serving Indianapolis + 80 miles<span class="hours"> &middot; Open 7 days, 7:30am&ndash;9pm</span></p>
@@ -55,26 +56,41 @@ export function header({ path, solid }) {
         <img class="brand-dark" src="/assets/brand/logo-horizontal-800.png" alt="" width="800" height="277" aria-hidden="true">
       </a>
 
-      <ul class="nav-links" id="nav-links">
+      ${landing ? '' : `<ul class="nav-links" id="nav-links">
         ${menu('What We Fence', USES, path)}
         ${menu('Fence Types', TYPES, path)}
         <li><a href="/#pricing">Pricing</a></li>
         <li${isActive(path, ['/service-area/']) ? ' class="active"' : ''}><a href="/service-area/"${cur(path, '/service-area/')}>Service Area</a></li>
         ${menu('Company', COMPANY, path, 'right')}
         <li class="nav-mobile-cta"><a href="tel:${SITE.tel}" class="btn btn-outline">Call ${SITE.phone}</a><a href="/estimate/" class="btn btn-red">Get a Free Quote</a></li>
-      </ul>
+      </ul>`}
 
       <div class="nav-actions">
         <a href="tel:${SITE.tel}" class="nav-phone">
           ${phoneIcon}
           <span><small>Talk to Richard</small>${SITE.phone}</span>
         </a>
-        <a href="/estimate/" class="btn btn-red btn-sm">Get a Quote</a>
-        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+        <a href="${landing ? '#quote' : '/estimate/'}" class="btn btn-red btn-sm">Get a Quote</a>
+        ${landing ? '' : '<button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>'}
       </div>
     </div>
   </nav>
 </header>`;
+}
+
+// Short footer for ad landing pages: still shows who we are, where, and the policies (Google rewards transparency)
+export function landingFooter() {
+  return `<footer class="site-footer lp-footer">
+  <div class="container lp-footer-inner">
+    <img src="/assets/brand/logo-horizontal-reversed-800.png" alt="Fence Wizards — Rental Fence Solutions" width="200" height="69" loading="lazy">
+    <p>Family-run temporary fence rental &middot; ${SITE.street}, ${SITE.city}, ${SITE.region} ${SITE.zip}<br>
+      <a href="tel:${SITE.tel}">${SITE.phone}</a> &middot; <a href="mailto:${SITE.email}">${SITE.email}</a> &middot; 7 days, 7:30am&ndash;9pm</p>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; ${new Date().getFullYear()} Fence Wizards. <span class="site-credit"><span class="dot">&middot; </span>Website by ${CREDIT.url ? `<a href="${esc(CREDIT.url)}">${esc(CREDIT.name)}</a>` : esc(CREDIT.name)}</span></p>
+    <p><a href="/">fencewizards.com</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy policy</a></p>
+  </div>
+</footer>`;
 }
 
 export function footer() {
@@ -166,13 +182,13 @@ export function layout(page) {
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-${header({ path: page.path, solid: page.solidHeader })}
+${header({ path: page.path, solid: page.solidHeader, landing: page.landing })}
 
 <main id="main"${page.mainClass ? ` class="${page.mainClass}"` : ''}>
 ${page.main}
 </main>
 
-${page.hideFooter ? '' : footer()}
+${page.hideFooter ? '' : page.landing ? landingFooter() : footer()}
 
 <script src="/js/main.js"></script>
 ${(page.scripts || []).join('\n')}
