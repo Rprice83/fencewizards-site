@@ -17,6 +17,7 @@
 - [x] Cloudflare Turnstile spam check on all three forms (estimator, quick quote, contact), verified on the server (`server/turnstile.js`), plus the honeypot. Built 2026-10-05; demo uses Cloudflare's public test keys.
 - [ ] **At launch:** create a Turnstile widget in the user's Cloudflare account (hostnames www.fencewizards.com + fencewizards.pages.dev), put its site key in `INTEGRATIONS.turnstileSiteKey` (`site/build/lib/site.mjs`) and its secret as the `TURNSTILE_SECRET` Pages secret. Without the secret the check is skipped.
 - [ ] Send a real test quote to richard@fencewizards.com once Resend is set up, and confirm it lands in the inbox, not spam.
+- [ ] **Footer credit** "Website by Limestone Web Co" links to https://limestonewebco.com (`CREDIT` in `site/build/lib/site.mjs`). On 2026-10-05 that domain didn't load yet: make sure it's live before launch (or set `url: ''` for plain text). Richard should OK the credit.
 - [ ] Final logo SVGs from the designer (current logos are cropped from the PDF proof).
 - [ ] License the Shuttleblock Narrow Bold Italic font (Barlow Condensed is the stand-in).
 

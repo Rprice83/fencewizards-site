@@ -813,4 +813,6 @@ a.type-card { text-decoration: none; color: inherit; }
 .glance-card .aside-phone { color: var(--ink); }
 .recent-more { margin: 24px 0 0; text-align: right; }
 .recent-more a { color: var(--red); font-weight: 700; text-decoration: none; }
-.draft-banner { position: sticky; top: 0; z-index: 200; padding: 10px; background: #E3A008; color: #231F20; text-align: center; font-weight: 800; letter-spacing: .04em; }
+.draft-banner { position: sticky; top: 0; z-index: 200; padding: 10px; background: #E3A008; color: #231F20; text-align: center; font-weight: 800; letter-spacing: .04em; }.site-credit { opacity: .7; white-space: nowrap; }
+.site-credit a { color: inherit; }
+@media (max-width: 720px) { .site-credit { display: block; margin-top: 2px; } .site-credit .dot { display: none; } }

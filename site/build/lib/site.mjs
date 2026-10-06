@@ -16,6 +16,9 @@ export const SITE = {
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Fence+Wizards+Rent+A+Fence+Greenwood+IN',
 };
 
+// Small "Website by …" credit at the bottom of the footer. Leave url empty for plain text.
+export const CREDIT = { name: 'Limestone Web Co', url: 'https://limestonewebco.com' };
+
 // Third-party services wired into the pages. Public IDs only (secrets live in Cloudflare, never here).
 export const INTEGRATIONS = {
   // Cloudflare Turnstile (spam check on every form). This is Cloudflare's public TEST key: always passes, invisible.

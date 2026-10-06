@@ -1,6 +1,6 @@
 // Page shell: <head>, header/nav, footer, structured data.
 import { esc, plain } from './html.mjs';
-import { SITE, USES, TYPES, COMPANY, CITIES, INTEGRATIONS, cityHref } from './site.mjs';
+import { SITE, USES, TYPES, COMPANY, CITIES, INTEGRATIONS, CREDIT, cityHref } from './site.mjs';
 
 // Google tag for Google Ads + GA4, or nothing when no IDs are set. main.js (window.fwTrack) sends the events
 // it lists in window.FW_GTAG: form leads and phone taps.
@@ -109,7 +109,7 @@ export function footer() {
     </div>
   </div>
   <div class="container footer-bottom">
-    <p>&copy; ${new Date().getFullYear()} Fence Wizards. All rights reserved.</p>
+    <p>&copy; ${new Date().getFullYear()} Fence Wizards. All rights reserved. <span class="site-credit"><span class="dot">&middot; </span>Website by ${CREDIT.url ? `<a href="${esc(CREDIT.url)}">${esc(CREDIT.name)}</a>` : esc(CREDIT.name)}</span></p>
     <p>Umbrella, general liability, commercial auto &amp; workers&rsquo; comp insured. &middot; <a href="/privacy/">Privacy policy</a></p>
   </div>
 </footer>`;
