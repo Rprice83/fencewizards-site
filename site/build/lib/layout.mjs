@@ -2,6 +2,15 @@
 import { esc, plain } from './html.mjs';
 import { SITE, USES, TYPES, COMPANY, CITIES, INTEGRATIONS, CREDIT, cityHref } from './site.mjs';
 
+// Microsoft Advertising UET tag, or nothing when no ID is set. main.js (window.fwTrack) sends the
+// "website_lead" and "phone_tap" events to it when window.FW_UET is true.
+export function microsoftTag(int = INTEGRATIONS) {
+  const id = int.microsoftUetId || '';
+  if (!id) return '';
+  if (!/^\d+$/.test(id)) throw new Error(`INTEGRATIONS.microsoftUetId looks wrong: ${id}`);
+  return `<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:${JSON.stringify(id)},enableAutoSpaTracking:true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","https://bat.bing.com/bat.js","uetq");window.FW_UET=true;</script>`;
+}
+
 // Google tag for Google Ads + GA4, or nothing when no IDs are set. main.js (window.fwTrack) sends the events
 // it lists in window.FW_GTAG: form leads and phone taps.
 export function googleTag(int = INTEGRATIONS) {
@@ -169,6 +178,7 @@ export function layout(page) {
   <meta property="og:image" content="${SITE.url}${page.ogImageUrl || `/assets/img/${page.ogImage || 'skyline-panels-indianapolis'}-1600.jpg`}">
   <link rel="icon" href="/assets/brand/mark-fw-800.png">
   ${googleTag()}
+  ${microsoftTag()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Barlow Condensed stands in for Shuttleblock Narrow Bold Italic until the brand font is licensed -->

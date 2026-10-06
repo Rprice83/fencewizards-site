@@ -105,13 +105,14 @@ export async function setWonValue(db, id, value, actor) {
   return { changed: true };
 }
 
-// Won jobs that came from a Google ad click, for the offline-conversion upload. Newest first.
-export async function wonAdJobs(db, { since }) {
+// Won jobs that came from an ad click (clickKey: 'gclid' = Google Ads, 'msclkid' = Microsoft Ads), for the
+// offline-conversion uploads. Newest first.
+export async function wonAdJobs(db, { since, clickKey = 'gclid' }) {
   const sql = `SELECT id, name, won_at, won_value, source_json FROM quotes WHERE status = 'won' AND won_at >= ? AND source_json IS NOT NULL
     UNION ALL SELECT id, name, won_at, won_value, source_json FROM inquiries WHERE status = 'won' AND won_at >= ? AND source_json IS NOT NULL
     ORDER BY won_at DESC`;
   const { results } = await db.prepare(sql).bind(since, since).all();
-  return results.map(r => ({ ...r, source: parseJson(r.source_json) })).filter(r => r.source?.gclid);
+  return results.map(r => ({ ...r, source: parseJson(r.source_json) })).filter(r => r.source?.[clickKey]);
 }
 
 export async function addNote(db, id, body, actor) {

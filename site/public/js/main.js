@@ -24,13 +24,17 @@
   // Google Ads / Analytics events. Does nothing unless the Google tag is on (INTEGRATIONS in build/lib/site.mjs).
   // The request id goes along as transaction_id so a lead is never counted twice.
   const gtagOn = () => window.FW_GTAG && typeof window.gtag === 'function';
+  // Microsoft Advertising (UET): conversion goals in Microsoft Ads match these custom event actions
+  const uet = (action, params) => { if (window.FW_UET) (window.uetq = window.uetq || []).push('event', action, params); };
   window.fwTrack = {
     lead(formType, id) {
+      uet('website_lead', { event_category: 'lead', event_label: formType });
       if (!gtagOn()) return;
       if (FW_GTAG.lead) gtag('event', 'conversion', { send_to: FW_GTAG.lead, transaction_id: id || '' });
       if (FW_GTAG.ga4) gtag('event', 'generate_lead', { form_type: formType });
     },
     phoneTap() {
+      uet('phone_tap', { event_category: 'contact', event_label: location.pathname });
       if (!gtagOn()) return;
       if (FW_GTAG.phone) gtag('event', 'conversion', { send_to: FW_GTAG.phone });
       if (FW_GTAG.ga4) gtag('event', 'phone_tap', { page_path: location.pathname });

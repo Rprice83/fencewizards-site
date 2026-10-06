@@ -140,7 +140,7 @@ function renderDetail(it) {
 
   const won = it.status === 'won' ? `<div class="ib-card ib-won"><h2>Won job</h2>
     <p class="ib-won-amount"><strong>${it.won_value != null ? fmtMoney(it.won_value) : 'No amount yet'}</strong> <button type="button" id="ib-won-edit">${it.won_value != null ? 'Change' : 'Add amount'}</button></p>
-    <p class="ib-muted">${src.kind === 'ads' && s.gclid ? 'From a Google ad: this job and its amount go in the next “Download for Google Ads” file, so Google learns which searches bring paying work.' : s.msclkid ? 'From a Microsoft ad. Its click code is saved, for sending won jobs back to Microsoft Ads once that’s set up.' : 'Not from a Google ad click, so it won’t be in the Google Ads file.'}</p>
+    <p class="ib-muted">${src.kind === 'ads' && s.gclid ? 'From a Google ad: this job and its amount go in the next “Download for Google Ads” file, so Google learns which searches bring paying work.' : s.msclkid ? 'From a Microsoft (Bing) ad: this job and its amount go in the next “Download for Microsoft Ads” file.' : 'Not from a Google ad click, so it won’t be in the Google Ads file.'}</p>
   </div>` : '';
 
   const emailWarn = it.email_status === 'failed'
@@ -307,7 +307,7 @@ async function addNote(e, it) {
 document.querySelectorAll('#ib-tabs button').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('#ib-tabs button').forEach(x => x.setAttribute('aria-selected', String(x === b)));
   state.status = b.dataset.status;
-  $('#ib-export').hidden = state.status !== 'won';
+  $('#ib-export').hidden = $('#ib-export-ms').hidden = state.status !== 'won';
   loadList();
 }));
 let qTimer;
@@ -315,21 +315,23 @@ $('#ib-q').addEventListener('input', e => { clearTimeout(qTimer); qTimer = setTi
 $('#ib-type').addEventListener('change', e => { state.type = e.target.value; loadList(); });
 $('#ib-more').addEventListener('click', () => loadList({ append: true }));
 
-// Won jobs from Google ad clicks (last 90 days) as Google Ads' upload file
-$('#ib-export').addEventListener('click', async () => {
+// Won jobs from ad clicks (last 90 days) as each ad platform's upload file
+async function downloadWonJobs(platform, label) {
   try {
-    const res = await fetch('/api/staff/export/google-ads?days=90', { credentials: 'same-origin' });
+    const res = await fetch(`/api/staff/export/${platform}?days=90`, { credentials: 'same-origin' });
     if (res.status === 403) { toast('Your sign-in expired. Reload the page to sign in again.', true); return; }
     if (!res.ok) throw new Error(`Error ${res.status}`);
     const n = Number(res.headers.get('X-Jobs')), missing = Number(res.headers.get('X-Missing-Value'));
-    if (!n) { toast('No won jobs from Google ads in the last 90 days yet.'); return; }
+    if (!n) { toast(`No won jobs from ${label} ads in the last 90 days yet.`); return; }
     const a = document.createElement('a');
     a.href = URL.createObjectURL(await res.blob());
-    a.download = (res.headers.get('Content-Disposition') || '').match(/filename="([^"]+)"/)?.[1] || 'won-jobs-for-google-ads.csv';
+    a.download = (res.headers.get('Content-Disposition') || '').match(/filename="([^"]+)"/)?.[1] || `won-jobs-for-${platform}.csv`;
     a.click();
-    toast(`${n} won job${n > 1 ? 's' : ''} from Google ads in the file${missing ? ` (${missing} without an amount)` : ''}.`);
+    toast(`${n} won job${n > 1 ? 's' : ''} from ${label} ads in the file${missing ? ` (${missing} without an amount)` : ''}.`);
   } catch (e) { toast(e.message, true); }
-});
+}
+$('#ib-export').addEventListener('click', () => downloadWonJobs('google-ads', 'Google'));
+$('#ib-export-ms').addEventListener('click', () => downloadWonJobs('microsoft-ads', 'Microsoft'));
 window.addEventListener('hashchange', () => { const id = location.hash.slice(1); if (id) openItem(id); else history_back(); });
 document.addEventListener('visibilitychange', () => { if (!document.hidden) loadList(); }); // fresh list when Richard comes back to the tab
 setInterval(() => { if (!document.hidden) loadList(); }, 60000);

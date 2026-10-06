@@ -33,6 +33,10 @@ export const INTEGRATIONS = {
   adsPhoneTapLabel: '',    // label of the "Phone tap" conversion (taps on the phone number)
   adsWebsiteCallLabel: '', // label of the "Calls from website" conversion: Google shows ad visitors a forwarding
                            // number in place of the real one, so calls of 60s+ count (they still ring Richard)
+
+  // Microsoft Advertising UET tag ID (digits only, from Microsoft Ads → Conversions → UET tag). Empty = no Microsoft code.
+  // TODO.md: fill in from Richard's own Microsoft Advertising account when the Microsoft test starts.
+  microsoftUetId: '',
 };
 
 export const USES = [
