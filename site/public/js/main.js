@@ -97,20 +97,42 @@
 
   // Gentle reveal as sections scroll into view
   const targets = document.querySelectorAll('.section-head, .use-card, .type-card, .steps li, .compare, .pricing-copy, .trust-photo, .trust-list li, .area-copy, .area-map, .quote-form, .quote-copy, .feature, .prose-figure, .intro-figure, .fact-list li');
+  // Only things still below the screen animate. Anything already on screen or above it (reload or Back mid-page,
+  // a #link) shows at once, and a scroll check backs up the observer, so nothing can stay invisible.
   if ('IntersectionObserver' in window && !reduce) {
-    const io = new IntersectionObserver(entries => entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      const el = en.target;
-      el.classList.add('in');
+    const pending = new Set();
+    const show = (el, animate = true) => {
+      if (!pending.delete(el)) return;
       io.unobserve(el);
+      if (!animate) { el.classList.remove('reveal'); el.style.transitionDelay = ''; return; }
+      el.classList.add('in');
       // Hand control back to hover effects once the reveal finishes
       setTimeout(() => { el.classList.remove('reveal', 'in'); el.style.transitionDelay = ''; }, 1200);
-    }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    };
+    const io = new IntersectionObserver(entries => entries.forEach(en => { if (en.isIntersecting) show(en.target); }),
+      { threshold: 0, rootMargin: '0px 0px -40px 0px' });
     targets.forEach((el, i) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) return; // already in view or scrolled past: no fade
       el.classList.add('reveal');
       el.style.transitionDelay = `${(i % 4) * 70}ms`;
+      pending.add(el);
       io.observe(el);
     });
+    // Safety net: anything that has reached the screen (or the page bottom) is shown even if the observer missed it
+    let ticking = false;
+    const sweep = () => {
+      ticking = false;
+      if (!pending.size) return;
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+      pending.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (atBottom || top < window.innerHeight) show(el, top > -50);
+      });
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(sweep); } };
+    ['scroll', 'resize'].forEach(t => window.addEventListener(t, onScroll, { passive: true }));
+    window.addEventListener('load', sweep);
+    window.addEventListener('pageshow', sweep); // returning with the Back button
   }
 
   // Cloudflare Turnstile spam check: load its script only on pages with a form
