@@ -14,7 +14,7 @@ export default {
     landingHero({
       eyebrow: 'Temporary fence rental',
       title: 'Temporary fence rental *in Indianapolis.*',
-      lede: 'Panels, post-driven chain link, windscreen and barricades for construction sites, events and emergency response. One flat price, agreed before the first panel goes up, and it covers taking it back down.',
+      lede: 'Rent a fence for a construction site, an event or an emergency: portable fence panels, post-driven chain link, windscreen and barricades. One flat price, agreed before the first panel goes up, and it covers taking it back down.',
       image: 'truck-trailer-load',
       imageAlt: 'Fence Wizards pickup truck and trailer loaded with fence panels in a gravel lot',
       trust: ['Fence on site in 24 to 48 hours', 'One flat price, removal included', 'Serving Indianapolis + 80 miles'],
@@ -37,8 +37,8 @@ export default {
     }),
 
     typeCards({
-      heading: 'Four ways to *fence the job.*',
-      intro: 'Not sure which one? Describe the site and Richard will tell you which is the right call.',
+      heading: 'Four kinds of temporary fencing *for the job.*',
+      intro: 'Not sure which one? Describe the site and Richard will tell you which is the right call. Temp fence panels on stands are the most portable.',
       tone: 'steel',
     }),
 

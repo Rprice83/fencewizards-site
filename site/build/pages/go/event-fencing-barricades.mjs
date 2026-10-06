@@ -7,7 +7,7 @@ import { landingHero } from '../../lib/landing.mjs';
 export default {
   path: '/go/event-fencing-barricades/',
   title: 'Event Fencing and Barricade Rental in Indianapolis | Fence Wizards',
-  description: 'Event fencing and crowd-control barricade rental in Indianapolis. Set on your run of show, struck when the event ends. Flat fee, removal included.',
+  description: 'Outdoor event fencing and crowd control barricade rental in Indianapolis, set on your run of show and struck when the event ends. Flat fee, removal included.',
   ogImage: 'event-lawn-tent',
   noindex: true,
   landing: true,
@@ -15,7 +15,7 @@ export default {
     landingHero({
       eyebrow: 'Event fencing & barricades',
       title: 'Event fencing and barricade rental *in Indianapolis.*',
-      lede: 'Panel fence, crowd-control barricades and windscreen, set on your run of show rather than ours, and pulled the hour the last guest leaves.',
+      lede: 'Outdoor event fencing, crowd control barricades and windscreen for festivals, races, concerts and markets. Set on your run of show rather than ours, and pulled the hour the last guest leaves.',
       image: 'event-lawn-tent',
       imageAlt: 'Panel fence on stands across a lawn with event tents in the background',
       trust: ['Overnight and early-morning installs', 'One flat price, removal included', 'Fully insured, certificates on request'],
@@ -24,7 +24,7 @@ export default {
     quoteCta({
       eyebrow: 'Get a price',
       heading: 'Tell us about *the event.*',
-      text: 'Load-in, doors and load-out, the footprint, and roughly how much line you need. Richard prices it himself.',
+      text: 'For an event fencing rental quote: load-in, doors and load-out, the footprint, and roughly how much line you need. Richard prices it himself.',
     }),
 
     features({
@@ -33,8 +33,8 @@ export default {
       cols: 2,
       tone: 'white',
       items: [
-        { title: 'Set on your window', text: 'We set panel runs, windscreen and barricades to the times on your production schedule, including overnight and early morning.' },
-        { title: 'Barricades on their own', text: 'Interlocking steel for queue lines, stage fronts, bar areas and vehicle control. Plenty of events take barricades without any panel fencing at all.' },
+        { title: 'Temporary fencing for events, on your window', text: 'We set panel runs, windscreen and barricades to the times on your production schedule, including overnight and early morning.' },
+        { title: 'Crowd control barricade rental', text: 'Interlocking steel crowd control barricades for queue lines, stage fronts, bar areas and vehicle control. Plenty of events take barricades without any panel fencing at all.' },
         { title: 'Windscreen that works as signage', text: 'Privacy and dust control across a panel run. Custom printed, it turns the perimeter into a banner the length of the site, and it\'s yours to keep.' },
         { title: 'Struck when it ends', text: 'Not the following Monday. The removal was already inside the price, agreed before the first panel goes up.' },
       ],
@@ -63,6 +63,7 @@ export default {
       heading: 'Event fencing *questions.*',
       tone: 'steel',
       items: [
+        { q: 'Who rents event fencing from you?', a: 'Festival organizers, race directors, concert promoters, farmers markets, county fairs, corporate event planners, breweries running outdoor events, and venues that host events on their own grounds.' },
         { q: 'Can you set fencing overnight or early in the morning?', a: 'Yes. Event schedules are the reason this business is built the way it is. Tell us the load-in window and we work to it, including overnight and before dawn.' },
         { q: 'Can I rent barricades without any fence?', a: 'Yes, and plenty of events do. Barricades are their own line. Tell us the linear footage of the queue line or the stage front and we can price it quickly.' },
         { q: 'Can you print our sponsors on the windscreen?', a: 'Yes. Custom printed windscreen fits across a panel run and turns the perimeter into a banner the length of the site. Windscreen is sold rather than rented, so it\'s yours afterwards.' },

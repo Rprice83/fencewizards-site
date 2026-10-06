@@ -12,9 +12,9 @@ export default {
   landing: true,
   main: () => [
     landingHero({
-      eyebrow: 'Construction site fencing',
+      eyebrow: 'Construction & job site fencing',
       title: 'Construction fence rental *in Indianapolis.*',
-      lede: 'Panels and stands, post-driven chain link, gates and windscreen, usually set within 24 to 48 hours of the call. The price is agreed before the first panel goes in, and it covers removal at the end.',
+      lede: 'Temporary fencing for construction sites: temp fence panels and stands, post-driven chain link, gates and windscreen, usually set within 24 to 48 hours of the call. The price is agreed before the first panel goes in, and it covers removal at the end.',
       image: 'stacked-panels-site',
       imageAlt: 'Temporary fence panels on stands around a construction staging area',
       trust: ['One flat price, removal included', 'Same-day moves for general contractors', 'Fully insured, certificates on request'],
@@ -33,7 +33,7 @@ export default {
       tone: 'white',
       items: [
         { title: 'A number you can put in a bid', text: 'We quote verbally first, on the call, and send the written proposal after. The price is agreed before the first panel goes in.' },
-        { title: 'Moves when your site does', text: 'When a gate has to move or a run has to be added, we come back out the same day. Fencing is in somebody\'s way at least once on every project.' },
+        { title: 'Job site fencing that moves with the site', text: 'When a gate has to move or a run has to be added, we come back out the same day. Fencing is in somebody\'s way at least once on every project.' },
         { title: 'No rent clock', text: 'The rental is a flat fee agreed before the install, and it doesn\'t keep running if your project runs long. There is no charge to collect the fence at the end.' },
         { title: 'Paperwork in order', text: 'Net 30 is normal for clients we have worked with. Certificates of insurance for your vendor file: umbrella, general liability, commercial auto and workers\' compensation.' },
       ],

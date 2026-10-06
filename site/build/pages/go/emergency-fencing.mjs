@@ -13,7 +13,7 @@ export default {
   landing: true,
   main: () => [
     landingHero({
-      eyebrow: 'Emergency & restoration fencing',
+      eyebrow: 'Emergency temporary fencing',
       title: 'Emergency fence rental *across central Indiana.*',
       lede: 'After a storm, a fire or a break-in, call and tell us where it is and how much of it needs closing. Richard answers the phone himself.',
       image: 'demolition-site',
