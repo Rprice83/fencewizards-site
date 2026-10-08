@@ -34,7 +34,7 @@ export default {
       rows: [
         ['Height', '6 ft standard; 8 ft by special order'],
         ['How it is set', 'Panels seated in stands, weighted with sandbags'],
-        ['Install speed', 'The fastest option we carry, usually same or next day'],
+        ['Install speed', 'The fastest option we carry, usually within 24 to 48 hours'],
         ['Moves', 'By hand, section by section, without tools'],
         ['Gates', 'Pedestrian and drive gates set into the run'],
         ['Add-ons', 'Windscreen, plain or custom printed'],

@@ -78,7 +78,7 @@ export function customerEmail(row, { origin, phone = SITE_FACTS.phone, tel = SIT
     </td></tr>
     <tr><td style="padding:30px 28px 8px">
       <h1 style="margin:0;font:800 italic 30px/1.1 ${DISPLAY};text-transform:uppercase;letter-spacing:.01em;color:${INK}">Thanks! Your ${what} is <span style="color:${RED}">on its way to Richard.</span></h1>
-      <p style="margin:14px 0 0;color:${INK};font:16px/1.55 ${FONT}">Richard will reach out within 24 hours${esc(how)}, usually much sooner. He takes every request himself.</p>
+      <p style="margin:14px 0 0;color:${INK};font:16px/1.55 ${FONT}">Richard will reach out within 24 hours${esc(how)}, usually the same day. He takes every request himself.</p>
       <table role="presentation" cellpadding="0" cellspacing="0" style="margin:20px 0 0"><tr><td style="padding:10px 14px;border:1.5px dashed ${LINE};border-radius:8px;font:13px ${FONT};color:${MUTED}">Your reference: <strong style="color:${INK};font:700 15px ${FONT};letter-spacing:.04em">${esc(row.id)}</strong></td></tr></table>
     </td></tr>
     <tr><td style="padding:8px 28px 4px">
@@ -109,7 +109,7 @@ export function customerEmail(row, { origin, phone = SITE_FACTS.phone, tel = SIT
 
   const text = [
     `Thanks! Your ${what} is on its way to Richard.`,
-    `Richard will reach out within 24 hours${how}, usually much sooner.`,
+    `Richard will reach out within 24 hours${how}, usually the same day.`,
     `Your reference: ${row.id}`,
     '',
     'WHAT YOU ASKED FOR',

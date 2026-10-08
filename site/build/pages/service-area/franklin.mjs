@@ -45,7 +45,7 @@ export default {
       heading: 'Questions we get *about Franklin.*',
       intro: 'Three that come up on nearly every call from this part of the radius.',
       items: [
-        { q: 'How quickly can you get to a Franklin site?', a: 'Faster than almost anywhere else we work. We\'re based in Greenwood, about fifteen minutes north up I-65, so same day is realistic on a straightforward run and service calls here are easy for us to take.' },
+        { q: 'How quickly can you get to a Franklin site?', a: 'Faster than almost anywhere else we work. We\'re based in Greenwood, about fifteen minutes north up I-65, so a straightforward run goes in within the usual 24 to 48 hours and service calls here are easy for us to take.' },
         { q: 'What do you use on a campus or institutional site?', a: 'Usually post-driven chain link where the ground takes a post, because the perimeter has to hold rather than mark and the people walking past are not trades. Where the site changes week to week or the surface is paved, panels in sandbagged stands are the better call and we\'ll say so.' },
         { q: 'Can you screen a site on a downtown street?', a: 'Yes. Windscreen fits across a panel run and is the normal answer on a working commercial street, because the perimeter sits in front of businesses trying to trade. It comes plain or custom printed, and it\'s sold rather than rented, so it stays yours.' },
       ],

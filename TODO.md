@@ -14,12 +14,13 @@ Fixed 2026-10-06: the honeypot field is renamed (`fw_hp`, password managers no l
 - [ ] **Ad tracking:** iPhone clicks with only `gbraid`/`wbraid` are left out of the Won-job file and the Inbox contradicts itself; a later UTM-only visit overwrites an earlier gclid (`main.js`); one call can count twice: keep **Phone tap secondary** when "Calls from website" is set up.
 - [ ] **Estimator bugs:** typed-footage mode can show a 50+ mile surcharge the server drops (`sitePoint()` should use only the searched site); after Back from the confirmation page the button stays "Sending…"; deleting a line's last corner misplaces gates on later lines (`fixGates()`); date picker uses UTC so after ~8pm "today" is blocked; the saved draft keeps contact details forever.
 - [ ] **Smaller:** Won amount "$" saves as $0 (`server/inbox.js`); no rate limit on `/api/distance` (add a Cloudflare rate-limit rule before the Routes key goes in); public pages have no `X-Frame-Options`/`nosniff` headers (`public/_headers`); staff photo uploads trust the browser's file type; dev preview endpoints should also require localhost; forms don't mark invalid fields for screen readers; contact-form file limits are only checked after upload.
-- [ ] **Content (needs Richard):** "within 24 hours" reply promise is new (old site: "same day"), on the site and in the confirmation email; the Indianapolis page photo shows red plastic barriers while the Barricades page says they don't carry plastic.
+- [x] Reply promise (Richard, 2026-10-08): "within 24 hours, usually the same day" on the forms, confirmation page and customer email.
+- [ ] **Content (needs Richard):** the Indianapolis page photo shows red plastic barriers while the Barricades page says they don't carry plastic.
 - [ ] **Speed/SEO:** desktop hero video is 12.5 MB (re-encode to ~5 MB, `preload="metadata"`, skip for reduced motion); 22 photos at 1600 px are over 500 KB; 301 the old `/assets/photos/…` image URLs; add `twitter:card`, `og:site_name`, a 180 px touch icon, `logo` in the business data (`sameAs` done 2026-10-08); no canonical on the 404 page; check the map pin for 1176 Newark Ct.
 - [ ] **Later:** Node 22 (`site/.nvmrc`) reaches end of life April 2027, move to 24; the footer year only changes on a rebuild (push one each January); pull client-specific names/colours/phone into one config when client #2 signs.
 
 ## Accounts & keys (needed before launch)
-- [ ] **Before Richard fires his current website company:** confirm *he* owns (logins in his name) the fencewizards.com domain registrar account, DNS, email (richard@fencewizards.com), Google Ads, Google Analytics, Google Business Profile and Search Console. Get access transferred first, then cut over.
+- [ ] **Before Richard fires his current website company:** confirm *he* owns (logins in his name) the fencewizards.com domain registrar account (**Squarespace, in Richard's name, confirmed 2026-10-08**), DNS, email (richard@fencewizards.com), Google Ads, Google Analytics, Google Business Profile and Search Console. Get access transferred first, then cut over. Richard will end things with the current website company himself (2026-10-08); make sure that happens after the switch, not before.
 - [ ] **URL match at launch (checked 2026-10-03):** every address in the live fencewizards.com sitemap exists on the new site, except `/pricing/` (temporary 302 to `/#pricing` in `site/public/_redirects`; remove when the page is built). Right before launch, re-run the check (live sitemap vs `site/public/.generated-pages.json`), because the current company may publish new posts. One did: the Aug 31 event-fence post, now copied. Then submit the new sitemap in Search Console.
 - [ ] At launch: make `fencewizards.com` (no www) redirect to `https://www.fencewizards.com` (it currently serves the site on both). Also redirect Richard's other domains seen in his Google Ads history, **fencerentalnearme.com** and **thefencewizards.com**, to the matching new pages if he owns them (ask).
 - [ ] **Google Maps + Places (browser key): the user has it** from Richard's Google Cloud project (Maps + Places enabled; never commit it to git or paste it in chat). The user believes it's restricted to the fencewizards.com domain. To use it on the demo and for local testing, add website restrictions `fencewizards.pages.dev/*` and `localhost:8788/*` (alongside `www.fencewizards.com/*` and `fencewizards.com/*`). Then switch the estimator to Google: satellite map + drawing (replaces the free Esri imagery, whose terms restrict commercial use) and address autocomplete (replaces OpenStreetMap/Nominatim, which allows no autocomplete and 1 request/second). `public/estimate/map-providers.js` is the file to change.
@@ -30,7 +31,7 @@ Fixed 2026-10-06: the honeypot field is renamed (`fw_hp`, password managers no l
 - [x] Cloudflare Turnstile spam check on all three forms (estimator, quick quote, contact), verified on the server (`server/turnstile.js`), plus the honeypot. Built 2026-10-05; demo uses Cloudflare's public test keys.
 - [ ] **At launch:** create a Turnstile widget in the user's Cloudflare account (hostnames www.fencewizards.com + fencewizards.pages.dev), put its site key in `INTEGRATIONS.turnstileSiteKey` (`site/build/lib/site.mjs`) and its secret as the `TURNSTILE_SECRET` Pages secret. Without the secret the check is skipped.
 - [ ] Send a real test quote to richard@fencewizards.com once Resend is set up, and confirm it lands in the inbox, not spam.
-- [ ] **Footer credit** "Website by Limestone Web Co" links to https://limestonewebco.com (`CREDIT` in `site/build/lib/site.mjs`). On 2026-10-05 that domain didn't load yet: make sure it's live before launch (or set `url: ''` for plain text). Richard should OK the credit.
+- [ ] **Footer credit** "Website by Limestone Web Co" links to https://limestonewebco.com (`CREDIT` in `site/build/lib/site.mjs`). On 2026-10-05 that domain didn't load yet: make sure it's live before launch (or set `url: ''` for plain text). Richard OK'd the credit (2026-10-08).
 - [ ] Final logo SVGs from the designer (current logos are cropped from the PDF proof).
 - [ ] License the Shuttleblock Narrow Bold Italic font (Barlow Condensed is the stand-in).
 
@@ -51,7 +52,7 @@ Fixed 2026-10-06: the honeypot field is renamed (`fw_hp`, password managers no l
 - [ ] **Pricing page (/pricing/):** on hold, waiting on Richard. Until it exists, "Pricing" links go to the flat-price section on the homepage (`/#pricing`). When it's built, update `BEFORE_YOU_CALL` and the nav in `site/build/lib/site.mjs` and `layout.mjs`.
 - [ ] **Privacy policy (/privacy/): drafted, needs Richard's review before launch:**
   - Confirm the legal business name (e.g. an LLC name) to use instead of just "Fence Wizards".
-  - Decide how long quotes and messages are kept (the draft says "as long as useful for the project and business records").
+  - [x] Retention: keep the default wording ("as long as useful for the project and business records"), decide later; no automatic deleting for now (Richard, 2026-10-08).
   - Set the "Last updated" date to the launch date (`UPDATED` in `site/build/pages/privacy.mjs`).
   - Update the provider list if anything changes: Google Maps replacing Esri/OpenStreetMap, analytics, Stripe payments.
   - Optional: have a lawyer look it over. It's written for a small Indiana B2B business, not legal advice.
@@ -60,8 +61,8 @@ Fixed 2026-10-06: the honeypot field is renamed (`fw_hp`, password managers no l
   - 8 ft fencing now reads as a special order (Panels, Post-Driven, FAQ, How It Works post).
   - Homepage: the "12 mo" stat is now "1 price, agreed up front", and the "Short jobs: discounted" comparison row is gone.
   - **The cost guide post** (`/blog/how-much-does-temporary-fence-rental-cost/`) originally framed panels as the cheaper option; the price sheet says post-driven is cheaper per foot. Those statements were removed or neutralized, so the post needs a proper look.
-- [ ] Panels page says install is "usually same or next day", while everything else says 24 to 48 hours. Pick one.
-- [ ] The windscreen blog post says the screen is quoted "as one line on the rental", but elsewhere windscreen is "sold, not rented". Reconcile.
+- [x] Install speed: 24 to 48 hours everywhere (Richard, 2026-10-08). Panels page, homepage card, post-driven FAQ, Plainfield and Franklin updated. "We come back out the same day" for moving a gate/run (GC service calls) was left as is.
+- [x] Windscreen is always sold (Richard, 2026-10-08); the blog post now says so.
 - [ ] About page: confirm "NBA All-Star Game Google Pixel event" is one site, not two.
 - [ ] Fishers page links to fishersin.gov (couldn't be checked automatically, so verify by hand). Plainfield, Avon, Muncie and Westfield links were updated to their current official sites.
 - [ ] Refresh the Google rating (4.6 from 39 reviews) before launch. It's set once in `site/build/lib/site.mjs`.

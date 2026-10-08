@@ -28,7 +28,7 @@ export default {
       heading: 'What\'s different *about Plainfield.*',
       paras: [
         'The hard part is the gates. A site next to the airport with tractor-trailers moving through it needs drive gates wide enough and placed where the turning circle actually works, not where the panel count happened to run out. Getting that right on the first attempt is the difference between a perimeter that helps and one your yard jockeys fight every morning.',
-        'Material storage is the third case here, and it is the one people call about late. A delivery of steel, pipe or equipment sitting on an open pad next to a public road is worth closing properly, and a panel run with windscreen around a laydown area goes in the same day on most jobs.',
+        'Material storage is the third case here, and it is the one people call about late. A delivery of steel, pipe or equipment sitting on an open pad next to a public road is worth closing properly, and a panel run with windscreen around a laydown area usually goes in within 24 to 48 hours.',
       ],
       image: 'shipping-container-lot',
       imageAlt: 'Panel fence around a shipping container and a trailer on a gravel lot',
