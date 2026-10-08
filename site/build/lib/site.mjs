@@ -13,7 +13,8 @@ export const SITE = {
   hours: '7:30am–9pm, seven days',
   geo: { lat: 39.5962, lng: -86.1368 },
   rating: { value: '4.6', count: 39 }, // TODO.md: confirm current Google rating before launch
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Fence+Wizards+Rent+A+Fence+Greenwood+IN',
+  mapsUrl: 'https://share.google/y5E6SVVe9aK4UO74c', // Richard's Google Business Profile (from Richard, 2026-10-08)
+  social: [], // TODO.md: active social profiles, e.g. { name: 'LinkedIn', url: 'https://…' }
 };
 
 // Small "Website by …" credit at the bottom of the footer. Leave url empty for plain text.

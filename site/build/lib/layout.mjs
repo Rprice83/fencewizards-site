@@ -154,6 +154,7 @@ const localBusiness = {
   openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '07:30', closes: '21:00' }],
   areaServed: CITIES.map(c => ({ '@type': 'City', name: `${c.name}, IN` })),
   priceRange: '$$',
+  sameAs: [SITE.mapsUrl, ...SITE.social.map(s => s.url)],
 };
 
 /**
