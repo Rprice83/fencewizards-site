@@ -5,6 +5,9 @@
 ## Open issues
 - [ ] (Low priority now that the hosted demo exists; the Mac demo worked at the meeting.) **Mac preview "write EPIPE" error** with mac/Start Website Preview.command on the user's MacBook. Get the macOS version + chip and the Terminal output. Likely an old macOS (workerd needs ~13.5+); fix or document. The backup `Start Simple Preview (no forms).command` works meanwhile. Rebuild the Mac zip afterwards.
 
+## Copy review (2026-10-10)
+- [ ] **Deep copy review done, nothing applied yet:** `copy-review/00-summary.md` (Part 1 = questions only Richard can answer: no-rent-clock vs term pricing, yard location, hours, damage waiver, emergency speed, photos; Part 2 = fixes we can make now). Per-page details with exact replacement text in `copy-review/A`–`E`.
+
 ## Full-site review (2026-10-06)
 Fixed 2026-10-06: the honeypot field is renamed (`fw_hp`, password managers no longer auto-fill it) and a filled one is kept and flagged instead of silently dropped; a blocked spam check (company networks) or a wrong Turnstile secret no longer refuses the lead, it's saved and flagged; every request has a `spam_check` flag (migration 0008) shown in the Inbox and Richard's email; the customer confirmation email carries nothing the visitor typed, goes only to requests that passed the spam check, max 1 per address per day and 50 per day site-wide (`server/spam-check.js`, `server/confirm.js`); "Use my location" looks up the real street address (or leaves the address field for the customer to fill in).
 - [ ] **Google switch:** `geocoder.reverse()` in `public/estimate/map-providers.js` (for "Use my location") also needs a Google version; that needs the **Geocoding API** enabled on the browser key (Places can't do it).
