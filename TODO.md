@@ -5,6 +5,9 @@
 ## Open issues
 - [ ] (Low priority now that the hosted demo exists; the Mac demo worked at the meeting.) **Mac preview "write EPIPE" error** with mac/Start Website Preview.command on the user's MacBook. Get the macOS version + chip and the Terminal output. Likely an old macOS (workerd needs ~13.5+); fix or document. The backup `Start Simple Preview (no forms).command` works meanwhile. Rebuild the Mac zip afterwards.
 
+## Homepage design concepts (2026-10-10, branch `homepage-concepts`, not on main)
+- [ ] Pick a direction: redesign of the current look https://homepage-concepts.fencewizards.pages.dev/concepts/redesign/ or an all-new look https://homepage-concepts.fencewizards.pages.dev/concepts/new/ (notes + adoption steps in `design-concepts/` on that branch). Neither is wired to the real forms. Adopting either means rebuilding `build/partials/home.html` + styles on main.
+
 ## Copy review (2026-10-10)
 - [x] **Fixes not needing Richard applied 2026-10-10** (each file in `copy-review/` ends with an "Applied 2026-10-10" log). The 14 go-live questions (1.11–1.15 new) and section 10 of the questions doc hold what is blocked on him; apply his answers using the per-page findings.
 - [ ] Post-driven and barricades pages lost their photo galleries (photos showed panels / plastic barricades): add them back when Richard sends driven chain link and steel barricade photos.
