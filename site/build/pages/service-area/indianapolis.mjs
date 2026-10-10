@@ -3,7 +3,7 @@ import { pageHero, intro, placeCard, prose, gallery, typeCards, faq, cityList, r
 export default {
   path: '/service-area/indianapolis/',
   title: 'Temporary Fence Rental in Indianapolis, IN | Fence Wizards',
-  description: 'Temporary fence rental in Indianapolis, Indiana. Panels, chain link, windscreen and barricades on a flat fee. On site in 24 to 48 hours.',
+  description: 'Temporary fence for downtown Indianapolis: screened runs on Mile Square sidewalks and overnight event set and strike. Flat fee, removal included.',
   ogImage: 'skyline-panels-indianapolis',
   main: () => [
     pageHero({
@@ -18,7 +18,7 @@ export default {
     intro({
       lead: 'Indianapolis is where most of this business happens, and the city changes what a temporary fence has to do.',
       paras: [
-        'Inside the Mile Square and along the canal, a site sits directly against a public sidewalk, so the perimeter is not just security, it\'s what the public looks at for the length of the job. That\'s why so much downtown work takes windscreen fitted across the run rather than open chain link.',
+        'Inside the Mile Square and along the canal, a site sits directly against a public sidewalk, so the public looks at the perimeter for the length of the job. That\'s why so much downtown work takes windscreen fitted across the run rather than open chain link.',
       ],
       aside: placeCard({ slug: 'indianapolis', drive: 'About 20 minutes up US-31 or I-65', cityLink: { href: 'https://www.indy.gov/', label: 'indy.gov' } }),
     }),
@@ -52,9 +52,9 @@ export default {
 
     faq({
       heading: 'Questions we get *about Indianapolis.*',
-      intro: 'Three that come up on nearly every call from this part of the radius.',
+      intro: 'The Mile Square, overnight work and the drive in.',
       items: [
-        { q: 'Do you work inside the Mile Square?', a: 'Yes, and it\'s a large share of what we do. Downtown perimeters usually want windscreen across the run because the site sits against a public sidewalk, and they always want the gates planned around deliveries and the fire lane rather than dropped wherever the panels ran out.' },
+        { q: 'Do you work inside the Mile Square?', a: 'Yes, and it\'s a large share of what we do. Downtown perimeters usually want windscreen across the run because the site sits against a public sidewalk, and they always want the gates planned around deliveries and the fire lane.' },
         { q: 'Can you set a fence downtown overnight?', a: 'Yes. Event load-in and load-out windows downtown are frequently overnight or before dawn, and we plan the crew and the truck around the schedule on the production sheet rather than around a standard working day.' },
         { q: 'How quickly can you reach an Indianapolis site from Greenwood?', a: 'We\'re based in Greenwood, roughly twenty minutes from downtown up US-31 or I-65. Indianapolis is the shortest run we make, and emergency work here moves faster than the usual 24 to 48 hour window.' },
       ],
@@ -65,7 +65,7 @@ export default {
 
     cityList({
       heading: 'Other towns *we cover.*',
-      intro: 'The rest of the radius, from a yard twenty minutes south of the Mile Square. If your project sits between two of them, or past the edge of the radius, call and ask rather than assuming the answer is no.',
+      intro: 'The rest of the radius, from a yard twenty minutes south of the Mile Square.',
       cities: ['greenwood', 'carmel', 'fishers', 'noblesville', 'westfield', 'zionsville', 'speedway', 'plainfield'],
     }),
 

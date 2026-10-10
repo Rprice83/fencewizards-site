@@ -111,3 +111,41 @@ field-notes.mjs and _TEMPLATE.md: no problems.
 7. Printed windscreen: is it fixed-size banners ($800 each, minimum 6) or printed to the run length? How is it attached? Print lead time? Bracing on panel fence?
 8. Stand material (plastic, rubber, steel)? Do panels clamp together without tools?
 9. Confirm or drop: "installed hundreds of perimeters", restoration contractors as regular customers, event permit-office experience, mid-event check-ins, "plan on file for next year", the event customer list, insurance-readable invoices.
+
+## Applied 2026-10-10
+Only `site/build/pages/blog/*.mjs` edited. URLs/slugs unchanged. All files pass `node --check`; no tests reference blog copy. Not built (other edits running in parallel).
+
+**Cost guide (how-much-does-temporary-fence-rental-cost)**
+- Title → "How Much Does Temporary Fence Rental Cost? | Fence Wizards" (58). Summary/description → the suggested wording (149), "no hidden charges in Greenwood" gone.
+- Heading "The direct answer…" → "Temporary fence rental is priced by the linear foot". Cut the "Here is what actually drives…" announcing line.
+- Post-driven paragraph: "added installation labor" removed; now says it's more rigid and "per foot it usually costs less than panels". Contrast tail ("genuine priority rather than a formality") and "is the answer" removed.
+- Factors: heading → "What determines your final price"; location bullet → the 50-driving-mile rule (replaces "our yard in Greenwood… realistic travel component"); duration bullet → "The per-foot rate depends on how long the fence will be up, so give us your best estimate. The price is agreed once, up front." (no "price holds" / rent-clock claim); new Add-ons bullet (top rail priced add-on; windscreen sold, plain or printed).
+- National companies paragraph: removed "fuel surcharges, damage waiver fees… escalating rent"; now "a charge to come collect the fence, and fees added to the invoice". Dropped "We don't operate that way."
+- Duration section: "equipment rental… driven mostly by how long" and its rent-clock line replaced with the approved duration wording + removal included. Panels reasoning → "need no holes and come out fast"; post-driven "more secure and usually costs less per foot".
+- Payment terms: cut the "standard in the industry" claim and "five minutes"; voice → "we".
+- Quote section: reply within 24 hours (usually same day), install 24 to 48 hours, emergency faster; checklist now five items incl. gates.
+- FAQ: minimum-period answer cut to "Ask us about short rentals…" (no claim about minimums); cost FAQ now states post-driven usually costs less per foot; ", not a hidden revenue line" cut; "first 15 minutes" → "at the start of the install"; "Fence Wizards builds" → "We build".
+
+**Emergency post**: headline "same-week" → "fast perimeter fencing…" (URL unchanged); title → "Emergency Fence Rental in Indiana After Storms & Fires | Fence Wizards" (70); description → "we… across central Indiana" (158). "How fast" section → standard 24 to 48 hours, emergency faster, no clock promise beyond that. Opening "same week" → "fast". Cut: restoration contractors "regular customers" sentence, "hundreds of perimeters" count, "not next month", both fake-profound kickers. FAQ "across Indiana" → "within about 80 miles of Indianapolis"; windscreen FAQ adds "sold rather than rented, yours to keep". OSHA line moved before the CTA. Third person → "we" throughout; "simply continues" → "continues".
+
+**Event post**: windscreen → "sold rather than rented, plain or printed". Title (69) and description (155) shortened. Cut the permit-office experience sentence, the irrelevant OSHA line, "not days". FAQ install time → "a few hours on the day… Book ahead". Third person → "we" ("Who rents event fence from us").
+
+**Post-driven post**: top rail → add-on (body + "fabric (and top rail, if ordered)"). Emergency "same-day or next-morning" → "we move faster than that". Opening contrast reveals + "bridge deck collapses" scenario replaced with the suggested plain paragraph (incl. "usually costs less" per foot). Cut "vehicle drift" and the trailing pile-on; weasel "inspectors… expect" sentence → plain "usually the right fit". Heading → "Windscreen and printed windscreen…", ends with windscreen sold. Contrast tails cut. Title → 68 chars; description trimmed to ~146. "threat environment" → "how much security the site needs". Voice → "we".
+
+**Windscreen post**: "don't… sell fence material" → "don't install permanent fence or sell panels and posts". Title → 73 chars. Cut the announcing line, the billboard comparison (→ "seen by everyone who walks past"), the "cheapest improvement" claim and the "instead of on top of it" kicker; fragment drumbeat merged into one sentence; colon reveal fixed. Voice → "we".
+
+**Panels post**: title → 63 chars. Negation list + puffery → "They need no holes in the ground, so a crew can set a run in hours…"; "This guide covers…" cut; "simply" ×2 cut; sandbag contrast reveal fixed; "your rental provider" → "tell us"; "rooftop" cut; filler "short-term and extended durations" cut; close now gives the 24 to 48 hour install.
+
+**How a rental works**: title → 66 chars; "24- to 48-hour"; "80 miles"; "All of it can be added…" → "Windscreen can be added to a fence that's already standing."
+
+**Blog index**: line → "New notes land here as we write them, along with job stories from sites we've fenced."
+
+**Skipped (blocked on Richard / unverified, left untouched):**
+- Starting per-foot rates not published (Q1, 10.8).
+- "At Fence Wizards in Greenwood" (cost guide intro), "We work out of Greenwood" (emergency), "across Greenwood" (panels): left, since no 50-mile replacement applies there (Q2).
+- "that number doesn't change unless the scope changes" (cost guide intro) and the existing rent-clock lines in how-a-rental-works left as is (R1).
+- Gate moves "built into the price" vs "for ongoing clients" inconsistency left (Q5); only the contrast tail was cut.
+- Insurance-readable invoices (emergency), event "walks it with the organizer", mid-event check-in, "plan on file", event customer list: left untouched (Q9).
+- Printed windscreen sizing/attachment, bracing, print lead time (Q7); stand material and no-tools claim (Q8): left untouched.
+- Damage waiver: not mentioned anywhere (Q4).
+- Windscreen title is 73 chars (kept the full search phrase); emergency title 70.

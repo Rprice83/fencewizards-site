@@ -3,14 +3,14 @@ import { pageHero, intro, prose, steps, faq, typeCards, gallery, related, quoteC
 export default {
   path: '/construction-fencing/',
   title: 'Construction Site Fence Rental in Indianapolis | Fence Wizards',
-  description: 'Construction site fence rental across Indianapolis and central Indiana. Panels, chain link, gates and windscreen, moved the same day the plan changes. Flat fee.',
+  description: 'Construction site fence rental across Indianapolis and central Indiana. Panels, chain link, gates and windscreen at one flat fee, removal included. Most installs within 24 to 48 hours.',
   ogImage: 'stacked-panels-site',
   main: () => [
     pageHero({
       crumbs: [{ name: 'What we fence', href: '/#uses' }, { name: 'Construction' }],
       eyebrow: 'Construction site fencing',
       title: 'Construction site fence rental *in Indianapolis.*',
-      lede: 'A perimeter that moves as fast as your schedule does, on a flat fee that already includes taking it back down.',
+      lede: 'Fence on site in 24 to 48 hours, on one flat price that already covers taking it down.',
       image: 'stacked-panels-site',
       imageAlt: 'Temporary fence panels on stands around a construction staging area',
     }),
@@ -18,10 +18,10 @@ export default {
     intro({
       lead: 'A construction site needs a fence that can change.',
       paras: [
-        'We set panels and stands, post-driven chain link, gates and windscreen across the Indianapolis metro, usually within 24 to 48 hours of the call. When a gate has to move or a run has to be added, we come back out the same day. The price is agreed before the first panel goes in, and it covers removal at the end.',
+        'We set panels and stands, post-driven chain link, gates and windscreen across the Indianapolis metro, usually within 24 to 48 hours of the call. When a gate has to move or a run has to be added, we come back out, the same day for general contractors. The price is agreed before the first panel goes in, and it covers removal at the end.',
       ],
       image: 'school-building-panels',
-      imageAlt: 'Panel fence with gates around a school building project',
+      imageAlt: 'Panel fence on sandbagged stands across a lawn beside a brick building',
     }),
 
     prose({
@@ -29,8 +29,8 @@ export default {
       heading: 'Built around the project manager *who makes the call.*',
       paras: [
         'Ninety-nine percent of what we do is business to business. The person on the other end of the phone is a project manager, a superintendent, a demolition contractor or a procurement agent, and what they need is a number they can put in a bid and a date they can hold a sub to.',
-        'So we quote verbally first, on the call, and send the written proposal after. Net 30 terms are normal for clients we have worked with. Smaller or new accounts pay up front, and we say so plainly at the start rather than at the invoice.',
-        'What matters most on a live site is what happens after the install. Fencing gets in somebody\'s way at least once on every project. When it does, you call, and we come out.',
+        'So we quote verbally first, on the call, and send the written proposal after. Net 30 terms are normal for clients we have worked with. Smaller or new accounts pay up front, and we say so plainly on the first call.',
+        'What matters most on a live site is what happens after the install. When the fence is in the way, you call, and we come out.',
       ],
       image: 'distribution-warehouse-panels',
       imageAlt: 'Temporary fence run along a distribution warehouse loading area',
@@ -45,7 +45,7 @@ export default {
         { title: 'Scope the perimeter', text: 'Linear feet, gate positions, and whether the ground takes a driven post or needs sandbagged stands. A rough number is enough to price it.' },
         { title: 'Set the line', text: 'Panels and stands go in fast and can be shifted by hand. Post-driven chain link takes longer to install and is much harder to move, which is the point.' },
         { title: 'Gate it properly', text: 'Pedestrian and drive gates in the right places save your crew an hour a day. Tell us where the deliveries come in.' },
-        { title: 'Change it when the site changes', text: 'Fence moved, gates relocated, sections added to an existing run. Same-day service for general contractors.' },
+        { title: 'Change it when the site changes', text: 'Call when the fence needs moving, a gate relocated or a section added. General contractors get same-day service.' },
         { title: 'Pull it when you\'re done', text: 'On your schedule. No removal charge, because it was in the original number.' },
       ],
     }),
@@ -67,11 +67,11 @@ export default {
       intro: 'The ones that come up on the phone every week, answered the way Richard answers them.',
       tone: 'white',
       items: [
-        { q: 'How much lead time do you need on a construction site?', a: '24 to 48 hours is the normal window, and it covers most jobs. We do take emergency work faster than that. The more notice we have, the more of the install we can plan rather than improvise, which usually means a cleaner line and fewer changes later.' },
+        { q: 'How much lead time do you need on a construction site?', a: '24 to 48 hours is the normal window, and it covers most jobs. We do take emergency work faster than that. The more notice we have, the more of the install we can plan ahead, which usually means a cleaner line and fewer changes later.' },
         { q: 'Do you charge per month once the fence is up?', a: 'No. The rental is a flat fee agreed before the install, and it doesn\'t keep running if your project runs long. There is no charge to come and collect the fence at the end.' },
-        { q: 'What happens when the site plan changes and the fence is in the way?', a: 'You call and we come out. Fencing is in somebody\'s way at least once on every project, so we built the business around answering that call rather than avoiding it. General contractors get same-day service on moves, gate relocations and sections added to an existing run.' },
+        { q: 'What happens when the site plan changes and the fence is in the way?', a: 'You call and we come out. General contractors get same-day service on moves, gate relocations and sections added to an existing run.' },
         { q: 'Can you fence a site where posts can\'t be driven?', a: 'Yes. Panels sit in stands weighted with sandbags and need no ground penetration at all, which is the usual answer on a paved lot, a deck, or a site with utilities close to the surface. Where the ground does take a post and the perimeter has to stay shut, post-driven chain link is the stronger call.' },
-        { q: 'Do you offer Net 30 terms to contractors?', a: 'Net 30 is normal for clients we have worked with before. Smaller or new accounts pay up front, and we say that on the first call rather than at the invoice. Certificates of insurance for your vendor file are no problem: umbrella, general liability, commercial auto and workers\' compensation.' },
+        { q: 'Do you offer Net 30 terms to contractors?', a: 'Net 30 is normal for clients we have worked with before. Smaller or new accounts pay up front, and we say that on the first call. Certificates of insurance for your vendor file are no problem: umbrella, general liability, commercial auto and workers\' compensation.' },
         { q: 'Will you add gates after the fence is already up?', a: 'Yes. Pedestrian and drive gates can be set into an existing run. It\'s worth telling us where deliveries come in before the install, because well-placed gates save your crew time every day, but adding one later is a normal call for us.' },
       ],
     }),

@@ -3,7 +3,7 @@ import { pageHero, intro, placeCard, prose, gallery, typeCards, faq, cityList, r
 export default {
   path: '/service-area/greenwood/',
   title: 'Temporary Fence Rental in Greenwood, IN | Fence Wizards',
-  description: 'Temporary fence rental in Greenwood, Indiana. Panels, chain link, windscreen and barricades on a flat fee. On site in 24 to 48 hours.',
+  description: 'Temporary fence for US-31 and SR 135 build-outs in Greenwood, IN. Panels that move with the site, flat fee, removal included.',
   ogImage: 'truck-trailer-load',
   main: () => [
     pageHero({
@@ -27,7 +27,7 @@ export default {
       eyebrow: 'Local know-how',
       heading: 'What\'s different *about Greenwood.*',
       paras: [
-        'The work here is commercial build-out along the US-31 and State Road 135 retail corridors, and residential development pushing further south into Johnson County. Both mean sites that change week to week, which is panel and stand territory rather than driven fence: a superintendent can open an access point in the morning and close it in the afternoon.',
+        'The work here is commercial build-out along the US-31 and SR 135 retail corridors, and residential development pushing further south into Johnson County. Both mean sites that change week to week, which calls for panels and stands rather than driven fence: a superintendent can open an access point in the morning and close it in the afternoon.',
         'Because we\'re minutes away, the service side is easy here. Fencing moved, a gate relocated, a run extended because the site plan changed. Those are normal on a live job, and in Greenwood we can usually be back out the same morning you call.',
       ],
       image: 'dirt-lot-excavator',
@@ -53,9 +53,9 @@ export default {
 
     faq({
       heading: 'Questions we get *about Greenwood.*',
-      intro: 'Three that come up on nearly every call from this part of the radius.',
+      intro: 'Speed, houses, and sites that change every week.',
       items: [
-        { q: 'How fast can you get to a Greenwood job?', a: 'Faster than anywhere else we work, because we\'re based in Greenwood. Same day is realistic here for a straightforward run, and emergency calls in Johnson County are the easiest ones for us to take on short notice.' },
+        { q: 'How fast can you get to a Greenwood job?', a: 'Faster than anywhere else we work, because we\'re based in Greenwood. A straightforward run goes in within 24 to 48 hours, and emergency calls in Johnson County are the easiest ones for us to take on short notice.' },
         { q: 'Do you do residential fencing in Greenwood?', a: 'No. We don\'t do residential fencing anywhere, including here. This is temporary fence rental for construction sites, events and emergency response, and it\'s ninety-nine percent business to business. If you need a permanent fence at a house, we\'ll point you somewhere useful.' },
         { q: 'Can you handle a site that changes every week?', a: 'That\'s what panels and stands are for, and it\'s most of what goes out of this yard. They\'re sandbagged rather than driven, so a section can be shifted by two people, and we\'ll come out and move a run properly whenever it stops working.' },
       ],
@@ -66,7 +66,7 @@ export default {
 
     cityList({
       heading: 'Other towns *we cover.*',
-      intro: 'Where else the trucks go, out of this yard. If your project sits between two of them, or past the edge of the radius, call and ask rather than assuming the answer is no.',
+      intro: 'Where else the trucks go, out of this yard.',
       cities: ['carmel', 'fishers', 'noblesville', 'westfield', 'zionsville', 'speedway', 'plainfield', 'avon'],
     }),
 

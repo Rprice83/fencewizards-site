@@ -46,7 +46,7 @@ export function customerEmail(row, { origin, phone = SITE_FACTS.phone, tel = SIT
   const how = isQuote && PREF[row.contact_pref] ? ` by ${PREF[row.contact_pref]}` : '';
   const what = isQuote ? 'fence plan' : row.kind === 'contact' ? 'message' : 'request';
   const subject = `We have your ${what}. Reference ${row.id}`;
-  const preheader = `Richard has your ${what} and will reach out within 24 hours.`;
+  const preheader = `Richard has your ${what} and will reach out within 24 hours, usually the same day.`;
 
   const factRows = facts.map(([k, v]) => `<tr>
       <td style="padding:9px 0;border-top:1px solid ${LINE};color:${MUTED};font:14px/1.4 ${FONT};width:40%;vertical-align:top">${esc(k)}</td>

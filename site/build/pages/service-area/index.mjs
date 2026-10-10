@@ -40,7 +40,7 @@ const findUs = `<section class="section tone-white find-us light">
 
 export default {
   path: '/service-area/',
-  title: 'Temporary Fence Rental Service Area | Indianapolis and Central Indiana',
+  title: 'Service Area: Indianapolis + 80 Miles | Fence Wizards',
   description: 'Fence Wizards covers the Indianapolis metro and 80 miles around downtown from a yard in Greenwood, Indiana. Nineteen towns named.',
   ogImage: 'skyline-panels-indianapolis',
   main: () => [
@@ -65,13 +65,13 @@ export default {
     features({
       eyebrow: 'Same service everywhere',
       heading: 'The same service *everywhere in the radius.*',
-      intro: 'What changes across the radius is the drive. Not the fence, and not the way it\'s priced.',
+      intro: 'Across the radius, only the drive changes. The fence and the flat fee are the same everywhere.',
       cols: 2,
       tone: 'paper',
       items: [
         { label: 'Who calls', title: 'Business to business', text: 'Ninety-nine percent of this work is business to business: project managers, superintendents, demolition contractors, event planners, and procurement agents buying for a municipality, a university, a corporate campus or a commercial property. Emergency restoration companies make up a large share of it, and those calls arrive with no notice at all.' },
         { label: 'What goes on the ground', title: 'Four products', text: 'Panels and stands for sites that change and for events on a tight window. Post-driven chain link where a perimeter has to hold overnight and for months. Windscreen for privacy, dust control and, printed, signage the length of the site. Barricades for queue lines, stage fronts and vehicle separation.' },
-        { label: 'What the distance changes', title: 'Only the drive', text: 'On a job at the outer edge of the radius, that shows up in the number, and we say so on the call rather than folding it into a vague figure.' },
+        { label: 'What the distance changes', title: 'Only the drive', text: 'Jobs more than 50 driving miles from downtown Indianapolis carry a distance charge, and we say so on the call.' },
         { label: 'What never changes', title: 'Lead time and a flat fee', text: '24 to 48 hours is the normal lead time everywhere, and emergency work moves faster. One flat fee, with the removal already included, wherever the site is.' },
       ],
     }),
@@ -82,7 +82,7 @@ export default {
       heading: 'Questions about *the radius.*',
       intro: 'What the distance does and doesn\'t change, answered plainly.',
       items: [
-        { q: 'How far do you actually travel?', a: 'The Indianapolis metro plus roughly 80 miles around downtown, run out of Greenwood. That radius reaches Bloomington, Lafayette, Muncie, Anderson, Terre Haute and Richmond.' },
+        { q: 'How far do you travel?', a: 'The Indianapolis metro plus roughly 80 miles around downtown, run out of Greenwood. That radius reaches Bloomington, Lafayette, Muncie, Anderson, Terre Haute and Richmond.' },
         { q: 'Is the lead time longer further out?', a: 'Not usually. 24 to 48 hours is the normal window across the radius, and emergency work moves faster wherever it is. What the distance changes is the drive, and that shows up in the number rather than in the schedule.' },
         { q: 'My project is between two of the towns you name. Is that a problem?', a: 'No, that\'s a normal call for us. The named towns are the places we say out loud that we work, not a list of the only addresses we\'ll drive to.' },
         { q: 'What if I\'m just outside the 80 miles?', a: 'Call and ask. The answer is usually yes, and it costs nothing to find out.' },

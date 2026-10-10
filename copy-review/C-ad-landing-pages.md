@@ -93,3 +93,47 @@ I only reviewed the files; nothing was edited. Files reviewed:
 - ...\site\build\lib\landing.mjs
 - ...\site\build\lib\components.mjs (ctaBand, quoteCta)
 - ...\site\build\lib\layout.mjs (landing header and footer)
+
+## Applied 2026-10-10
+Files changed: `site/build/lib/landing.mjs` and the 4 `site/build/pages/go/*.mjs` pages. All H1s and eyebrows unchanged, so every ad search phrase stays on its page.
+
+### Shared (landing.mjs)
+- Hero main button: "Get my price" → "Get my quote" (still → `#quote`).
+- Rating: "★★★★★ 4.6 from 39 Google reviews" (not linked) → "★ 4.6 on Google · 39 reviews", linked to `SITE.mapsUrl` (one star, so we no longer show five full stars next to 4.6).
+- New `landingCtaBand({ heading, text, callFirst })`, using the same markup and classes as `ctaBand()`. Buttons: red "Get my quote" → `#quote` + "Call (317) 296-4015". With `callFirst`, there's one red "Call Richard · (317) 296-4015" button and no quote/estimator button. Default heading "Fence on site in *24 to 48 hours.*", default text "Five answers and Richard prices it himself. He replies within 24 hours, usually the same day." All 4 pages use it now instead of `ctaBand()`, so the estimator stays reachable only through the quoteCta text link.
+
+### Construction
+- Lede: "Temporary fencing for construction sites: temp fence panels and stands, post-driven chain link, gates and windscreen, usually set within 24 to 48 hours of the call. The price is agreed…" → "Temporary fencing for construction sites, usually set within 24 to 48 hours of the call. When a gate has to move or a run has to be added, general contractors get us back out the same day. The price is agreed before the first panel goes in, and it covers removal at the end." (Same-day moves limited to GCs, matching the page's own FAQ and trust line; see R8.)
+- "temp fence panels" kept on the page: FAQ "Can you fence a site where posts can't be driven?" now starts "Yes. Temp fence panels sit in stands…".
+- quoteCta: "A number for your bid, *today.*" → "A number you can put *in a bid.*"; text → "Five answers and Richard can price it. He takes every inquiry himself." (no longer repeats the feature card).
+- Feature "A number you can put in a bid" (repeated the quoteCta) → title "Verbal number first, proposal after", text "One call gets you a verbal number, and the written proposal follows. Both come from Richard, the person who prices the job."
+- "Paperwork in order": added "Smaller or new accounts pay up front, and we say so on the first call." (Fact found on /construction-fencing/, the FAQ page and the rental-works blog post.)
+
+### Events
+- Prose heading "Large events *in Indianapolis.*" → "Sites our fence *has stood on.*". Eyebrow "Where our fence has stood" → "Past sites" (so the same phrase doesn't appear three times in a row). The list of names is unchanged (question 1.7).
+- quoteCta text → "Five answers and Richard prices it himself. Have your load-in, doors and load-out times handy for the call."
+- Feature title "Temporary fencing for events, on your window" → "…, set on your schedule".
+- "Struck when it ends": "Not the following Monday. The removal was already inside the price, agreed before the first panel goes up." → "We pull the fence on your load-out time. The removal was already inside the price agreed before the first panel went up." (I used "load-out time" instead of the suggested "the night the event ends", because same-night strike is still unconfirmed, R7.)
+
+### Emergency
+- Meta description: "…Call Richard and get a real time, not a comfortable one." → "…Call Richard for a straight answer on timing."
+- Lede: "…Richard answers the phone himself." → "…Richard answers the phone himself and gives you a real time on that call."
+- Trust: "No dispatch queue: the owner answers" → "Faster than the standard 24 to 48 hours" (the same claim the page's own FAQ already makes; no new promise).
+- Feature titles: "No dispatch queue" → "Richard takes the call"; "No measured plan needed" → "Rough numbers are enough".
+- quoteCta text: "…Otherwise, five answers and Richard will get back to you." → "…Otherwise, five answers and Richard reaches out within 24 hours, usually the same day."
+- Closing band: Call is now the only (red) button; the estimator button is gone.
+
+### Temporary fence rental
+- Lede and meta description: "…post-driven chain link, windscreen and barricades." → "…post-driven chain link and barricades, plus windscreen to buy."
+- typeCards intro: "Temp fence panels on stands are the most portable." → "…are the fence most jobs start with." (wording from the panels page lede).
+- FAQ "Do you do residential fencing?" moved from last to first.
+
+### Skipped
+- "Open 7 days, 7:30am–9pm" and the after-hours campaign question (blocked on Richard, R3).
+- "No rent clock" claims (R1), and the past-sites names (question 1.7).
+- "temporary chain link fence" keyword sentence: the suggested wording read as keyword-stuffed, and it isn't confirmed that this keyword belongs to this ad group. Add it once the ad-group restructure (Phase 3) decides.
+- Emergency features eyebrow "Why the small company answers faster": kept (optional item).
+- Barricade hyphenation: left as is (the page already uses the unhyphenated search phrase).
+- Headline alternatives: not applied (H1s stay as they are).
+- Header "Get a Quote" and the components.mjs `ctaBand()` heading: these belong to the shared-components agent.
+- Not checked in the browser yet: the full build was not run (other agents are editing in parallel). Each file passed `node --check`, and all 4 pages render through their `main()` function.

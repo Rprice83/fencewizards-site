@@ -11,7 +11,7 @@ export default {
       crumbs: [{ name: 'Page not found' }],
       eyebrow: '404',
       title: 'This fence line *doesn\'t go anywhere.*',
-      lede: `That page has moved or never existed. Try one of these, or call Richard at ${SITE.phone}.`,
+      lede: `That page has moved or never existed. Try the links below, price your fence online, or call Richard at ${SITE.phone}.`,
       image: 'gate-across-lot',
       imageAlt: 'A temporary fence gate across an empty lot',
     }),

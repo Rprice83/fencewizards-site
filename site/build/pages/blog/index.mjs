@@ -33,7 +33,7 @@ export default {
 
     intro({
       lead: 'What we learn on Indianapolis job sites, written down: how rentals actually run, what holds a project up, and the questions superintendents and event planners ask us every week.',
-      paras: ['New notes land here as we write them, and every one comes from a real job, a real call, or a real mistake somebody almost made.'],
+      paras: ['New notes land here as we write them, along with job stories from sites we\'ve fenced.'],
     }),
 
     // Job stories from content/field-notes/ (appears once the first one is published)

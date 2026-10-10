@@ -6,8 +6,8 @@ const contactMain = `<section class="section tone-white contact-section">
     <div class="contact-copy">
       <p class="intro-lead">If the job is urgent, call rather than write.</p>
       ${paras([
-        'Richard Warren owns Fence Wizards and handles every inquiry himself. He treats almost all of them as urgent, because in this trade the ones that aren\'t are the exception. If you call, he answers or calls straight back, and he\'ll quote the job verbally on that call rather than making you wait for a written proposal you don\'t have time for yet. The written version follows.',
-        'Service calls get the same treatment. A fence in the way of a delivery, a gate that has to move, a run that needs extending because the site plan changed: those are normal, not a complaint, and general contractors get same-day service on them.',
+        'Richard Warren owns Fence Wizards and handles every inquiry himself. He treats almost all of them as urgent, because in this trade the ones that aren\'t are the exception. If you call, he answers or calls straight back, and he\'ll quote the job verbally on that call rather than making you wait for the written proposal. That follows.',
+        'Service calls get the same treatment. A fence in the way of a delivery, a gate that has to move, a run that needs extending because the site plan changed. Those calls are a normal part of the job, and general contractors get same-day service on them.',
         'For anything that isn\'t urgent, email is fine, and it\'s better for site plans, drawings and photos. Use the form and attach the file, or write directly, and include the site address so it\'s easy to match up.',
       ])}
       <ul class="contact-methods">
@@ -18,8 +18,8 @@ const contactMain = `<section class="section tone-white contact-section">
       </ul>
       <div class="contact-tool">
         <h3>Price it yourself first</h3>
-        <p>If you'd rather not talk yet, draw the fence on a map and the tool works out the run. Estimators use it the same way, as a reference for a bid.</p>
-        <a href="/estimate/" class="btn btn-red">Plan &amp; price your fence</a>
+        <p>If you'd rather not talk yet, draw the fence on a map and the tool measures the run and shows a preliminary price you can use as a reference for a bid.</p>
+        <a href="/estimate/" class="btn btn-red">Price your fence online</a>
       </div>
     </div>
 
@@ -31,7 +31,7 @@ const contactMain = `<section class="section tone-white contact-section">
       </div>
       <label>Email<input type="email" name="email" autocomplete="email" required maxlength="200"></label>
       <label><span>Project address <i class="opt-label">(optional)</i></span><input type="text" name="location" maxlength="300" placeholder="Street, city"></label>
-      <label>Comments<textarea name="message" rows="5" maxlength="5000" required placeholder="What's the job? Dates, footage, gates, anything we should know."></textarea></label>
+      <label>What's the job?<textarea name="message" rows="5" maxlength="5000" required placeholder="Dates, footage, gates, anything we should know."></textarea></label>
       <label class="file-drop">
         <input type="file" name="files" multiple accept=".pdf,.png,.jpg,.jpeg,.heic,.webp,.gif,.dwg,.dxf,.kmz,.kml,.doc,.docx,.xls,.xlsx,.csv,.txt,.zip">
         <strong>Attach site plans or photos</strong>
@@ -43,7 +43,7 @@ const contactMain = `<section class="section tone-white contact-section">
       ${turnstileWidget()}
       <button type="submit" class="btn btn-red btn-lg btn-block">Send it to Richard</button>
       <p class="form-status" role="status" aria-live="polite"></p>
-      <p class="form-note">Files stay on your device until you send. If an upload gives you trouble, email it to <a href="mailto:${SITE.email}">${SITE.email}</a> with your name. <a href="/privacy/">Privacy policy</a></p>
+      <p class="form-note">Richard reaches out within 24 hours, usually the same day. Files stay on your device until you send. If an upload gives you trouble, email it to <a href="mailto:${SITE.email}">${SITE.email}</a> with your name. <a href="/privacy/">Privacy policy</a></p>
     </form>
   </div>
 </section>
@@ -70,7 +70,7 @@ const contactMain = `<section class="section tone-white contact-section">
 export default {
   path: '/contact/',
   title: 'Contact Fence Wizards | Temporary Fence Rental Greenwood IN',
-  description: 'Call (317) 296-4015. Fence Wizards rents temporary fencing, windscreen and crowd control barricades across Indianapolis and 80 miles around downtown.',
+  description: 'Call (317) 296-4015. Fence Wizards rents temporary fencing, windscreen and crowd-control barricades across Indianapolis and 80 miles around downtown.',
   ogImage: 'truck-trailer-load',
   main: () => [
     pageHero({
@@ -92,6 +92,6 @@ export default {
       ],
     }),
     related({ current: '/contact/', cities: ['muncie', 'anderson', 'terre-haute', 'richmond', 'indianapolis', 'greenwood'] }),
-    quoteCta({ eyebrow: 'Quick quote', heading: 'Or just call and *get it over with.*', text: 'Richard quotes verbally on the call, because you usually need the number before you need it in writing.' }),
+    quoteCta({ eyebrow: 'Quick quote', heading: 'Or send the basics *in one go.*', text: 'Richard quotes verbally on the call, because you usually need the number before you need it in writing.' }),
   ].join('\n'),
 };

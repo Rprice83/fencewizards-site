@@ -71,7 +71,7 @@ export function header({ path, solid, landing = false }) {
         <li><a href="/#pricing">Pricing</a></li>
         <li${isActive(path, ['/service-area/']) ? ' class="active"' : ''}><a href="/service-area/"${cur(path, '/service-area/')}>Service Area</a></li>
         ${menu('Company', COMPANY, path, 'right')}
-        <li class="nav-mobile-cta"><a href="tel:${SITE.tel}" class="btn btn-outline">Call ${SITE.phone}</a><a href="/estimate/" class="btn btn-red">Get a Free Quote</a></li>
+        <li class="nav-mobile-cta"><a href="tel:${SITE.tel}" class="btn btn-outline">Call ${SITE.phone}</a><a href="/estimate/" class="btn btn-red">Price your fence online</a></li>
       </ul>`}
 
       <div class="nav-actions">
@@ -79,7 +79,7 @@ export function header({ path, solid, landing = false }) {
           ${phoneIcon}
           <span><small>Talk to Richard</small>${SITE.phone}</span>
         </a>
-        <a href="${landing ? '#quote' : '/estimate/'}" class="btn btn-red btn-sm">Get a Quote</a>
+        <a href="${landing ? '#quote' : '/estimate/'}" class="btn btn-red btn-sm">${landing ? 'Get my quote' : 'Price your fence online'}</a>
         ${landing ? '' : '<button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>'}
       </div>
     </div>
@@ -109,7 +109,7 @@ export function footer() {
     <div class="footer-brand">
       <img src="/assets/brand/logo-horizontal-reversed-800.png" alt="Fence Wizards — Rental Fence Solutions" width="260" height="90" loading="lazy">
       <p>Family-run temporary fence rental out of Greenwood, Indiana. Flat price, removal included.</p>
-      <a class="footer-rating" href="${SITE.mapsUrl}" target="_blank" rel="noopener"><span aria-hidden="true">★★★★★</span> ${SITE.rating.value} from ${SITE.rating.count} Google reviews</a>
+      <a class="footer-rating" href="${SITE.mapsUrl}" target="_blank" rel="noopener"><span aria-hidden="true">★</span> ${SITE.rating.value} from ${SITE.rating.count} Google reviews</a>
     </div>
     <div>
       <h4>What we fence</h4>
@@ -123,7 +123,7 @@ export function footer() {
     </div>
     <div>
       <h4>Company</h4>
-      <ul><li><a href="/estimate/">Plan &amp; price your fence</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/service-area/">Service area</a></li>${links(COMPANY)}</ul>
+      <ul><li><a href="/estimate/">Price your fence online</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/service-area/">Service area</a></li>${links(COMPANY)}</ul>
     </div>
     <div class="footer-contact">
       <h4>Talk to Richard</h4>
@@ -135,7 +135,7 @@ export function footer() {
   </div>
   <div class="container footer-bottom">
     <p>&copy; ${new Date().getFullYear()} Fence Wizards. All rights reserved. <span class="site-credit"><span class="dot">&middot; </span>Website by ${CREDIT.url ? `<a href="${esc(CREDIT.url)}">${esc(CREDIT.name)}</a>` : esc(CREDIT.name)}</span></p>
-    <p>Umbrella, general liability, commercial auto &amp; workers&rsquo; comp insured. &middot; <a href="/privacy/">Privacy policy</a></p>
+    <p>Umbrella, general liability, commercial auto &amp; workers&rsquo; comp insured &middot; <a href="/privacy/">Privacy policy</a></p>
   </div>
 </footer>`;
 }

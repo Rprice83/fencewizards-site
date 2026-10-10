@@ -19,5 +19,5 @@ export default {
   main: () => responsive(partial)
     .replace('{{cityLinks}}', `<ul class="city-list">${CITIES.map(c => `<li><a href="${cityHref(c.slug)}">${esc(c.name)}</a></li>`).join('')}</ul>`)
     .replace('{{areaMap}}', areaMap())
-    .replace('{{quoteCta}}', quoteCta({ heading: 'Five answers and *Richard can price it.*', text: 'He handles every inquiry himself and treats almost all of them as urgent, because in this trade the ones that aren\'t are rare.' })),
+    .replace('{{quoteCta}}', quoteCta({ heading: 'A few answers and *Richard can price it.*', text: 'He handles every inquiry himself and treats nearly all of them as urgent, because in this trade most of them are.' })),
 };

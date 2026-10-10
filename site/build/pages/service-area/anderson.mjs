@@ -3,7 +3,7 @@ import { pageHero, intro, placeCard, prose, typeCards, faq, cityList, related, q
 export default {
   path: '/service-area/anderson/',
   title: 'Temporary Fence Rental in Anderson, IN | Fence Wizards',
-  description: 'Temporary fence rental in Anderson, Indiana. Panels, chain link, windscreen and barricades on a flat fee. On site in 24 to 48 hours.',
+  description: 'Temporary fence for Anderson demolition and redevelopment: windscreen for dust, driven chain link for lots that sit for months. Flat fee, removal included.',
   ogImage: 'demolition-site',
   main: () => [
     pageHero({
@@ -27,8 +27,8 @@ export default {
       eyebrow: 'Local know-how',
       heading: 'What\'s different *about Anderson.*',
       paras: [
-        'A demolition perimeter has to do three things at once. It has to keep people out of a site that is genuinely dangerous, it has to hold while heavy equipment works next to it, and it has to control what blows off the site and what the street can see. That last part is why so much Anderson work gets windscreen fitted across the run.',
-        'The other Anderson pattern is the long hold. A cleared lot often sits fenced for months between demolition and whatever replaces it, and that is post-driven chain link territory. A driven line will still be standing and still be tight after a winter; a panel run that nobody is watching will not.',
+        'A demolition perimeter has to do three things at once. It has to keep people out of a site that is dangerous, it has to hold while heavy equipment works next to it, and it has to control what blows off the site and what the street can see. That last part is why so much Anderson work gets windscreen fitted across the run.',
+        'The other Anderson pattern is the long hold. A cleared lot often sits fenced for months between demolition and whatever replaces it, and that\'s post-driven chain link territory. A driven line will still be standing and still be tight after a winter; a panel run that nobody is watching won\'t.',
       ],
       image: 'cleared-lot-neighborhood',
       imageAlt: 'Chain link around a cleared lot in a neighborhood',
@@ -43,7 +43,7 @@ export default {
 
     faq({
       heading: 'Questions we get *about Anderson.*',
-      intro: 'Three that come up on nearly every call from this part of the radius.',
+      intro: 'Demolition, the empty lot after it, and the drive up.',
       items: [
         { q: 'Do you fence demolition sites?', a: 'Yes, and it\'s a regular part of what we do in Madison County. A demolition perimeter needs to hold against heavy equipment working beside it, and usually wants windscreen across the run for dust and for what the street sees.' },
         { q: 'What if the lot sits empty for months after the demolition?', a: 'Then it wants post-driven chain link rather than panels. A driven line stays tight through a winter with nobody watching it, on the same flat fee with removal already included.' },
@@ -56,7 +56,7 @@ export default {
 
     cityList({
       heading: 'Other towns *we cover.*',
-      intro: 'The rest of the radius, out from Madison County. If your project sits between two of them, or past the edge, call and ask rather than assuming the answer is no.',
+      intro: 'The rest of the radius, out from Madison County.',
       cities: ['terre-haute', 'richmond', 'indianapolis', 'greenwood', 'carmel', 'fishers', 'noblesville', 'westfield'],
     }),
 

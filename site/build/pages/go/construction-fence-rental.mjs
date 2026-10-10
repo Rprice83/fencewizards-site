@@ -1,7 +1,7 @@
 // Google Ads landing page: construction searches ("construction fence rental", "temporary fencing for construction sites"…)
 // Copy from /construction-fencing/ and the FAQ page. Not in search results or the sitemap (noindex).
-import { features, faq, gallery, quoteCta, ctaBand } from '../../lib/components.mjs';
-import { landingHero } from '../../lib/landing.mjs';
+import { features, faq, gallery, quoteCta } from '../../lib/components.mjs';
+import { landingHero, landingCtaBand } from '../../lib/landing.mjs';
 
 export default {
   path: '/go/construction-fence-rental/',
@@ -14,7 +14,7 @@ export default {
     landingHero({
       eyebrow: 'Construction & job site fencing',
       title: 'Construction fence rental *in Indianapolis.*',
-      lede: 'Temporary fencing for construction sites: temp fence panels and stands, post-driven chain link, gates and windscreen, usually set within 24 to 48 hours of the call. The price is agreed before the first panel goes in, and it covers removal at the end.',
+      lede: 'Temporary fencing for construction sites, usually set within 24 to 48 hours of the call. When a gate has to move or a run has to be added, general contractors get us back out the same day. The price is agreed before the first panel goes in, and it covers removal at the end.',
       image: 'stacked-panels-site',
       imageAlt: 'Temporary fence panels on stands around a construction staging area',
       trust: ['One flat price, removal included', 'Same-day moves for general contractors', 'Fully insured, certificates on request'],
@@ -22,8 +22,8 @@ export default {
 
     quoteCta({
       eyebrow: 'Get a price',
-      heading: 'A number for your bid, *today.*',
-      text: 'Five answers and Richard can price it. He quotes verbally first, on the call, and sends the written proposal after.',
+      heading: 'A number you can put *in a bid.*',
+      text: 'Five answers and Richard can price it. He takes every inquiry himself.',
     }),
 
     features({
@@ -32,10 +32,10 @@ export default {
       cols: 2,
       tone: 'white',
       items: [
-        { title: 'A number you can put in a bid', text: 'We quote verbally first, on the call, and send the written proposal after. The price is agreed before the first panel goes in.' },
+        { title: 'Verbal number first, proposal after', text: 'One call gets you a verbal number, and the written proposal follows. Both come from Richard, the person who prices the job.' },
         { title: 'Job site fencing that moves with the site', text: 'When a gate has to move or a run has to be added, we come back out the same day. Fencing is in somebody\'s way at least once on every project.' },
         { title: 'No rent clock', text: 'The rental is a flat fee agreed before the install, and it doesn\'t keep running if your project runs long. There is no charge to collect the fence at the end.' },
-        { title: 'Paperwork in order', text: 'Net 30 is normal for clients we have worked with. Certificates of insurance for your vendor file: umbrella, general liability, commercial auto and workers\' compensation.' },
+        { title: 'Paperwork in order', text: 'Net 30 is normal for clients we have worked with. Smaller or new accounts pay up front, and we say so on the first call. Certificates of insurance for your vendor file: umbrella, general liability, commercial auto and workers\' compensation.' },
       ],
     }),
 
@@ -56,10 +56,10 @@ export default {
         { q: 'How much lead time do you need on a construction site?', a: '24 to 48 hours is the normal window, and it covers most jobs. We do take emergency work faster than that. The more notice we have, the more of the install we can plan rather than improvise, which usually means a cleaner line and fewer changes later.' },
         { q: 'Do you charge per month once the fence is up?', a: 'No. The rental is a flat fee agreed before the install, and it doesn\'t keep running if your project runs long. There is no charge to come and collect the fence at the end.' },
         { q: 'What happens when the site plan changes and the fence is in the way?', a: 'You call and we come out. General contractors get same-day service on moves, gate relocations and sections added to an existing run.' },
-        { q: 'Can you fence a site where posts can\'t be driven?', a: 'Yes. Panels sit in stands weighted with sandbags and need no ground penetration at all, which is the usual answer on a paved lot, a deck, or a site with utilities close to the surface. Where the ground does take a post and the perimeter has to stay shut, post-driven chain link is the stronger call.' },
+        { q: 'Can you fence a site where posts can\'t be driven?', a: 'Yes. Temp fence panels sit in stands weighted with sandbags and need no ground penetration at all, which is the usual answer on a paved lot, a deck, or a site with utilities close to the surface. Where the ground does take a post and the perimeter has to stay shut, post-driven chain link is the stronger call.' },
       ],
     }),
 
-    ctaBand(),
+    landingCtaBand(),
   ].join('\n'),
 };

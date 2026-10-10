@@ -138,3 +138,77 @@
 10. **VA and SSA sites:** which city? (Also already open: is the NBA All-Star Game Google Pixel event one site or two?)
 11. **Branded windscreen:** what size is one "screen" at $800, and is 6 a firm minimum or just a price break?
 12. **Phone number** (already in TODO): his Google profile shows (317) 939-9030 while the site uses 296-4015.
+
+## Applied 2026-10-10
+
+### What changed
+**Estimator button label (one label site-wide):** every button/link to /estimate/ in these files now says "Price your fence online": homepage hero ("Plan & Price Your Fence"), pricing section ("Price my job"), pageHero ("Plan & price your fence"), articleAside and ctaBand ("Plan & price it"), placeCard ("Price a {town} job"), mobile nav ("Get a Free Quote"), header nav button ("Get a Quote"; on /go/ landing pages it points to #quote and now says "Get my quote"), footer Company link, Contact tool card. quoteCta inline link: "Draw your fence on a map →" → "Draw your fence and see a price" (arrow dropped). Estimator page eyebrow "Plan & price it" → "Price your fence online"; page title "Plan & Price Your Fence" → "Price Your Fence Online".
+
+**Homepage (partials/home.html, pages/home.mjs)**
+- H1: "Fence on the ground *in 24–48 hours.*" → "Temporary fence rental, *on site in 24 to 48 hours.*" (option A, without "in Indianapolis" since the eyebrow already says it)
+- Hero lede: "…goes up — and it covers taking it back down." → "…goes up, and it includes taking the fence back down."
+- Stat tiles: merged "$0 / Extra to pull it — removal is in the price" and "1 price / Agreed up front — no rent clock" into "$0 / Extra for removal. It's in the price"; freed tile → "1 call / Richard answers his own phone" (no day count, since hours are R3). 24–48 and 80 mi tiles kept.
+- Emergency card: "Same-week perimeter fencing…" → "Perimeter fencing after storms, fires and break-ins, usually faster than our normal 24 to 48 hours."
+- Pricing para: em dash → colon only (wording untouched, R1/R4).
+- Fence types note: "…don't take — and we'll tell you on the call, not after the invoice." → "…don't take, and we'll tell you that on the first call."
+- Post-driven card: Set "Crew on site" → "24–48 hours". Windscreen card: em dash → period.
+- Process: "99% … business-to-business" → "Ninety-nine percent … business to business"; "Get a number same day" → "Get a number the same day you call"; "Gate needs to move or a run added? Call and we come out — same day for GCs." → "Need a gate moved or a run added? Call and we come out, same day for general contractors."
+- Trust: head-note "Four things that are true and checkable — rather than four adjectives." → "Four things you can check."; insurance item em dash → period; "Three generations" body → "Richard is a third-generation fencer, with ten-plus years of permanent fence work behind every temporary install."; "no middle man — the savings…" → "bought direct with no middleman. The savings go into your quote."
+- Rating card: "★★★★★" → single "★" next to "4.6 on Google" (same in the footer).
+- Area: "Eighty miles around" → "80 miles around"; "Call and ask — the answer…" → "Call and ask. The answer…"
+- Closing quoteCta: "Five answers and *Richard can price it.*" → "A few answers and…"; "treats almost all of them as urgent, because in this trade the ones that aren't are rare." → "treats nearly all of them as urgent, because in this trade most of them are."
+
+**Shared (components.mjs, layout.mjs)**
+- quoteCta default text "Five answers and Richard can price it." → "A few answers and Richard can price it." (the quick form has no gates field).
+- Footer: "workers' comp insured. ·" → "workers' comp insured ·"; footer stars "★★★★★" → "★".
+
+**About (pages/about.mjs)**
+- Lede "Owner run" → "Owner-run".
+- Intro: "The ten-plus years … really go back a lot further than that." → "The company has ten-plus years of permanent fence work behind it, and the family's goes back a lot further."
+- Equipment: "the reason isn't that it's impressive. It's that the crew…" → "because the crew…"
+- Features intro: "The goal on any job isn't to make as much as possible… It's to be the number…" → "On every job, the goal is to be the number a project manager calls the next ten times, and the ten after that."
+- Features 03: "A live person on the first ring…" → "A live person, or a call straight back, is most of what separates us from a dispatch queue."
+- Sites intro rewritten per the finding ("These are sites our fence has stood on…").
+- Facts heading "Checkable facts, *not adjectives.*" → "Facts you can *check.*"
+- quoteCta eyebrow "Work with the owner" → "Get a quote".
+
+**Contact (pages/contact.mjs)**
+- Para 1: "…wait for a written proposal you don't have time for yet. The written version follows." → "…wait for the written proposal. That follows."
+- Para 2: colon reveal → "…because the site plan changed. Those calls are a normal part of the job, and general contractors get same-day service on them."
+- Tool card: "the tool works out the run. Estimators use it the same way…" → "the tool measures the run and shows a preliminary price you can use as a reference for a bid."
+- Form label "Comments" → "What's the job?" (placeholder shortened to "Dates, footage, gates, anything we should know.").
+- Form note now starts "Richard reaches out within 24 hours, usually the same day."
+- Meta "crowd control" → "crowd-control".
+- Closing quoteCta heading "Or just call and *get it over with.*" → "Or send the basics *in one go.*"
+
+**FAQ (pages/faq.mjs)**
+- Intro "what he is actually buying" → "what they are buying"; "before he needs it in writing" → "before they need it".
+- Cost: "There is no list price, and any company that gives you one … is guessing." → "There's no one-size price."; "[quote tool] … returns a number by itself" → "[estimator] … shows a preliminary price".
+- Emergency: "a real part of this business rather than something bolted on. The honest answer on timing…" → "Yes. Emergency work is a regular part of this business. Timing depends…"
+- Night installs: dropped "Event schedules are the reason this business is built the way it is."
+- Distance: → "Yes, for sites more than 50 driving miles from downtown Indianapolis. The distance charge shows up as its own line in the number, and we say so on the call."
+- Residential: removed the redundant "We don't take residential fencing work."
+- "Have you worked on large events?" → "Where has your fence been used?"
+- Closing quoteCta: "Answer the five and Richard will call you back…" → "Answer a few questions and Richard will get back to you with a price and a date."
+
+**404:** lede "Try one of these, or call Richard…" → "Try the links below, price your fence online, or call Richard…"
+
+**Estimator / confirmation / email**
+- Estimator H1 "Draw it. Price it. *Send it to Richard.*" → "Draw your fence, see a price, *send it to Richard.*"
+- Intro "…and calls you within 24 hours." → "…and gets back to you within 24 hours, usually the same day."
+- Step 3: "within 24 hours to go over…" → "within 24 hours, usually the same day, to go over…"
+- "sand bags" → "sandbags" (2 places).
+- Summary fine print → "Preliminary, pre-tax estimate. Richard confirms the final price after reviewing your site."
+- Confirmation H1 "Thanks!" → "Thanks."; lede adds "usually the same day"; page meta description adds "usually the same day".
+- customer-email.js preheader: "…within 24 hours." → "…within 24 hours, usually the same day." (only reply-time wording changed; the email's own "Thanks!" heading left alone, a test asserts it).
+
+### Skipped, and why
+- **R1 (term overrun):** homepage pricing para wording, "If your schedule slips a month, the price doesn't move", compare rows "Monthly rent clock" / "Schedule slips a month / Price holds", the "Flat price · No rent clock" eyebrow, FAQ "Do you charge rent by the month?", About features 01 ("Flat fee, no rent that keeps running…", also a negation list). Left exactly as is.
+- **R2 (yard location):** every "Greenwood" as base/yard (home area para, Contact Yard/Find us, About, footer, placeCard label, FAQ area answer, COMPANY blurb).
+- **R3 (hours):** "Open 7 days, 7:30am–9pm" in header/footer/landing footer/Contact/FAQ, and "Richard answers his own phone, 7 days" in the quoteCta call card. The "7 days" stat tile was not added.
+- **R4 (damage):** "a fee for every bent panel" (home), FAQ "Are there damage fees?", estimator damage-waiver line.
+- **NEED 6 / 7 / 8 / 9 / 10 / 11:** "pulled the hour the event ends", the orange-mesh gallery photo, "Recognized: Indianapolis Monthly", OSHA 30 line, VA/SSA "Indiana" labels, branded windscreen "$800 each (min. 6)".
+- **"Google Pixel event" vs "Event":** left as is; the other pages (event-fencing, /go/) use "Event" and the one-site-or-two question is open in TODO.
+- **USES "Emergency & Restoration" vs card "Emergency":** finding says fine as is.
+- **Gates field on the quick form:** not added (no functional changes); headings/text that said "Five answers" over the quick form now say "A few answers". The homepage step 1 "Tell us five things", ctaBand "Call … with your five answers" and articleAside "Five answers and Richard can price it…" stay, since they describe the phone call / estimator, which do cover all five.
+- **Not in my files:** `build/pages/blog/field-notes.mjs` still has a "Price a job like this" button to /estimate/.

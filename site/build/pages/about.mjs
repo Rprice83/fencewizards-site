@@ -10,7 +10,7 @@ export default {
       crumbs: [{ name: 'About' }],
       eyebrow: 'About Fence Wizards',
       title: 'A family that has been fencing *for three generations.*',
-      lede: 'Owner run out of Greenwood, Indiana, and built for the people who order fence for a living.',
+      lede: 'Owner-run out of Greenwood, Indiana, and built for the people who order fence for a living.',
       image: 'wizard-truck-wrap',
       imageAlt: 'A wrapped Fence Wizards truck with the wizard artwork',
     }),
@@ -18,7 +18,7 @@ export default {
     intro({
       lead: 'Fence Wizards is a family business.',
       paras: [
-        'Richard Warren owns it, his father and his brother work in it every day, and he is a third-generation fencer. The ten-plus years of permanent fence work behind this company really go back a lot further than that.',
+        'Richard Warren owns it, his father and his brother work in it every day, and he is a third-generation fencer. The company has ten-plus years of permanent fence work behind it, and the family\'s goes back a lot further.',
       ],
       image: 'crew-at-fence',
       imageAlt: 'Three members of the Fence Wizards crew standing in front of a chain link fence',
@@ -28,7 +28,7 @@ export default {
       eyebrow: 'Equipment & buying',
       heading: 'Why the equipment *matters.*',
       paras: [
-        'We buy the most current fence installation equipment we can, and the reason isn\'t that it\'s impressive. It\'s that the crew gets more done in a day and finishes it less beaten up. Injury and fatigue are what turn a two-day install into a four-day one.',
+        'We buy the most current fence installation equipment we can, because the crew gets more done in a day and finishes it less beaten up. Injury and fatigue are what turn a two-day install into a four-day one.',
         'We also do our own procurement, straight from the manufacturer rather than through a distributor. That takes a layer of cost out, and the saving goes into the quote rather than into the margin.',
         'Richard is working on his OSHA 30. When it\'s finished it will be on this page, and not before.',
       ],
@@ -41,13 +41,13 @@ export default {
     features({
       eyebrow: 'How we do business',
       heading: 'Be the number they *call the next ten times.*',
-      intro: 'The goal on any job isn\'t to make as much as possible on that job. It\'s to be the number a project manager calls the next ten times, and the ten after that.',
+      intro: 'On every job, the goal is to be the number a project manager calls the next ten times, and the ten after that.',
       cols: 2,
       tone: 'white',
       items: [
         { label: '01', title: 'Price it once and hold it', text: 'Flat fee, no rent that keeps running, no removal charge, no excessive damage fees. Every one of those is a profit center at a national company, and we decided not to build one.' },
         { label: '02', title: 'Move when the site moves', text: 'Fence relocated, gates shifted, a run added to an existing job. Same-day service for general contractors, because a fence in the wrong place stops other trades.' },
-        { label: '03', title: 'Answer the phone', text: 'Richard takes the calls himself, for sales and for service. A live person on the first ring is most of what separates us from a dispatch queue.' },
+        { label: '03', title: 'Answer the phone', text: 'Richard takes the calls himself, for sales and for service. A live person, or a call straight back, is most of what separates us from a dispatch queue.' },
         { label: '04', title: 'Say no plainly', text: 'We don\'t do permanent fence installation, gate automation, residential fencing, fence repairs, stanchions, orange fencing or fence material sales. If you need one of those, we\'ll say so on the call and point you somewhere useful.' },
       ],
     }),
@@ -55,7 +55,7 @@ export default {
     features({
       eyebrow: 'Where our fence has stood',
       heading: 'Sites our fencing *has been on.*',
-      intro: 'We name the sites, not claim the venues as customers. On work at this scale the venue is the end user and the company that hired us is somebody else, so the sites are what we name.',
+      intro: 'These are sites our fence has stood on. At this scale the venue is the end user and another company hired us, so we list the sites rather than claim the venues as customers.',
       cols: 3,
       tone: 'steel',
       items: [
@@ -70,7 +70,7 @@ export default {
 
     facts({
       eyebrow: 'What stands behind the work',
-      heading: 'Checkable facts, *not adjectives.*',
+      heading: 'Facts you can *check.*',
       image: 'crew-and-van',
       imageAlt: 'Fence Wizards crew member next to a wrapped work truck',
       items: [
@@ -92,6 +92,6 @@ export default {
 
     related({ current: '/about/', cities: ['franklin', 'columbus', 'bloomington', 'lafayette', 'muncie', 'anderson'] }),
 
-    quoteCta({ eyebrow: 'Work with the owner', heading: 'Work with *the owner.*', text: 'Richard handles every inquiry himself. Tell him about the job and he\'ll call you back with a number and a date.' }),
+    quoteCta({ eyebrow: 'Get a quote', heading: 'Work with *the owner.*', text: 'Richard handles every inquiry himself. Tell him about the job and he\'ll call you back with a number and a date.' }),
   ].join('\n'),
 };

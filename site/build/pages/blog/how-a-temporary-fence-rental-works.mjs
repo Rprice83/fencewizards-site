@@ -11,7 +11,7 @@ export const post = {
 
 export default {
   path: post.path,
-  title: 'How a temporary fence rental works in Indianapolis, from first call to pickup | Fence Wizards',
+  title: 'How a temporary fence rental works in Indianapolis | Fence Wizards',
   description: post.summary,
   ogImage: post.image,
   article: { headline: post.headline, date: post.date },
@@ -37,7 +37,7 @@ export default {
           'Freestanding [panels](/fence/panels-and-stands/) sit in stands with sandbags, go up fast, and can be shifted by your own crew as the job changes. [Post-driven chain link](/fence/post-driven-chain-link/) goes into the ground, doesn\'t move, and is the right call when the fence has to keep pedestrians and intruders out for months. We walk through this on the first call.',
         ] },
         { heading: 'From yes to standing fence', paras: [
-          'After the verbal number comes a written proposal. Established commercial accounts run on Net 30; smaller or first-time rentals pay up front. Then the install gets scheduled. We\'re built for a 24 to 48 hour turnaround, and same-day changes on a live site are normal for us, because a construction schedule doesn\'t wait for a fence vendor.',
+          'After the verbal number comes a written proposal. Established commercial accounts run on Net 30; smaller or first-time rentals pay up front. Then the install gets scheduled. We\'re built for a 24- to 48-hour turnaround, and same-day changes on a live site are normal for us, because a construction schedule doesn\'t wait for a fence vendor.',
         ] },
         { heading: 'While the fence is up', paras: [
           'The rental includes service during the term. Gates move, runs get extended, a storm knocks a panel line over, an inspector wants an opening somewhere new: you call, we come.',
@@ -50,10 +50,10 @@ export default {
           'For events, tell us whether the fence is holding a crowd back or holding a perimeter, because [crowd-control barricades](/fence/barricades/) and fence panels are different products, and we rent both.',
         ] },
         { heading: 'The add-ons people ask about mid-rental', paras: [
-          '[Windscreen](/fence/windscreen/) is the common one. It adds privacy, holds down dust, and turns a chain link run into signage if you print on it. It\'s sold rather than rented, so it\'s yours to keep for the next project. Eight-foot fencing is available as a special order for sites that need more height. All of it can be added to a rental that\'s already standing.',
+          '[Windscreen](/fence/windscreen/) is the common one. It adds privacy, holds down dust, and turns a chain link run into signage if you print on it. It\'s sold rather than rented, so it\'s yours to keep for the next project. Eight-foot fencing is available as a special order for sites that need more height. Windscreen can be added to a fence that\'s already standing.',
         ] },
         { heading: 'Where we do this', paras: [
-          'We\'re based in Greenwood and cover the Indianapolis metro and roughly eighty miles around downtown: construction sites, special events, and emergency response after a fire or a storm. The [service area page](/service-area/) names the towns we work most.',
+          'We\'re based in Greenwood and cover the Indianapolis metro and roughly 80 miles around downtown: construction sites, special events, and emergency response after a fire or a storm. The [service area page](/service-area/) names the towns we work most.',
         ] },
       ],
     }),

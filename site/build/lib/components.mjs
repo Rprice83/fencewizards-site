@@ -52,7 +52,7 @@ export function pageHero({ crumbs = [], eyebrow, title, lede, image, imageAlt = 
     ${lede ? `<p class="page-hero-lede">${md(lede)}</p>` : ''}
     ${meta ? `<p class="page-hero-meta">${md(meta)}</p>` : ''}
     ${actions ? `<div class="hero-ctas">
-      <a href="/estimate/" class="btn btn-red">Plan &amp; price your fence ${arrow}</a>
+      <a href="/estimate/" class="btn btn-red">Price your fence online ${arrow}</a>
       <a href="tel:${SITE.tel}" class="btn btn-glass">Call Richard &middot; ${SITE.phone}</a>
     </div>` : ''}
   </div>
@@ -179,7 +179,7 @@ export function placeCard({ slug, drive, cityLink }) {
       <div><dt>Pricing</dt><dd>One flat price, removal included</dd></div>
     </dl>
     ${cityLink ? `<p class="place-link">City information: <a href="${cityLink.href}" target="_blank" rel="noopener">${esc(cityLink.label)}</a></p>` : ''}
-    <a href="/estimate/" class="btn btn-red btn-block">Price a ${esc(c.name)} job</a>
+    <a href="/estimate/" class="btn btn-red btn-block">Price your fence online</a>
   </aside>`;
 }
 
@@ -220,7 +220,7 @@ export function articleAside() {
   return `<div class="aside-card">
     <p class="eyebrow dark"><span class="slash" aria-hidden="true"></span>Fence on site in 24&ndash;48 hours</p>
     <p>Five answers and Richard can price it: where, which fence, linear feet, gates, and how long.</p>
-    <a href="/estimate/" class="btn btn-red btn-block">Plan &amp; price it</a>
+    <a href="/estimate/" class="btn btn-red btn-block">Price your fence online</a>
     <a href="tel:${SITE.tel}" class="aside-phone">${SITE.phone}</a>
   </div>`;
 }
@@ -249,7 +249,7 @@ export const turnstileWidget = () => `<div class="cf-turnstile" data-sitekey="${
 export const heardAboutField = ({ id = '', cls = '' } = {}) => `<label${cls ? ` class="${cls}"` : ''}><span>How did you hear about us? <i class="opt-label">(optional)</i></span><select name="heardAbout"${id ? ` id="${id}"` : ''}><option value="">Choose one</option>${HEARD_ABOUT.map(h => `<option>${esc(h)}</option>`).join('')}</select></label>`;
 
 // Quick quote form (posts to /api/contact). heading/text customize the pitch.
-export function quoteCta({ eyebrow = 'Get a quote', heading = 'Tell us about *the job.*', text = 'Five answers and Richard can price it. He takes every inquiry himself.', id = 'quote', tone = 'steel' }) {
+export function quoteCta({ eyebrow = 'Get a quote', heading = 'Tell us about *the job.*', text = 'A few answers and Richard can price it. He takes every inquiry himself.', id = 'quote', tone = 'steel' }) {
   return section(tone, `    <div class="quote-grid">
       <div class="quote-copy">
         ${eyebrowHtml(eyebrow)}
@@ -259,7 +259,7 @@ export function quoteCta({ eyebrow = 'Get a quote', heading = 'Tell us about *th
           <img src="/assets/brand/mark-wizard-800.png" alt="" width="64" height="56" loading="lazy">
           <span><small>Rather talk it through?</small><strong>${SITE.phone}</strong><em>Richard answers his own phone, 7 days</em></span>
         </a>
-        <p class="map-tool">Prefer to price it yourself? <a href="/estimate/">Draw your fence on a map &rarr;</a></p>
+        <p class="map-tool">Prefer to price it yourself? <a href="/estimate/">Draw your fence and see a price</a></p>
       </div>
       <form class="quote-form js-inquiry" data-kind="quick" novalidate>
         <div class="form-row">
@@ -292,7 +292,7 @@ export function ctaBand({ heading = 'Fence on site in *24–48 hours.*', text = 
   <div class="container cta-band-inner">
     <div><h2>${md(heading)}</h2><p>${md(text)}</p></div>
     <div class="cta-band-actions">
-      <a href="/estimate/" class="btn btn-red btn-lg">Plan &amp; price it ${arrow}</a>
+      <a href="/estimate/" class="btn btn-red btn-lg">Price your fence online ${arrow}</a>
       <a href="tel:${SITE.tel}" class="btn btn-glass btn-lg">Call ${SITE.phone}</a>
     </div>
   </div>

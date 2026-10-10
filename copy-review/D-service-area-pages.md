@@ -248,3 +248,40 @@
 - `C:\Users\gsvpr\OneDrive\Desktop\Richard Claude\Fence Wizards Initial Go with Claude\site\build\pages\service-area\*.mjs`
 - `...\site\build\lib\site.mjs` (CITIES, lines 57–77)
 - `...\site\build\lib\components.mjs:171-184` (placeCard)
+
+## Applied 2026-10-10
+
+**Applied to all 19 town pages:**
+- A unique meta description from the drafts above. Each one is 155 characters or less, and every fact in it is on that page (the place card adds "flat price, removal included" and "24–48 hours" on every page). Greenwood's uses "SR 135".
+- The identical FAQ intro is replaced with one short line per town, built from that page's own three questions.
+- The second "Other towns" sentence ("If your project sits between two of them…") is gone from every town page. Its idea stays on the index FAQ. The first sentences, which name the yard, are unchanged (R2).
+- "…he'll price it on the call" now appears only on Indianapolis, Fishers and Noblesville, plus the index. The other pages got a CTA tied to their own local ask.
+- No "genuinely" left anywhere. "Honest" is gone from the town pages. "Actually" is gone except inside lines that were blocked.
+
+**Per page:**
+- **Anderson:** dropped "genuinely". Contractions in the long-hold paragraph. Kept the site's only "territory" use.
+- **Avon:** contrast reveal fixed. "Panel and stand territory" became "a job for panels and stands". Dropped the "more expensive one" assumption ("we'll tell you so"). Cut "genuinely apart rather than just mark a line". FAQ answers shortened per the findings (two people shifting a section is no longer said twice). "Honest answer" became "better fit". Dropped "actually".
+- **Bloomington:** "State Road 37 and I-69" became "I-69" in the lead and on the place card (only the road name changed). "Catches people out" became "what surprises people". "A foot down once you're south of town". Cut the "before install day" sentence, the "difference between a fence that…" line and the "cheaper on paper" comparison. "Honest answer on a walk" became "After a site walk". Shorter crew/schedule line.
+- **Brownsburg:** the residential FAQ now answers the question with "Yes, on the construction side…". Cut the filler kicker. "For the length of the job" became "until the work is done". Shorter schedule line. "Honest answer on timing" became "exact timing".
+- **Carmel:** the contrast-reveal lead is rewritten. Cut the trailing "rather than a mess" and the "Driven line for what stays shut…" fragment. Windscreen FAQ trimmed (no reflexive three).
+- **Columbus:** "a river that floods". "A downtown known for its architecture". Dropped the "small difference in cost" pricing claim. Restoration FAQ is now just "Yes." (no new volume claim). "Has to hold". "Exact timing".
+- **Fishers:** contrast reveal fixed. "All within a few minutes of each other" replaces "in the same square mile". Trimmed "rather than discover it on install day", "rather than office hours" and "actually".
+- **Franklin:** removed the same-day install promise. The intro is now the gate-move service line. Cut "which changes what we can actually promise…" (the yard clause is unchanged). typeCards intro: "so service calls are quick". The FAQ no longer says "faster" and then gives the standard window. Dropped "genuinely" and the "where the panels ran out" twin.
+- **Greenwood:** "Same day is realistic…" became "A straightforward run goes in within 24 to 48 hours". "State Road 135" became "SR 135". "Territory" became "calls for panels and stands" (the superintendent line stays here).
+- **Indianapolis:** contrast reveal fixed. Cut "rather than dropped wherever the panels ran out". Kept the full overnight/schedule line and "when the event is over rather than the following week" (this page only).
+- **Lafayette:** new hero and og image `yard-tractor-panels` (it was the prose image; `open-field-run` was ruled out because the typeCards "driven" card already shows it on this page). The prose image is now `orange-safety-run`. The distance FAQ uses the confirmed 50-driving-mile sentence, and the vague "distance is real" prose line is cut. The CTA no longer says "beats three trips". Contractions; dropped "actually".
+- **Muncie:** "SR 32" in the lead and on the place card. Replaced the unverified "build in July / crowd in September" detail with the neutral version. "Has to hold". Contraction pass.
+- **Noblesville:** the lede superlative became "Ruoff's summer concert season". "When the event ends". Shorter schedule line. Dropped "for the length of the job". Contraction pass.
+- **Plainfield:** cut the "footprint you can see from the air / easy part" setup. "The other common call, and people make it late". "Inventoried from the road" became "out of view" (kept on Columbus). Dropped "actually" and "every single". Contraction pass. Kept the "where the panel count ran out" line (the keeper).
+- **Richmond:** colon reveal fixed. Cut "state border is part of the local economy". New typeCards intro (no longer a Lafayette twin). The CTA no longer repeats the prose. Contraction pass.
+- **Speedway:** the list ends at "parking separation". The race-month FAQ starts with "Yes." Kept the full schedule line in the FAQ and shortened the prose one. Contraction pass.
+- **Terre Haute:** "priced honestly" and "honest trade" removed. The intro uses the confirmed 50-driving-mile sentence. Cut "Saying that on the call is better…". "Do you actually come out" became "Do you come out". Ground FAQ shortened (no verbatim repeat). Third "three trips" mention cut. New CTA. Contraction pass.
+- **Westfield:** the template opener became "Grand Park's tournament weekends put crowd management ahead of construction in Westfield." "US 31" became "US-31" (lede, prose, place card). Cut the superintendent twin and "territory". Short schedule line. "When the event ends". Contraction pass.
+- **Zionsville:** dropped the superlative ("how the site looks matters as much as how it holds") and the "whole identity / for that reason alone" puffery. Cut the install-day twin from the prose (kept FAQ:50). Contraction pass.
+- **Index:** title is now "Service Area: Indianapolis + 80 Miles | Fence Wizards". The negation-fragment intro is rewritten. "What the distance changes" uses the confirmed 50-driving-mile sentence. "How far do you actually travel?" became "How far do you travel?".
+
+**Skipped on purpose (blocked on Richard):**
+- **R2 (where is the yard?):** every Greenwood/yard/drive-time sentence is untouched. That includes Anderson's lead and FAQ, Carmel's FAQ, the Fishers FAQ question and answer ("from Greenwood"), Indianapolis's "shortest run we make" and FAQ question, Franklin's lede and "same county as our yard" (other words in those sentences were trimmed), Greenwood's "the trucks are here", the yard lines and the "same morning" line (NEED 5), the Richmond FAQ, the "Other towns" first sentences and the index's Greenwood lines.
+- **[NEED]/[VERIFY] claims left as written:** Anderson "regular part", Bloomington "most of what we do", Indianapolis "large share", index "large share" (restoration), Greenwood "grew up" (its kicker is still there because it's the same sentence), the Muncie Ball State lines (so no contraction pass on them), the Richmond Ohio crews sentence, Speedway's signage-cost claim, Zionsville's carry-in price line, Brownsburg's "raceway park" (not renamed), Noblesville's "Pleasant Street work", and Richmond "sometimes yes" against the index "usually yes".
+- **Distance surcharge:** nothing added on Muncie, Bloomington or Richmond. Richmond keeps "the drive is part of the number".
+- No test changes were needed, because `site/tests/` has no service-area copy expectations. The build was not run (it's run centrally). All 20 modules pass `node --check`, and each `main()` renders without errors.

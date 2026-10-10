@@ -3,7 +3,7 @@ import { pageHero, intro, placeCard, prose, gallery, typeCards, faq, cityList, r
 export default {
   path: '/service-area/brownsburg/',
   title: 'Temporary Fence Rental in Brownsburg, IN | Fence Wizards',
-  description: 'Temporary fence rental in Brownsburg, Indiana. Panels, chain link, windscreen and barricades on a flat fee. On site in 24 to 48 hours.',
+  description: 'Barricades and panels for Brownsburg race weekends, plus construction fence along I-74. Flat fee, removal included, on site in 24 to 48 hours.',
   ogImage: 'barricades-building-run',
   main: () => [
     pageHero({
@@ -28,7 +28,7 @@ export default {
       heading: 'What\'s different *about Brownsburg.*',
       paras: [
         'The rest of the year it\'s Hendricks County growth. Commercial building along the I-74 corridor and residential development around the town both produce ordinary construction perimeters, and Brownsburg sits close enough to the interstate that getting a truck there inside the standard 24 to 48 hour window is straightforward.',
-        'The town itself is the third case. Work around Green Street and the older center has the same problem every established downtown has: the sidewalk has to stay usable and the perimeter is on public view for the length of the job. Screened panel runs handle both without anybody having to think about it again.',
+        'The town itself is the third case. Work around Green Street and the older center has the same problem every established downtown has: the sidewalk has to stay usable and the perimeter is on public view until the work is done. Screened panel runs handle both.',
       ],
       image: 'truck-and-panels',
       imageAlt: 'Fence Wizards pickup with a trailer stacked with fence panels',
@@ -52,11 +52,11 @@ export default {
 
     faq({
       heading: 'Questions we get *about Brownsburg.*',
-      intro: 'Three that come up on nearly every call from this part of the radius.',
+      intro: 'Race weekends, drive time, and the houses going up.',
       items: [
-        { q: 'Can you handle crowd control for a race weekend?', a: 'Yes. Interlocking steel barricades do queue lines, vendor rows and vehicle separation, and panel runs handle the long edges and the parking. Give us the times for set and strike and the footprint, and we work to the schedule rather than to office hours.' },
-        { q: 'How fast can you reach Brownsburg?', a: '24 to 48 hours is the normal window and Brownsburg is comfortably inside it, about forty minutes from the yard around I-465 and out I-74. Emergency work moves faster than that, and the honest answer on timing depends on what else is on the truck that day.' },
-        { q: 'Do you work on residential developments here?', a: 'We don\'t do residential fencing, and we don\'t install permanent fence, do fence repairs or do gate automation anywhere. What we do here is temporary fence around the construction site itself, which is a different job from fencing somebody\'s finished yard.' },
+        { q: 'Can you handle crowd control for a race weekend?', a: 'Yes. Interlocking steel barricades do queue lines, vendor rows and vehicle separation, and panel runs handle the long edges and the parking. Give us the times for set and strike and the footprint, and we work to that schedule.' },
+        { q: 'How fast can you reach Brownsburg?', a: '24 to 48 hours is the normal window and Brownsburg is comfortably inside it, about forty minutes from the yard around I-465 and out I-74. Emergency work moves faster than that, and the exact timing depends on what else is on the truck that day.' },
+        { q: 'Do you work on residential developments here?', a: 'Yes, on the construction side. We fence the site while the houses go up. We don\'t fence finished yards, and we don\'t install permanent fence, repair fences or automate gates.' },
       ],
     }),
 
@@ -65,12 +65,12 @@ export default {
 
     cityList({
       heading: 'Other towns *we cover.*',
-      intro: 'More of the towns we cover, out of the Greenwood yard. If your project sits between two of them, or past the edge of the radius, call and ask rather than assuming the answer is no.',
+      intro: 'More of the towns we cover, out of the Greenwood yard.',
       cities: ['franklin', 'columbus', 'bloomington', 'lafayette', 'muncie', 'anderson', 'terre-haute', 'richmond'],
     }),
 
     related({ current: '/service-area/brownsburg/', showCities: false }),
 
-    quoteCta({ eyebrow: 'Brownsburg projects', heading: 'Job *in Brownsburg?*', text: 'Give Richard the run, the gates and the dates, and he\'ll price it on the call.' }),
+    quoteCta({ eyebrow: 'Brownsburg projects', heading: 'Job *in Brownsburg?*', text: 'Give Richard the footprint, the gates and the set and strike times.' }),
   ].join('\n'),
 };

@@ -7,7 +7,7 @@ const partial = name => readFileSync(new URL(`../partials/${name}`, import.meta.
 export default [
   {
     path: '/estimate/',
-    title: 'Plan & Price Your Fence | Fence Wizards',
+    title: 'Price Your Fence Online | Fence Wizards',
     description: 'Draw your temporary fence on a satellite map, choose your rental options, and get a preliminary estimate from Fence Wizards in minutes.',
     ogImage: 'truck-trailer-load',
     solidHeader: true,
@@ -25,7 +25,7 @@ export default [
   {
     path: '/quote-confirmation/',
     title: 'Plan Received | Fence Wizards',
-    description: 'Your fence plan is on its way to Richard. He will reach out within 24 hours.',
+    description: 'Your fence plan is on its way to Richard. He will reach out within 24 hours, usually the same day.',
     noindex: true,
     solidHeader: true,
     mainClass: 'confirm',

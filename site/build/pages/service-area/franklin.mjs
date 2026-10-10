@@ -3,7 +3,7 @@ import { pageHero, intro, placeCard, prose, typeCards, faq, cityList, related, q
 export default {
   path: '/service-area/franklin/',
   title: 'Temporary Fence Rental in Franklin, IN | Fence Wizards',
-  description: 'Temporary fence rental in Franklin, Indiana. Panels, chain link, windscreen and barricades on a flat fee. On site in 24 to 48 hours.',
+  description: 'Temporary fence for campus and Main Street sites in Franklin, IN. Driven chain link and screened panels on a flat fee, removal included.',
   ogImage: 'cleared-lot-neighborhood',
   main: () => [
     pageHero({
@@ -16,9 +16,9 @@ export default {
     }),
 
     intro({
-      lead: 'Franklin is in the same county as our yard and about fifteen minutes down I-65, which changes what we can actually promise rather than just what we can quote.',
+      lead: 'Franklin is in the same county as our yard and about fifteen minutes down I-65.',
       paras: [
-        'Same-day response on a straightforward run is realistic here, and a service call to move a gate or extend a run doesn\'t need to become a scheduling conversation.',
+        'A service call to move a gate or extend a run doesn\'t need to become a scheduling conversation.',
       ],
       aside: placeCard({ slug: 'franklin', drive: 'About 15 minutes south, straight down I-65', cityLink: { href: 'https://www.franklin.in.gov/', label: 'franklin.in.gov' } }),
     }),
@@ -27,7 +27,7 @@ export default {
       eyebrow: 'Local know-how',
       heading: 'What\'s different *about Franklin.*',
       paras: [
-        'The work splits between the college and the downtown. Campus construction has the same requirement every institutional site has: the perimeter has to genuinely separate the public from the work, because the people walking past are students rather than trades. That usually means a driven fence where the ground allows it, and proper gate planning rather than a line dropped where the panels ran out.',
+        'The work splits between the college and the downtown. Campus construction has the same requirement every institutional site has: the perimeter has to separate the public from the work, because the people walking past are students rather than trades. That usually means a driven fence where the ground allows it, and gates planned around how people move.',
         'The historic downtown and the Main Street district are the other half, and they\'re the appearance job. A site on a working commercial street needs the sidewalk left open and the perimeter screened, because it\'s in front of businesses trying to trade for the whole length of the work.',
       ],
       image: 'gate-across-lot',
@@ -38,15 +38,15 @@ export default {
     typeCards({
       eyebrow: 'What we bring',
       heading: 'What we bring *to Franklin.*',
-      intro: 'Fifteen minutes from the yard, which changes what we can promise.',
+      intro: 'Fifteen minutes from the yard, so service calls are quick.',
     }),
 
     faq({
       heading: 'Questions we get *about Franklin.*',
-      intro: 'Three that come up on nearly every call from this part of the radius.',
+      intro: 'Response time, campus sites and screening on Main Street.',
       items: [
-        { q: 'How quickly can you get to a Franklin site?', a: 'Faster than almost anywhere else we work. We\'re based in Greenwood, about fifteen minutes north up I-65, so a straightforward run goes in within the usual 24 to 48 hours and service calls here are easy for us to take.' },
-        { q: 'What do you use on a campus or institutional site?', a: 'Usually post-driven chain link where the ground takes a post, because the perimeter has to hold rather than mark and the people walking past are not trades. Where the site changes week to week or the surface is paved, panels in sandbagged stands are the better call and we\'ll say so.' },
+        { q: 'How quickly can you get to a Franklin site?', a: 'A straightforward run goes in within the usual 24 to 48 hours. We\'re based in Greenwood, about fifteen minutes north up I-65, so service calls to move a gate are easy for us to take.' },
+        { q: 'What do you use on a campus or institutional site?', a: 'Usually post-driven chain link where the ground takes a post, because the perimeter has to hold and the people walking past aren\'t trades. Where the site changes week to week or the surface is paved, panels in sandbagged stands are the better call and we\'ll say so.' },
         { q: 'Can you screen a site on a downtown street?', a: 'Yes. Windscreen fits across a panel run and is the normal answer on a working commercial street, because the perimeter sits in front of businesses trying to trade. It comes plain or custom printed, and it\'s sold rather than rented, so it stays yours.' },
       ],
     }),
@@ -56,7 +56,7 @@ export default {
 
     cityList({
       heading: 'Other towns *we cover.*',
-      intro: 'Where else the trucks go, from the same yard. If your project sits between two of them, or past the edge of the radius, call and ask rather than assuming the answer is no.',
+      intro: 'Where else the trucks go, from the same yard.',
       cities: ['columbus', 'bloomington', 'lafayette', 'muncie', 'anderson', 'terre-haute', 'richmond', 'indianapolis'],
     }),
 

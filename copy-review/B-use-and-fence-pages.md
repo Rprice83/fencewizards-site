@@ -120,3 +120,75 @@
 11. Are post holes filled when driven fence is pulled?
 12. Is the orange mesh in `orange-safety-grass` / `orange-safety-run` yours? (The old site says "We do not do ... orange fencing.")
 13. More photos of post-driven chain link and of steel barricades, to replace panel and plastic shots on those pages.
+
+## Applied 2026-10-10
+"rather than" in these 7 files: from ~36 down to 1 (kept "where the fence has to hold rather than just mark" on the event page, Richard's voice). All "honest", "actually" and "pretend" tics are gone. Pages render without errors (`node --check` plus an in-memory render); the full build was not run (other agents are working in parallel). No tests assert this copy.
+
+### uses/construction-fencing.mjs
+- Meta: "…moved the same day the plan changes. Flat fee." → "…at one flat fee, removal included. Most installs within 24 to 48 hours."
+- Hero lede: "A perimeter that moves as fast as your schedule does…" → "Fence on site in 24 to 48 hours, on one flat price that already covers taking it down." (I left out "chain link" so it doesn't promise 24 to 48 hours for driven fence; see R6.)
+- Intro: "we come back out the same day" → "we come back out, the same day for general contractors".
+- Intro image alt → "Panel fence on sandbagged stands across a lawn beside a brick building".
+- Prose: "at the start rather than at the invoice" → "on the first call"; cut the repeated "Fencing gets in somebody's way at least once on every project" (kept in the steps intro) → "When the fence is in the way, you call, and we come out."
+- Step 4 (fragments) → "Call when the fence needs moving, a gate relocated or a section added. General contractors get same-day service."
+- FAQ 1: "plan rather than improvise" → "plan ahead". FAQ 3: cut "Fencing is in somebody's way… we built the business around answering that call rather than avoiding it". FAQ 5: "on the first call rather than at the invoice" → "on the first call".
+
+### uses/event-fencing.mjs
+- Hero lede: "Set on your run of show rather than ours, and pulled the hour the last guest leaves." → "Set to your load-in times, including overnight, and struck the night the event ends."
+- Intro: cut "rather than the next business day".
+- Prose 1 (contrast reveal) → "Windscreen fitted across a panel run gives you privacy and dust control. Printed, the same run becomes a banner the length of the site."
+- Prose 2: cut "rather than dropped in a pile for your crew to sort out".
+- Prose 3: "Google Pixel Event" → "Google Pixel event" (names unchanged); the disclaimer is now one sentence: "On jobs that size the venue is the end user, and whoever hired us was somebody else working the job."
+- Steps 1, 3, 5: "not a generic install window" → "is built around those three times"; "we don't pretend it does" → "Event work happens at inconvenient hours, so we schedule crews for them."; "Not the following Monday. The removal was already priced." → "The same night, with the removal already in the price."
+- Type cards: added panels ("Set during load-in and pulled during load-out. Your crew can shift a section by hand."), with the intro updated to match.
+- FAQ 1: cut "Event schedules are the reason this business is built the way it is" and "rather than around a standard day". FAQ 3: "usually the cheapest large-format signage on the job" → "often costs less than separate banners covering the same length". FAQ 4 → "Yes. The removal is already in the price, and a fence still standing the next morning is the venue's problem, so we don't leave it there." FAQ 5: cut "rather than just mark" (it duplicated step 2). FAQ 6: removed the repeated disclaimer and fixed "Google Pixel event".
+
+### uses/emergency-fencing.mjs
+- Meta: "after a tornado, fire or structural loss… who need a perimeter today" → "after a storm, fire, break-in or structural loss, across central Indiana. Call Richard for a real arrival time."
+- Hero alt: "damaged roof" → "collapsed roof". Intro alt: "Temporary chain link fence around a cleared lot beside houses" → "Panel fence on stands along a lot beside houses".
+- Intro lead: added a break-in ("After a storm, a fire, a break-in or a structural loss…"). Intro: cut "this part of the business was built for it rather than bolted on".
+- Prose 1: "ours rather than allocated from a regional pool…" → "Richard takes the call and sends our own crew and our own material." Prose 3: "The commercial insurance package behind us is a full one:" → "We carry umbrella, general liability, commercial auto and workers' compensation insurance."
+- Steps intro: "built around that rather than around a tidy scope document" → "starts with what you can tell us on the phone". Step 2: cut the third "measured plan" line. Step 3: "We set what we can today" → "We set what we can first". Step 5: "we would rather come out than have you work around us" → "Call and we come out, so your crew isn't working around the fence."
+- Type cards: added windscreen ("Screens a loss site from the street. Sold, not rented, so it stays with the property.").
+- FAQ 1: removed "honest" and "rather than a comfortable one" (it still says "faster than the standard 24 to 48 hour window"). FAQ 2: dropped "and adjusters" from the question (unconfirmed). FAQ 3: "which clears standard vendor requirements…" → "Tell us the limits your vendor file requires and we will confirm them before the job." FAQ 4: reworded so "measured plan" isn't repeated. FAQ 5: added "Windscreen is sold, not rented, so it stays with the property." FAQ 6: removed the duplicate "rather come out" line.
+
+### fence/panels-and-stands.mjs
+- Hero lede → "Six-foot panels in sandbagged stands, on site in 24 to 48 hours, and light enough for two of your crew to shift a section by hand."
+- Intro lead: "rather than in the ground" → "on top of the ground".
+- Specs: "Install speed" row → "Lead time: 24 to 48 hours from the call, emergencies faster. The fastest type to install."; "without tools" → "usually without tools".
+- Features 2: "the only schedule an event fence can actually keep" → "the schedule an event fence has to keep".
+- FAQs: cut three "rather than" phrases; FAQ 4: removed "honest answer" and "changes the answer"; FAQ 5: "sold rather than rented" → "sold, not rented"; FAQ 6: "the honest recommendation" → "the better choice".
+
+### fence/post-driven-chain-link.mjs
+- Title → "Post-Driven Chain Link Fence Rental Indianapolis | Fence Wizards" (64 chars). Meta: the negation list → "Posts driven into the ground for a perimeter that has to stay shut."
+- Hero lede → "Posts driven into the ground and fabric tensioned between them, for a site that has to stay shut after your crew leaves."
+- Specs: "planned rather than improvised" → "scheduled ahead with a crew on site" (tidy only, no new lead time); "real security" → "Long jobs and sites that have to stay shut".
+- Features 2: cut "rather than a marker".
+- FAQ 1: the negation list → "so the line can't be lifted at a joint or pushed aside". FAQ 2: "do the same job above grade" → "are the above-grade option"; "rather than after the crew arrives" → "before the crew arrives". FAQ 3: "honest trade" → "trade". FAQ 5: "real work rather than a two-person lift" → "takes a crew visit. On panels it's a two-person lift." FAQ 6: removed "We aren't a landscaping company and we won't pretend…" → "A driven post does leave a mark in the ground, so if the surface matters…".
+- **Image swaps** (checked each photo): specs `apartment-build-wrapped` (panels on stands) → `crew-at-fence` (chain link on posts in a lawn; alt "Three crew members standing in front of a chain link fence on a lawn beside a brick building"). Features 2 `stacked-panels-site` (panels) → `windscreen-lot-run` (no stands visible; alt "A long fence run covered in black windscreen along a paved drive"). Features 3 `green-windscreen-lot` (panels on sandbagged stands) → `windscreen-black-run` (no stands visible; alt "Black windscreen on fence runs along the edge of a paved lot"). Features 1 alt now starts "Chain link fence…".
+- **Gallery removed:** `school-building-panels` and `muddy-site-edge` both show panels on sandbagged stands (muddy-site-edge is also panels, not driven). That left only `orange-safety-grass` (P3, waiting on Richard), and a one-photo gallery shows full width, so I removed the section. If Richard confirms the orange-mesh job is his, it could come back with another driven photo.
+
+### fence/windscreen.mjs
+- Title → "Construction Windscreen and Printed Fence Screen | Fence Wizards". Meta and specs: "Sold rather than rented" → "Sold, not rented".
+- Hero lede: "Privacy and dust" → "Privacy and dust control".
+- Intro: "We treat it as a sale rather than a rental" → "We sell it".
+- Features 3 and FAQ 2: "cheapest large-format signage…" → "costs less than separate banners covering the same length".
+- FAQ 1: "Sold, not rented… which is different from how the fence itself is priced" → "Sold. … The fence itself is rented on a flat price." FAQ 3: "What does it actually do?" → "What does it do?" FAQ 5: removed "rather than rented" and "rather look at it than guess" → "we will want to look at it before we say yes".
+
+### fence/barricades.mjs
+- Hero alt → "Steel crowd-control barricades along the outside of a metal building".
+- Intro: cut "rather than dropped in a pile for somebody else to sort out".
+- Specs alt (`barricades-venue`) → "Steel barricades lined up inside an open hangar door". "priced the same honest way" → "priced the same way". "linear feet of line rather than a barricade count" → "Give us the linear feet of line and we can price it faster than from a barricade count".
+- **Features:** removed all three images. `downtown-lot-barriers` showed red plastic barricades, `barricades-venue` was a duplicate of the specs photo, and the remaining barricade photo (`barricades-building-run`) is the same building as the hero. Three text cards look even, where one photo card next to two text cards would not. Features 1: "can actually work" → "can do its job".
+- **Gallery removed:** it repeated the hero photo and showed no barricades (panels, orange mesh, and a "generator" alt for a photo with no visible generator).
+- FAQ 1: "actually" and "rather than just marking…" → "They interlock into a line that holds a crowd in place." FAQ 3: shortened the "isn't a delivery" negation. FAQ 4: cut "rather than a generic install window". FAQ 6 → "If your event is sooner than that, call and tell us the date before assuming it's too late."
+
+### Skipped (and why)
+- Construction FAQ 2 "doesn't keep running if your project runs long": blocked on R1.
+- Construction intro "post-driven chain link… within 24 to 48 hours": blocked on R6, left as is. Post-driven specs/FAQ 3 lead time: blocked on R6 (tidied only).
+- Event step 4 "Stay on call through the event": blocked on R7. Past-sites names: only the capitalization of "event" changed.
+- Emergency hours/after-hours line: blocked on R3. Emergency speed wording beyond removing "today": blocked on R5.
+- Post-driven FAQ 6 "are holes filled": no yes/no added (Richard question 11).
+- Windscreen [NEED] spec rows (colors, sizes, print lead time, fitting/pickup): no placeholder rows added.
+- Barricade size/quantity rows and the confirmation of flat pricing incl. delivery/pickup: waiting on Richard.
+- `orange-safety-grass` / `orange-safety-run`: not used as replacements (P3).
