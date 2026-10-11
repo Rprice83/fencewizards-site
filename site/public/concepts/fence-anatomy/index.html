@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel Run Animation | Fence Wizards</title>
+  <meta name="description" content="Concept demo: an animated illustration of how a temporary fence panel run goes up. Not the live site.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/assets/brand/mark-fw-800.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;1,800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ED1C24; --ink: #231F20; --ink-2: #4a4546; --concrete: #efedea; --line: rgba(35, 31, 32, .12);
+      --frame: #7f868d; --mesh: #9ba1a7; --stand-top: #57514f; --stand-front: #3b3637; --stand-side: #2b2728;
+      --bag: #c9b083; --bag-dark: #a98f60;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--concrete); color: var(--ink); font: 400 1.0625rem/1.6 Barlow, system-ui, sans-serif; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+
+    .bar { background: var(--ink); color: #fff; }
+    .bar-inner { max-width: 1240px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .bar img { height: 44px; width: auto; display: block; }
+    .tag { font-size: .8rem; letter-spacing: .04em; color: rgba(255, 255, 255, .75); }
+    .tag b { background: var(--red); color: #fff; padding: 3px 8px; margin-right: 8px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: .72rem; }
+
+    main { max-width: 1240px; margin: 0 auto; padding: clamp(40px, 7vw, 96px) 20px clamp(56px, 8vw, 110px); }
+    .grid { display: grid; gap: clamp(28px, 4vw, 56px); align-items: center; }
+    .grid { grid-template-areas: "head" "fig" "steps"; }
+    .head { grid-area: head; } figure { grid-area: fig; } .side { grid-area: steps; }
+    @media (min-width: 960px) { .grid { grid-template-columns: minmax(300px, 4fr) 7fr; grid-template-areas: "head fig" "steps fig"; row-gap: 0; } .head { align-self: end; } .side { align-self: start; } }
+
+    .eyebrow { margin: 0 0 12px; font: 700 .85rem/1 "Barlow Condensed", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
+    h1 { margin: 0 0 16px; font: italic 800 clamp(2.4rem, 5vw, 3.6rem)/.95 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: -.01em; text-wrap: balance; }
+    h1 em { font-style: inherit; color: var(--red); }
+    .lede { margin: 0 0 28px; max-width: 34em; color: var(--ink-2); }
+
+    ol.steps { list-style: none; margin: 0 0 28px; padding: 0; border-top: 1px solid var(--line); }
+    ol.steps li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); transition: color .3s; }
+    ol.steps li span { font: 700 1.35rem/1 "Barlow Condensed", sans-serif; color: transparent; -webkit-text-stroke: 1.2px var(--ink-2); transition: color .3s, -webkit-text-stroke-color .3s; }
+    ol.steps li.on { color: var(--ink); }
+    ol.steps li.on span { color: var(--red); -webkit-text-stroke-color: var(--red); }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: 2px solid var(--ink); background: transparent; color: var(--ink); font: 700 1rem/1 "Barlow Condensed", sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: background .2s, color .2s, transform .1s; }
+    .btn:hover { background: var(--ink); color: #fff; }
+    .btn:active { transform: translateY(1px); }
+    .btn-red { background: var(--red); border-color: var(--red); color: #fff; }
+    .btn-red:hover { background: #c8141b; border-color: #c8141b; }
+    .btn svg { width: 16px; height: 16px; }
+
+    figure { margin: 0; }
+    .stage { background: #fff; border: 1px solid var(--line); padding: clamp(8px, 2vw, 20px); }
+    .stage svg { display: block; width: 100%; height: auto; overflow: visible; }
+    figcaption { margin-top: 10px; font-size: .85rem; color: var(--ink-2); }
+
+    .piece { transform-box: fill-box; transform-origin: 50% 100%; }
+    .js .piece { opacity: 0; }
+    .links { margin-top: 18px; font-size: .95rem; }
+    @media (prefers-reduced-motion: reduce) { .js .piece { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <script>document.documentElement.classList.add('js'); document.body.classList.add('js');</script>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <a href="/concepts/redesign/" aria-label="Fence Wizards"><img src="/assets/brand/logo-horizontal-reversed-800.png" alt="Fence Wizards, Rental Fence Solutions" width="800" height="277"></a>
+      <p class="tag"><b>Concept demo</b>Animated panel illustration. Not on the live site.</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="grid">
+      <div class="head">
+        <p class="eyebrow">Panels &amp; stands</p>
+        <h1>How a panel run <em>goes up.</em></h1>
+        <p class="lede">Six-foot panels sit in sandbagged stands on top of the ground, so a run goes up on dirt, asphalt or concrete without digging a hole. Two of your crew can shift a section by hand.</p>
+      </div>
+      <div class="side">
+        <ol class="steps" id="steps">
+          <li data-step="1"><span>01</span>Stands go down along the line.</li>
+          <li data-step="2"><span>02</span>Panels drop into the stands.</li>
+          <li data-step="3"><span>03</span>Each panel joins the next.</li>
+          <li data-step="4"><span>04</span>Sandbags weight the stands.</li>
+        </ol>
+        <div class="actions">
+          <button class="btn" id="replay" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10a6 6 0 1 0 2-4.5M4 3v3h3" fill="none" stroke="currentColor" stroke-width="2"/></svg>Play again</button>
+          <a class="btn btn-red" href="/estimate/">Price your fence online</a>
+        </div>
+        <p class="links"><a href="/fence/panels-and-stands/">More on panels and stands</a></p>
+      </div>
+
+      <figure>
+        <div class="stage">
+          <svg id="run" viewBox="0 0 800 360" role="img" aria-labelledby="run-title">
+            <title id="run-title">Illustration of a temporary fence run: stands set along a line, chain link panels standing in them, joined end to end, with sandbags on the stands</title>
+          </svg>
+        </div>
+        <figcaption>Illustration, not to scale.</figcaption>
+      </figure>
+    </div>
+  </main>
+
+  <script>
+  (function () {
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = document.getElementById('run');
+    var N = 3, W = 10, H = 6, LIFT = 0.42;           // panels, panel width/height (units), stand height
+    var S = 20, OX = 105, OY = 150;                     // scale + origin
+    // Dimetric projection: x runs along the fence, y up, z toward the viewer.
+    function P(x, y, z) { return [OX + S * (0.92 * x - 0.55 * z), OY + S * (0.25 * x + 0.32 * z - y)]; }
+    function pts(list) { return list.map(function (p) { var q = P(p[0], p[1], p[2]); return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '); }
+    function el(name, attrs, parent) {
+      var e = document.createElementNS(NS, name);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      (parent || svg).appendChild(e); return e;
+    }
+
+    // Ground grid
+    var ground = el('g', { stroke: 'rgba(35,31,32,.09)', 'stroke-width': 1, fill: 'none' });
+    for (var gz = -3; gz <= 3; gz += 1.5) el('polyline', { points: pts([[-3, 0, gz], [N * W + 3, 0, gz]]) }, ground);
+    for (var gx = -3; gx <= N * W + 3; gx += 4.3) el('polyline', { points: pts([[gx, 0, -3], [gx, 0, 3]]) }, ground);
+
+    var defs = el('defs', {});
+    var pieces = { 1: [], 2: [], 3: [], 4: [] };
+
+    // Stands (drawn first so panels sit in them); one at every post.
+    function stand(px) {
+      var g = el('g', { class: 'piece' });
+      var a = 0.4, l = 1.25, h = LIFT;                // half-width along x, half-length along z, height
+      el('polygon', { points: pts([[px - a, h, -l], [px + a, h, -l], [px + a, h, l], [px - a, h, l]]), fill: 'var(--stand-top)' }, g);
+      el('polygon', { points: pts([[px - a, 0, l], [px + a, 0, l], [px + a, h, l], [px - a, h, l]]), fill: 'var(--stand-front)' }, g);
+      el('polygon', { points: pts([[px + a, 0, -l], [px + a, 0, l], [px + a, h, l], [px + a, h, -l]]), fill: 'var(--stand-side)' }, g);
+      return g;
+    }
+    // Panels: tube frame + chain link diamonds clipped to the frame.
+    function panel(i) {
+      var x0 = i * W + 0.08, x1 = (i + 1) * W - 0.08, y0 = LIFT, y1 = LIFT + H;
+      var g = el('g', { class: 'piece' });
+      var id = 'clip' + i;
+      var cp = el('clipPath', { id: id }, defs);
+      el('polygon', { points: pts([[x0, y0, 0], [x1, y0, 0], [x1, y1, 0], [x0, y1, 0]]) }, cp);
+      var mesh = el('g', { 'clip-path': 'url(#' + id + ')', stroke: 'var(--mesh)', 'stroke-width': 0.9, fill: 'none' }, g);
+      for (var t = -H; t <= W; t += 0.55) {
+        el('polyline', { points: pts([[x0 + t, y0, 0], [x0 + t + H, y1, 0]]) }, mesh);
+        el('polyline', { points: pts([[x0 + t, y1, 0], [x0 + t + H, y0, 0]]) }, mesh);
+      }
+      el('polygon', { points: pts([[x0, y0, 0], [x1, y0, 0], [x1, y1, 0], [x0, y1, 0]]), fill: 'none', stroke: 'var(--frame)', 'stroke-width': 4, 'stroke-linejoin': 'round' }, g);
+      return g;
+    }
+    // Joins between neighbouring panels (generic bands, no specific hardware implied).
+    function join(px) {
+      var g = el('g', { class: 'piece' });
+      [1.4, LIFT + H - 1.1].forEach(function (y) {
+        el('polygon', { points: pts([[px - 0.35, y, 0], [px + 0.35, y, 0], [px + 0.35, y + 0.45, 0], [px - 0.35, y + 0.45, 0]]), fill: 'var(--red)' }, g);
+      });
+      return g;
+    }
+    // Sandbags at both ends of each stand.
+    function bags(px, z) {
+      var g = el('g', { class: 'piece' });
+      [z].forEach(function (z) {
+        var c = P(px, LIFT + 0.18, z);
+        el('ellipse', { cx: c[0], cy: c[1] + 2, rx: 15, ry: 7.5, fill: 'var(--bag-dark)' }, g);
+        el('ellipse', { cx: c[0], cy: c[1], rx: 14, ry: 6.5, fill: 'var(--bag)' }, g);
+        el('path', { d: 'M' + (c[0] - 5) + ' ' + (c[1] - 1) + 'q5 -3 10 0', stroke: 'var(--bag-dark)', 'stroke-width': 1.4, fill: 'none' }, g);
+      });
+      return g;
+    }
+
+    // Paint order: stands, bags behind the fence line, panels, joins, bags in front.
+    var back = [], front = [];
+    for (var p = 0; p <= N; p++) pieces[1].push(stand(p * W));
+    for (var bb = 0; bb <= N; bb++) back.push(bags(bb * W, -1.0));
+    for (var i = 0; i < N; i++) pieces[2].push(panel(i));
+    for (var j = 1; j < N; j++) pieces[3].push(join(j * W));
+    for (var bf = 0; bf <= N; bf++) front.push(bags(bf * W, 1.0));
+    for (var b = 0; b <= N; b++) pieces[4].push(back[b], front[b]);
+
+    var steps = Array.prototype.slice.call(document.querySelectorAll('#steps li'));
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var all = [].concat(pieces[1], pieces[2], pieces[3], pieces[4]);
+    var timers = [], anims = [];
+
+    function showAll() {
+      all.forEach(function (e) { e.style.opacity = 1; e.style.transform = 'none'; });
+      steps.forEach(function (s) { s.classList.add('on'); });
+    }
+    function play() {
+      timers.forEach(clearTimeout); anims.forEach(function (a) { a.cancel(); });
+      timers = []; anims = [];
+      if (reduce || !Element.prototype.animate) { showAll(); return; }
+      all.forEach(function (e) { e.style.opacity = 0; });
+      steps.forEach(function (s) { s.classList.remove('on'); });
+      var t = 250;
+      var plan = [
+        { step: 1, from: 'translateY(-40px)', dur: 520, gap: 140 },
+        { step: 2, from: 'translateY(-90px)', dur: 700, gap: 260 },
+        { step: 3, from: 'scale(0.2)', dur: 380, gap: 160 },
+        { step: 4, from: 'translateY(-60px)', dur: 520, gap: 110 }
+      ];
+      plan.forEach(function (ph) {
+        (function (start) {
+          timers.push(setTimeout(function () { steps[ph.step - 1].classList.add('on'); }, start));
+        })(t);
+        pieces[ph.step].forEach(function (e, k) {
+          var a = e.animate(
+            [{ opacity: 0, transform: ph.from }, { opacity: 1, transform: 'none' }],
+            { duration: ph.dur, delay: t + k * ph.gap, easing: 'cubic-bezier(.2,.9,.25,1.15)', fill: 'forwards' }
+          );
+          anims.push(a);
+        });
+        t += (pieces[ph.step].length - 1) * ph.gap + ph.dur + 250;
+      });
+    }
+
+    document.getElementById('replay').addEventListener('click', play);
+    if (reduce) { showAll(); return; }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { play(); io.disconnect(); }
+      }, { threshold: 0.35 });
+      io.observe(svg);
+    } else { play(); }
+  })();
+  </script>
+</body>
+</html>
