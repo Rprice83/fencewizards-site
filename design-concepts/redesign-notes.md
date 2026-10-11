@@ -128,3 +128,9 @@ The real site is unchanged: no edits to styles.css, index.html, js/ or build/.
 3. **"Most popular" on Panels & Stands**: it's on the current homepage. Is it still true?
 4. **Footer town list**: fine to drop it from the homepage footer since the towns are listed just above? (It's an SEO and internal-linking call more than a Richard call.)
 5. **Mobile call bar**: does he want calls to be the first thing a phone visitor can tap all the way down the page? It will raise call volume relative to form leads.
+
+## Copy pass with the humanizer skill (2026-10-10)
+- Headlines chosen by Robert: uses H2 "Construction, events and emergency work." (was "Built for the call that came in this morning."); trust H2 "The company behind the fence." (was "Insured, third generation, and buying direct.").
+- Stat strip: the "1 call" tile is now "4.6 ★ On Google, from 39 reviews" (linked); the separate rating line under the hero buttons is gone so the rating isn't shown twice above the fold.
+- Minor fixes: Construction card "general contractors get same-day moves" (was "Moved the same day a superintendent asks"); Events "struck the night the event ends" (was "pulled the hour the event ends"); Emergency card renamed "Emergency & restoration" and rewritten (said "fire" twice); cut the unverified "We clear standard vendor requirements" (the live homepage still has it) and "Four things you can check."; step 5 reworded.
+- Kept for Richard: "Most popular" flag (question 10.11 in his doc). Left untouched because they wait on his answers: the national-chains comparison and "price doesn't move if your schedule slips" (R1), "a fee for every bent panel" (R4), hours "7 days" (R3), Greenwood as the base (R2), "Where To Get Stuff Fixed".
